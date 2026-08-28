@@ -1,0 +1,554 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 3: Hazard and Disaster Information | Hazard Planning &amp; Risk Management</title>
+  <meta name="description" content="Lecture 3 &mdash; Hazard and Disaster Information. Hazard Planning and Risk Management. Dr. Arjumand Zehra Zaidi, USPCAS-W, Mehran University of Engineering &amp; Technology, Jamshoro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>
+        <span class="brand-text">
+          <strong>Hazard Planning &amp; Risk Management</strong>
+          <small>USPCAS-W &middot; MUET Jamshoro</small>
+        </span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">All Lectures</a>
+        <a href="#reading">Reading</a>
+        <a href="#assignment">Assignment</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="hero-kicker">Lecture 3 &middot; Fall 2026</p>
+        <h1>Hazard and Disaster Information</h1>
+        <p class="hero-sub">Hazard Planning and Risk Management &mdash; USPCAS-W, Mehran University of Engineering &amp; Technology, Jamshoro</p>
+        <div class="hero-meta">
+          <span class="chip">Text-based lecture</span>
+          <span class="chip">Interactive quiz included</span>
+          <span class="chip">Dr. Arjumand Zehra Zaidi</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="../assets/downloads/lecture-03-hazard-and-disaster-information.pdf">Download PDF</a>
+          <a class="btn btn-ghost" href="../assets/downloads/lecture-03-hazard-and-disaster-information.pptx">Download PPTX</a>
+        </div>
+      </div>
+      <div class="hero-wave"><svg viewBox="0 0 1440 46" preserveAspectRatio="none"><path fill="#f4f9fd" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,24 L1440,46 L0,46 Z"/></svg></div>
+    </section>
+
+    <div class="container">
+
+      <section class="card at-a-glance">
+        <h2 class="section-title">In this lecture</h2>
+        <ol>
+          <li>The World Disasters Report (IFRC) and the World Risk Report</li>
+          <li>Climate reports and the UN climate process: IPCC, UNFCCC, Kyoto Protocol, Paris Agreement, COP / CMP / CMA</li>
+          <li>EM-DAT: the international disaster database &mdash; classification, profiles, trends and inclusion criteria</li>
+          <li>How risk develops: hazard, exposure, vulnerability and capacity</li>
+          <li>Reading assignment, hands-on EM-DAT assignment, and a quick quiz</li>
+        </ol>
+      </section>
+
+      <!-- ================= SECTION 1 ================= -->
+      <section class="section-block">
+        <div class="card">
+          <h2 class="section-title">1. The World Disasters Report (IFRC)</h2>
+
+          <p>The <span class="key-term" data-tooltip="International Federation of Red Cross and Red Crescent Societies — the world's largest humanitarian network.">IFRC</span> commissions an annual independent publication called the <strong>World Disasters Report</strong>. Each year, experts present a body of research that examines challenges, trends and innovations around a specific humanitarian theme.</p>
+
+          <div class="highlight-box">
+            <span class="box-label">World Disasters Report 2026</span>
+            <p>The 2026 report warns that <strong>harmful information</strong> has become a de facto humanitarian crisis &mdash; undermining access to aid, eroding trust, destabilising social cohesion and increasing risks for staff, volunteers and communities. No longer a peripheral communications issue, harmful information is now an operational and strategic challenge affecting acceptance, safety and principled humanitarian action.</p>
+            <p style="margin-bottom:0">The report brings together insights from nearly 100 contributors and 60 organisations, including over 30 National Red Cross and Red Crescent Societies. Across eight chapters, it shows how harmful information disrupts preparedness, response and recovery &mdash; and offers practical recommendations to strengthen <span class="key-term" data-tooltip="The capacity of individuals, communities and institutions to withstand and recover from harmful information and to maintain trust in reliable sources.">information resilience</span>, safeguard humanitarian principles and rebuild trust.</p>
+          </div>
+
+          <p>Three related concepts are central to the 2026 report:</p>
+          <ul>
+            <li><span class="key-term" data-tooltip="False or inaccurate information shared without the intent to deceive.">Misinformation</span> &mdash; false or inaccurate information shared without intent to deceive.</li>
+            <li><span class="key-term" data-tooltip="Deliberately false information created and spread with the intent to deceive.">Disinformation</span> &mdash; deliberately false information spread to deceive.</li>
+            <li><span class="key-term" data-tooltip="Speech or narratives that attack or dehumanise a group, often on the basis of identity.">Hate speech</span> &mdash; damaging narratives that dehumanise groups and destabilise communities.</li>
+          </ul>
+
+          <h3>World Risk Report (Bündnis Entwicklung Hilft &amp; IFHV)</h3>
+          <p>The <strong>World Risk Report 2024</strong>, published by Bündnis Entwicklung Hilft in partnership with the Institute for International Law of Peace and Armed Conflict (IFHV) at Ruhr University Bochum, ranks <strong>193 countries</strong> on their risk of experiencing a disaster or their vulnerability to extreme natural events such as earthquakes, tsunamis, floods and drought. The 2024 findings show that <strong>the Philippines, Indonesia and India</strong> have the highest overall disaster risk. The report also examines how crises such as pandemics, extreme weather and conflict interact with and amplify one another, and looks at the global water crisis and the catastrophes&ndash;conflict nexus.</p>
+          <p>The <strong>World Risk Report 2023</strong> focused on <em>Disaster Risk and Diversity</em>, analysing how disaster risk correlates with dimensions of diversity &mdash; age, gender, health, sexual orientation and social background &mdash; and outlining pathways towards more inclusive disaster management.</p>
+
+          <ul class="resource-list">
+            <li><a href="https://www.ifrc.org/our-work/disasters-climate-and-crises/world-disasters-report" target="_blank" rel="noopener">IFRC &mdash; World Disasters Report</a></li>
+            <li><a href="https://weltrisikobericht.de/en/" target="_blank" rel="noopener">WorldRiskReport &mdash; official site</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 2 ================= -->
+      <section class="section-block">
+        <div class="card">
+          <h2 class="section-title">2. Climate Reports and the UN Climate Process</h2>
+
+          <h3>UN Climate Reports</h3>
+          <p>The United Nations publishes key reports on climate impacts and solutions, including the <strong>UNFCCC NDC Synthesis Report</strong>, the <strong>UNEP Production Gap Report</strong> and the <strong>UNEP Adaptation Gap Report</strong>.</p>
+
+          <h3>IPCC &mdash; Intergovernmental Panel on Climate Change</h3>
+          <p>The <span class="key-term" data-tooltip="The United Nations body for assessing the science related to climate change. Established in 1988 by UNEP and WMO.">IPCC</span> prepares comprehensive <strong>Assessment Reports</strong> on knowledge about climate change, its causes, potential impacts and response options. It also produces <strong>Special Reports</strong> (assessments of a specific issue) and <strong>Methodology Reports</strong> (practical guidelines, e.g. for greenhouse gas inventories).</p>
+          <ul>
+            <li><strong>SREX (2012)</strong> &mdash; <em>Managing the Risks of Extreme Events and Disasters to Advance Climate Change Adaptation</em>: a landmark report linking disaster risk management and climate change adaptation.</li>
+            <li><strong>AR6 Synthesis Report (March 2023)</strong> &mdash; the latest assessment cycle: Working Group I (physical science, Aug 2021), Working Group II (impacts and adaptation, Feb 2022), Working Group III (mitigation, Apr 2022), and the Synthesis Report (Mar 2023).</li>
+          </ul>
+
+          <h3>UNFCCC &mdash; the framework convention</h3>
+          <div class="table-wrap">
+            <table>
+              <tr><th>Fact</th><th>Detail</th></tr>
+              <tr><td>Full name</td><td>United Nations Framework Convention on Climate Change</td></tr>
+              <tr><td>Adopted</td><td>1992</td></tr>
+              <tr><td>Entered into force</td><td>1994</td></tr>
+              <tr><td>Headquarters</td><td>Bonn, Germany</td></tr>
+              <tr><td>Legal status</td><td>Not legally binding &mdash; sets a framework for limiting greenhouse gas (GHG) emissions by individual countries</td></tr>
+            </table>
+          </div>
+
+          <h3>Kyoto Protocol vs Paris Agreement</h3>
+          <div class="table-wrap">
+            <table>
+              <tr><th></th><th>Kyoto Protocol</th><th>Paris Agreement</th></tr>
+              <tr><td>Signed</td><td>1997</td><td>2015</td></tr>
+              <tr><td>Entered into force / ratified</td><td>2005 (two commitment periods, 1997&ndash;2020)</td><td>November 2016</td></tr>
+              <tr><td>Legal status</td><td>Legally binding</td><td>Not legally binding, but increases accountability</td></tr>
+              <tr><td>Who must reduce emissions</td><td>Only developed nations</td><td>All nations</td></tr>
+              <tr><td>Commitments</td><td>Overall reduction of 5% from 1990 levels; targets set but no determined time frame</td><td>New commitments due every 5 years; overall goal to limit global temperature rise to 1.5&deg;C above pre-industrial levels</td></tr>
+            </table>
+          </div>
+
+          <h3>Governing bodies: COP, CMP and CMA</h3>
+          <p>The Convention, the Kyoto Protocol and the Paris Agreement established three governing bodies:</p>
+          <ul>
+            <li><span class="key-term" data-tooltip="Conference of the Parties — the supreme decision-making body of the UNFCCC Convention. Reviews implementation of the Convention and adopts decisions to promote its effective implementation.">COP</span> &mdash; for the Convention</li>
+            <li><span class="key-term" data-tooltip="Conference of the Parties serving as the meeting of the Parties to the Kyoto Protocol — oversees implementation of the Kyoto Protocol.">CMP</span> &mdash; for the Kyoto Protocol</li>
+            <li><span class="key-term" data-tooltip="Conference of the Parties serving as the meeting of the Parties to the Paris Agreement — oversees implementation of the Paris Agreement.">CMA</span> &mdash; for the Paris Agreement</li>
+          </ul>
+          <p>The Bureau of the COP, CMP and CMA supports the work of the governing bodies, the UNFCCC secretariat provides organisational support and technical expertise, and two permanent subsidiary bodies &mdash; the <span class="key-term" data-tooltip="Subsidiary Body for Scientific and Technological Advice — provides scientific and technological advice to the governing bodies.">SBSTA</span> and the <span class="key-term" data-tooltip="Subsidiary Body for Implementation — helps assess and review the implementation of the Convention.">SBI</span> &mdash; assist them.</p>
+
+          <details>
+            <summary>Read more: how the COP evolved (timeline)</summary>
+            <div class="content">
+              <ul>
+                <li><strong>1987</strong> &mdash; Montreal Protocol: a historic global agreement to stop producing CFCs that damage the ozone layer.</li>
+                <li><strong>1992</strong> &mdash; UNFCCC established and ratified by 197 countries; it founded the annual COP forum.</li>
+                <li><strong>2005</strong> &mdash; Kyoto Protocol becomes legally binding (after Russia became the 55th ratifying country).</li>
+                <li><strong>2015</strong> &mdash; Paris Agreement signed, aimed at all nations.</li>
+              </ul>
+            </div>
+          </details>
+
+          <div class="highlight-box">
+            <span class="box-label">Latest conferences</span>
+            <p style="margin-bottom:0"><strong>COP29</strong> took place in Baku, Azerbaijan (2024). The next UN Climate Change Conference, <strong>COP31</strong>, will take place in <strong>Antalya, T&uuml;rkiye, from 9 to 20 November 2026</strong>.</p>
+          </div>
+
+          <ul class="resource-list">
+            <li><a href="https://www.un.org/en/climatechange/reports" target="_blank" rel="noopener">UN Climate Reports</a></li>
+            <li><a href="https://www.ipcc.ch/" target="_blank" rel="noopener">IPCC &mdash; official site</a></li>
+            <li><a href="https://www.ipcc.ch/report/ar6/syr/" target="_blank" rel="noopener">IPCC AR6 Synthesis Report: Climate Change 2023</a></li>
+            <li><a href="https://www.ipcc.ch/report/managing-the-risks-of-extreme-events-and-disasters-to-advance-climate-change-adaptation/" target="_blank" rel="noopener">IPCC SREX Report (2012)</a></li>
+            <li><a href="https://unfccc.int/" target="_blank" rel="noopener">UNFCCC &mdash; official site</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 3 ================= -->
+      <section class="section-block">
+        <div class="card">
+          <h2 class="section-title">3. EM-DAT &mdash; The International Disaster Database</h2>
+
+          <p><span class="key-term" data-tooltip="Emergency Events Database — the international disaster database maintained by CRED.">EM-DAT</span> is maintained by the <span class="key-term" data-tooltip="Centre for Research on the Epidemiology of Disasters, based at the Université catholique de Louvain, Brussels.">CRED</span> (Centre for Research on the Epidemiology of Disasters). It provides <strong>geographical, temporal, human and economic information</strong> on disasters at the country level &mdash; from 1900 to the present.</p>
+
+          <h3>Classification of disasters</h3>
+          <p>EM-DAT classifies disasters into two main groups &mdash; <strong>natural</strong> and <strong>technological</strong>:</p>
+
+          <div class="table-wrap">
+            <table>
+              <tr><th>Group</th><th>Subgroup</th><th>Main types</th></tr>
+              <tr><td rowspan="6">Natural</td><td>Geophysical</td><td>Earthquake, mass movement (dry), volcanic activity</td></tr>
+              <tr><td>Hydrological</td><td>Flood, landslide, wave action</td></tr>
+              <tr><td>Meteorological</td><td>Storm, extreme temperature, fog</td></tr>
+              <tr><td>Climatological</td><td>Drought, glacial lake outburst, wildfire</td></tr>
+              <tr><td>Biological</td><td>Animal accident, epidemic, insect infestation</td></tr>
+              <tr><td>Extra-terrestrial</td><td>Impact, space weather</td></tr>
+              <tr><td rowspan="3">Technological</td><td>Industrial accident</td><td>Chemical spill, collapse, explosion, fire, gas leak, poisoning, radiation</td></tr>
+              <tr><td>Transport accident</td><td>Air, rail, road, water</td></tr>
+              <tr><td>Miscellaneous accident</td><td>Collapse, fire, other</td></tr>
+            </table>
+          </div>
+
+          <details>
+            <summary>Read more: definitions of the natural hazard groups</summary>
+            <div class="content">
+              <ul>
+                <li><strong>Geophysical</strong> &mdash; a hazard originating from solid earth (used interchangeably with geological hazard).</li>
+                <li><strong>Meteorological</strong> &mdash; short-lived, micro- to meso-scale extreme weather and atmospheric conditions lasting from minutes to days.</li>
+                <li><strong>Hydrological</strong> &mdash; caused by the occurrence, movement and distribution of surface and subsurface freshwater and saltwater.</li>
+                <li><strong>Climatological</strong> &mdash; long-lived, meso- to macro-scale atmospheric processes ranging from intra-seasonal to multi-decadal climate variability.</li>
+                <li><strong>Biological</strong> &mdash; caused by exposure to living organisms and their toxic substances, or vector-borne diseases they may carry.</li>
+                <li><strong>Extra-terrestrial</strong> &mdash; caused by asteroids, meteoroids and comets passing near Earth, and changes in interplanetary conditions affecting the Earth's magnetosphere, ionosphere and thermosphere.</li>
+              </ul>
+            </div>
+          </details>
+
+          <h3>Disaster profiles and trends</h3>
+          <p>EM-DAT offers <strong>pre-designed disaster profiles</strong> &mdash; summaries of events from 1900, including the top 10 disasters, filterable by period, disaster type, subgroup and continent. Its <strong>trends</strong> tool plots indicators over time (e.g. number of disasters, deaths, and total damage scaled to 2014 US$), by continent and disaster type.</p>
+
+          <div class="example-box">
+            <span class="box-label">Discussion &mdash; what do the trends show?</span>
+            <p style="margin-bottom:0">Looking at the EM-DAT trend charts for 1900&ndash;2015 &mdash; deaths caused by natural disasters, the total number of reported disasters, total damage, and technological disasters &mdash; <strong>any comment on these trends?</strong> What might explain the patterns you observe?</p>
+          </div>
+
+          <h3>EM-DAT inclusion criteria</h3>
+          <div class="highlight-box">
+            <span class="box-label">When is an event recorded in EM-DAT?</span>
+            <p style="margin-bottom:0">EM-DAT includes all disasters from 1900 until the present, conforming to <strong>at least one</strong> of the following criteria:</p>
+            <ul style="margin-bottom:0">
+              <li>10 or more people reported killed</li>
+              <li>100 people or more reported affected</li>
+              <li>declaration of a state of emergency</li>
+              <li>call for international assistance</li>
+            </ul>
+          </div>
+          <p><small><em>Note: people killed includes those confirmed dead and those missing and presumed dead. People affected are those requiring immediate assistance during a period of emergency (basic survival needs such as food, water, shelter, sanitation and immediate medical assistance). People reported injured or homeless are aggregated with those affected to produce a &lsquo;total number of people affected&rsquo;.</em></small></p>
+
+          <ul class="resource-list">
+            <li><a href="https://www.emdat.be/" target="_blank" rel="noopener">EM-DAT &mdash; The International Disaster Database</a></li>
+            <li><a href="https://public.emdat.be/" target="_blank" rel="noopener">EM-DAT Public Database (interactive queries)</a></li>
+            <li><a href="https://www.emdat.be/classification" target="_blank" rel="noopener">EM-DAT &mdash; Classification</a></li>
+            <li><a href="https://www.emdat.be/glossary" target="_blank" rel="noopener">EM-DAT &mdash; Glossary</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 4 ================= -->
+      <section class="section-block">
+        <div class="card">
+          <h2 class="section-title">4. How Risk Develops</h2>
+
+          <p>A <span class="key-term" data-tooltip="A danger that a disaster event may develop — a potential threat to people, property and activities.">hazard</span> is a danger that a disaster event may develop. A hazard may cause a disaster to a vulnerable society. A disaster is a function of the risk process.</p>
+
+          <div class="highlight-box">
+            <span class="box-label">Risk</span>
+            <p style="margin-bottom:0">Risk results from the combination of:</p>
+            <ul style="margin-bottom:0">
+              <li><strong>exposure</strong> to a hazard,</li>
+              <li>conditions of <strong>vulnerability</strong>, and</li>
+              <li><strong>insufficient capacity</strong> or measures to reduce the potential negative consequences of risk.</li>
+            </ul>
+          </div>
+
+          <p>A disaster happens when a hazard impacts a vulnerable population and causes damages, casualties and disruptions. A hazard is disastrous <em>only</em> when it affects people, their properties and activities.</p>
+
+          <div class="example-box">
+            <span class="box-label">Example</span>
+            <p style="margin-bottom:0">An earthquake in an uninhabited desert cannot be considered a disaster, no matter how strong the intensities produced. <strong>Disaster occurs only when hazards and vulnerability meet.</strong></p>
+          </div>
+
+          <h3>Hazard + Community &rarr; Threat to public safety</h3>
+          <div class="diagram">HAZARD                          COMMUNITY
+(natural, technological,        (people, property,
+ biological, societal)           services, livelihoods,
+                                  environment)
+        \                            /
+         \                          /
+          v                        v
+   +--------------------------------------+
+   |       THREAT TO PUBLIC SAFETY        |
+   +--------------------------------------+
+        |                        |
+        v                        v
+  NON-DISASTER              EMERGENCY
+  (local capacities         (national and local
+   can cope)                 response needed)
+                                      |
+                                      v
+                                  DISASTER</div>
+          <p><small><em>Source: WHO training material on concepts in emergency management.</em></small></p>
+
+          <ul class="resource-list">
+            <li><a href="http://www.who.int/hac/techguidance/training/induction/wpro/Day1%20Concepts%20in%20Emergency%20Management.pdf" target="_blank" rel="noopener">WHO &mdash; Concepts in Emergency Management (PDF)</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ================= KEY TAKEAWAYS ================= -->
+      <section class="section-block">
+        <div class="key-takeaways">
+          <h3>Key takeaways</h3>
+          <ul>
+            <li>Reliable information and public trust are increasingly essential for effective, safe and inclusive humanitarian response &mdash; harmful information is now a humanitarian challenge in its own right.</li>
+            <li>The UN climate process has three governing bodies: <strong>COP</strong> (Convention), <strong>CMP</strong> (Kyoto Protocol) and <strong>CMA</strong> (Paris Agreement).</li>
+            <li>EM-DAT is the international disaster database: it classifies disasters as natural or technological and records events meeting at least one of four inclusion criteria.</li>
+            <li>Risk = exposure to a hazard + conditions of vulnerability + insufficient capacity to reduce negative consequences.</li>
+            <li>Disaster occurs only when hazards and vulnerability meet.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ================= READING ================= -->
+      <section id="reading" class="section-block">
+        <div class="card">
+          <h2 class="section-title">Reading Material</h2>
+          <ul class="reading-list">
+            <li class="reading-item">
+              <span class="reading-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+              <div>
+                <h3><a href="https://www.emdat.be/" target="_blank" rel="noopener">EM-DAT &mdash; The International Disaster Database</a></h3>
+                <p>Explore the database, country profiles and trends.</p>
+              </div>
+            </li>
+            <li class="reading-item">
+              <span class="reading-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+              <div>
+                <h3><a href="https://www.undrr.org/terminology" target="_blank" rel="noopener">UNDRR &mdash; Terminology on Disaster Risk Reduction</a></h3>
+                <p>Subject-related terminology. The PDF assigned in class: unisdr.org/files/7817_UNISDRTerminologyEnglish.pdf</p>
+              </div>
+            </li>
+            <li class="reading-item">
+              <span class="reading-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+              <div>
+                <h3><a href="https://www.un.org/en/climatechange/reports" target="_blank" rel="noopener">UN Climate Change Reports</a></h3>
+                <p>Key reports on climate impacts and solutions from around the United Nations.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ================= ASSIGNMENT ================= -->
+      <section id="assignment" class="section-block">
+        <div class="assignment-box">
+          <h2 class="section-title">Assignment</h2>
+          <p>Go to the EM-DAT database and determine: historically, which disaster type has more &mdash;</p>
+          <ol>
+            <li>Total number of events?</li>
+            <li>Total deaths?</li>
+            <li>Total people affected?</li>
+            <li>Total estimated damages?</li>
+          </ol>
+          <div class="assignment-note">You will find that the answers to questions 1, 2 and 3 are not the same. Do you have an explanation for this difference?</div>
+        </div>
+      </section>
+
+      <!-- ================= QUIZ ================= -->
+      <section id="quiz" class="section-block">
+        <div class="card">
+          <h2 class="section-title">Quick Quiz</h2>
+          <p>Test yourself on this lecture. Select an answer for each question, then click <strong>Check my answers</strong> to reveal the key and your score.</p>
+
+          <div class="quiz" data-quiz>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The IFRC commissions the World Disasters Report each year."
+                 data-feedback-incorrect="The IFRC (International Federation of Red Cross and Red Crescent Societies) publishes the World Disasters Report."
+                 data-feedback-unanswered="The IFRC publishes the World Disasters Report.">
+              <p class="quiz-q">1. Which organisation publishes the World Disasters Report?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">UNEP</button>
+                <button class="quiz-option" data-correct="true">IFRC</button>
+                <button class="quiz-option">CRED</button>
+                <button class="quiz-option">IPCC</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The 2026 report focuses on harmful information as an emerging humanitarian challenge."
+                 data-feedback-incorrect="The 2026 report focuses on harmful information — misinformation, disinformation and hate speech."
+                 data-feedback-unanswered="The 2026 report focuses on harmful information.">
+              <p class="quiz-q">2. The World Disasters Report 2026 identifies which emerging humanitarian challenge?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Food insecurity</button>
+                <button class="quiz-option">Water scarcity</button>
+                <button class="quiz-option" data-correct="true">Harmful information</button>
+                <button class="quiz-option">Rapid urbanisation</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The Philippines, Indonesia and India had the highest overall disaster risk in 2024."
+                 data-feedback-incorrect="The 2024 report ranks the Philippines, Indonesia and India highest."
+                 data-feedback-unanswered="The 2024 report ranks the Philippines, Indonesia and India highest.">
+              <p class="quiz-q">3. Which three countries had the highest overall disaster risk in the World Risk Report 2024?</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="true">Philippines, Indonesia, India</button>
+                <button class="quiz-option">Japan, USA, China</button>
+                <button class="quiz-option">Bangladesh, Nepal, Pakistan</button>
+                <button class="quiz-option">Haiti, Myanmar, Somalia</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The Paris Agreement aims to limit global temperature rise to 1.5°C above pre-industrial levels."
+                 data-feedback-incorrect="The overall goal of the Paris Agreement is to limit warming to 1.5°C above pre-industrial levels."
+                 data-feedback-unanswered="The Paris Agreement aims to limit warming to 1.5°C above pre-industrial levels.">
+              <p class="quiz-q">4. What is the overall goal of the Paris Agreement?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Reduce emissions by 5% from 1990 levels</button>
+                <button class="quiz-option" data-correct="true">Limit global temperature rise to 1.5&deg;C above pre-industrial levels</button>
+                <button class="quiz-option">Ban fossil fuels by 2050</button>
+                <button class="quiz-option">Require only developed nations to reduce emissions</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The CMA (Conference of the Parties serving as the meeting of the Parties to the Paris Agreement) oversees it."
+                 data-feedback-incorrect="The CMA oversees the Paris Agreement; the CMP oversees the Kyoto Protocol and the COP oversees the Convention."
+                 data-feedback-unanswered="The CMA oversees the Paris Agreement.">
+              <p class="quiz-q">5. Which body oversees the implementation of the Paris Agreement?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">COP</button>
+                <button class="quiz-option">CMP</button>
+                <button class="quiz-option" data-correct="true">CMA</button>
+                <button class="quiz-option">SBSTA</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! EM-DAT is maintained by CRED, the Centre for Research on the Epidemiology of Disasters."
+                 data-feedback-incorrect="EM-DAT is maintained by CRED (Centre for Research on the Epidemiology of Disasters)."
+                 data-feedback-unanswered="EM-DAT is maintained by CRED.">
+              <p class="quiz-q">6. EM-DAT, the international disaster database, is maintained by:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">WHO</button>
+                <button class="quiz-option">UNDRR</button>
+                <button class="quiz-option" data-correct="true">CRED</button>
+                <button class="quiz-option">IFRC</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! 50+ injured is not a criterion — the criteria are 10+ killed, 100+ affected, state of emergency, or call for international assistance."
+                 data-feedback-incorrect="50+ injured is not a criterion. The criteria are 10+ killed, 100+ affected, state of emergency, or call for international assistance."
+                 data-feedback-unanswered="50+ injured is not a criterion.">
+              <p class="quiz-q">7. Which of the following is NOT an EM-DAT inclusion criterion?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">10 or more people reported killed</button>
+                <button class="quiz-option">100 or more people reported affected</button>
+                <button class="quiz-option">Declaration of a state of emergency</button>
+                <button class="quiz-option" data-correct="true">50 or more people reported injured</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Disaster occurs only when hazards and vulnerability meet."
+                 data-feedback-incorrect="Disaster occurs only when hazards and vulnerability meet — an earthquake in an uninhabited desert is not a disaster."
+                 data-feedback-unanswered="Disaster occurs only when hazards and vulnerability meet.">
+              <p class="quiz-q">8. A disaster occurs only when:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">A hazard is very strong</button>
+                <button class="quiz-option" data-correct="true">Hazards and vulnerability meet</button>
+                <button class="quiz-option">The government declares an emergency</button>
+                <button class="quiz-option">The media reports it</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Risk = exposure to a hazard + conditions of vulnerability + insufficient capacity to reduce negative consequences."
+                 data-feedback-incorrect="Risk results from exposure to a hazard, conditions of vulnerability, and insufficient capacity to reduce the potential negative consequences."
+                 data-feedback-unanswered="Risk combines exposure, vulnerability and insufficient capacity.">
+              <p class="quiz-q">9. Risk results from the combination of exposure to a hazard, conditions of vulnerability, and:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">High population density</button>
+                <button class="quiz-option">Climate change</button>
+                <button class="quiz-option" data-correct="true">Insufficient capacity to reduce potential negative consequences</button>
+                <button class="quiz-option">Lack of insurance</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! COP31 will take place in Antalya, Türkiye, from 9 to 20 November 2026."
+                 data-feedback-incorrect="COP31 will take place in Antalya, Türkiye, from 9 to 20 November 2026."
+                 data-feedback-unanswered="COP31 will take place in Antalya, Türkiye.">
+              <p class="quiz-q">10. Where will COP31 take place?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Baku, Azerbaijan</button>
+                <button class="quiz-option" data-correct="true">Antalya, T&uuml;rkiye</button>
+                <button class="quiz-option">Dubai, UAE</button>
+                <button class="quiz-option">Glasgow, UK</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-actions">
+              <button class="btn btn-blue" data-check>Check my answers</button>
+              <button class="btn btn-ghost-dark" data-reset>Try again</button>
+            </div>
+
+            <div class="score-banner" data-score-banner hidden>
+              <span>Your score: <span data-score>0</span> / <span data-total>10</span></span>
+              <span class="score-note">The key is shown above — correct answers are highlighted in green.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= DISCUSSION ================= -->
+      <section class="section-block">
+        <div class="card">
+          <h2 class="section-title">Discussion / Comment / Question</h2>
+          <p>Bring your questions, comments and observations on this lecture to class &mdash; particularly your explanations for the EM-DAT assignment and your comments on the disaster trends.</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Hazard Planning &amp; Risk Management</h4>
+          <p style="margin:0">Lecture materials for Hazard Planning and Risk Management, taught by Dr. Arjumand Zehra Zaidi.</p>
+        </div>
+        <div>
+          <h4>Course</h4>
+          <ul>
+            <li><a href="../index.html">All lectures</a></li>
+            <li><a href="#reading">Reading material</a></li>
+            <li><a href="#assignment">Assignment</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Instructor</h4>
+          <ul>
+            <li><a href="https://water.muet.edu.pk/faculty/dr-arjumand-zehra-zaidi" target="_blank" rel="noopener">Faculty profile</a></li>
+            <li><a href="https://arjzaidi.wordpress.com" target="_blank" rel="noopener">Teaching site</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; Dr. Arjumand Zehra Zaidi &middot; US-Pakistan Center for Advanced Studies in Water, Mehran University of Engineering &amp; Technology, Jamshoro
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/quiz.js" defer></script>
+</body>
+</html>
