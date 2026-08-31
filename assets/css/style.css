@@ -606,3 +606,130 @@ tr:nth-child(even) td { background: var(--blue-pale); }
 }
 .resource-list a:hover { border-color: var(--blue-mid); box-shadow: var(--shadow); text-decoration: none; }
 .resource-list a::before { content: "↗"; font-size: 13px; color: var(--blue-mid); }
+
+/* ==========================================================================
+   Homepage & course pages
+   ========================================================================== */
+
+/* ---------- Profile section ---------- */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.profile-photo {
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.profile-photo img { width: 100%; height: auto; }
+.profile-facts {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  font-size: 14.5px;
+}
+.profile-facts li { display: flex; gap: 8px; align-items: baseline; }
+.profile-facts .label { color: var(--muted); font-weight: 600; min-width: 84px; flex: 0 0 84px; }
+
+/* ---------- Course cards ---------- */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+.course-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px 26px;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.course-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: var(--blue-mid); }
+.course-card h3 { margin: 0 0 6px; font-size: 18px; }
+.course-card h3 a { color: var(--navy); }
+.course-card h3 a:hover { color: var(--blue); }
+.course-card p { margin: 0 0 14px; font-size: 14.5px; color: var(--muted); flex: 1; }
+.course-card .card-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+.card-chip {
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.card-chip.solid { background: var(--blue); color: #ffffff; }
+
+/* ---------- Link grid ---------- */
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+}
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+.link-card:hover { border-color: var(--blue-mid); box-shadow: var(--shadow); text-decoration: none; }
+.link-card .link-icon {
+  flex: 0 0 40px;
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--blue-mid), var(--blue));
+  display: grid;
+  place-items: center;
+}
+.link-card .link-icon svg { width: 20px; height: 20px; }
+.link-card strong { display: block; color: var(--navy); font-size: 15.5px; }
+.link-card small { color: var(--muted); font-size: 13px; }
+
+/* ---------- Lecture list (course page) ---------- */
+.lecture-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.lecture-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px 20px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+.lecture-item:hover { border-color: var(--blue-mid); box-shadow: var(--shadow); }
+.lecture-num {
+  flex: 0 0 46px;
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--blue-mid), var(--blue));
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  display: grid;
+  place-items: center;
+}
+.lecture-item h3 { margin: 0 0 3px; font-size: 16.5px; }
+.lecture-item h3 a { color: var(--navy); }
+.lecture-item h3 a:hover { color: var(--blue); }
+.lecture-item p { margin: 0; font-size: 14.5px; color: var(--muted); }
+.lecture-item .lecture-meta { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+.lecture-item.coming { opacity: .8; }
+.lecture-item.coming .lecture-num { background: var(--line); color: var(--muted); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .profile-grid { grid-template-columns: 1fr; }
+}
