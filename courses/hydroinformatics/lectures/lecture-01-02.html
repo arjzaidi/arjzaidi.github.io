@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lectures 1 &amp; 2: Introduction to Hydroinformatics | Hydroinformatics</title>
+  <meta name="description" content="Lectures 1 &amp; 2 &mdash; Introduction to Hydroinformatics: data and information, concepts and variables, measurement scales, and hydroinformatics in Pakistan. HID-661, Dr. Arjumand Zehra Zaidi, USPCAS-W, MUET Jamshoro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../../index.html">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>
+        <span class="brand-text">
+          <strong>Hydroinformatics</strong>
+          <small>USPCAS-W &middot; MUET Jamshoro</small>
+        </span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">All Lectures</a>
+        <a href="#reading">Reading</a>
+        <a href="#assignment">Assignment</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="hero-kicker">Lectures 1 &amp; 2 &middot; HID-661 &middot; Fall 2026</p>
+        <h1>Introduction to Hydroinformatics</h1>
+        <p class="hero-sub">Hydroinformatics: Data Management and Analysis &mdash; USPCAS-W, Mehran University of Engineering &amp; Technology, Jamshoro</p>
+        <div class="hero-meta">
+          <span class="chip">Text-based lecture</span>
+          <span class="chip">Interactive quiz included</span>
+          <span class="chip">Dr. Arjumand Zehra Zaidi</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="../../../assets/downloads/lecture-01-02-introduction-to-hydroinformatics.pdf">Download PDF</a>
+          <a class="btn btn-ghost" href="../../../assets/downloads/lecture-01-02-introduction-to-hydroinformatics.pptx">Download PPTX</a>
+        </div>
+      </div>
+      <div class="hero-wave"><svg viewBox="0 0 1440 46" preserveAspectRatio="none"><path fill="#f4f9fd" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,24 L1440,46 L0,46 Z"/></svg></div>
+    </section>
+
+    <div class="container">
+
+      <section class="card at-a-glance">
+        <h2 class="section-title">In this lecture</h2>
+        <ol>
+          <li>About the course &mdash; objectives, assessment and software</li>
+          <li>Data and information &mdash; and the DIKW pyramid</li>
+          <li>Concepts and variables &mdash; and how to operationalize them</li>
+          <li>Types of variables &mdash; causal relationships and measurement scales</li>
+          <li>Data for hydroinformatics &mdash; the water cycle and modern trends</li>
+          <li>Hydroinformatics in action &mdash; applications in Pakistan</li>
+        </ol>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">1. About the course</h2>
+
+        <div class="card">
+          <h3>Course at a glance</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Item</th><th>Details</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Course</strong></td><td>Hydroinformatics: Data Management and Analysis (HID-661)</td></tr>
+                <tr><td><strong>Credit hours</strong></td><td>2 + 1 (theory + lab)</td></tr>
+                <tr><td><strong>Assessment</strong></td><td>Mid exams, final exams, sessional, lab/project</td></tr>
+                <tr><td><strong>Instructors</strong></td><td>Course lead: Dr. Arjumand Zaidi; instructor: Mr. Ibraheem</td></tr>
+                <tr><td><strong>Office hours</strong></td><td>Any time by appointment; reach out by email for help with exercises and research projects</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Learning objectives</h3>
+          <p>At the end of this course, students will be able to:</p>
+          <ul>
+            <li>Understand the principles and applications of Hydroinformatics.</li>
+            <li>Apply geospatial and data analysis tools to solve hydrological problems.</li>
+            <li>Evaluate hydrological data to support informed and sustainable decision-making.</li>
+          </ul>
+
+          <h3>Semester goals</h3>
+          <ul>
+            <li>Understand the environmental data lifecycle and data management principles.</li>
+            <li>Acquire, organize, manage and visualize environmental datasets.</li>
+            <li>Apply GIS, remote sensing and environmental databases for data analysis.</li>
+            <li>Perform statistical and spatial analysis of environmental data.</li>
+            <li>Develop basic programming and database skills for environmental applications.</li>
+            <li>Apply environmental modeling and data-driven approaches to support decision-making.</li>
+            <li>Interpret and communicate environmental information using appropriate visualization techniques.</li>
+          </ul>
+
+          <h3>Software we will learn</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Level</th><th>Software</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Core hands-on</strong></td><td>Microsoft Excel; Python (Jupyter Notebook, Pandas, NumPy, Matplotlib, scikit-learn); Google Earth Engine (GEE); QGIS / ArcGIS Pro</td></tr>
+                <tr><td><strong>Demonstration / introductory</strong></td><td>HEC-HMS (rainfall&ndash;runoff modeling); HEC-RAS / GeoHECRAS (river hydraulics and flood inundation); SWAT or SWAT+ (watershed and water quality modeling); SNAP (Sentinel satellite data processing)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>USPCAS-W policies</h3>
+          <ul>
+            <li><strong>Punctuality and regularity</strong> are appreciated in class; assignments are given throughout the semester with well-defined due dates, and missed deadlines cannot be submitted later.</li>
+            <li><strong>Attendance:</strong> the 90% attendance requirement is necessary to qualify for the final examination; condonation up to 15% is considered only in genuine cases and unusual circumstances.</li>
+            <li><strong>Academic honesty:</strong> all submitted work should be the student&rsquo;s own. Plagiarism of any type will not be tolerated and results in an F grade.</li>
+            <li><strong>Academic misconduct:</strong> zero tolerance for plagiarism, cheating or forgery on any assignment or test, per the University&rsquo;s conduct code policies.</li>
+            <li><strong>Disability accommodations:</strong> the University provides equal educational opportunity and equal access to programs and activities for students with disabilities.</li>
+            <li><strong>Social justice:</strong> MUET is committed to social justice and a nurturing learning environment based on open communication, mutual respect and non-discrimination.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">2. Data and information</h2>
+
+        <div class="card">
+          <h3>Why do we need water-related information?</h3>
+          <ul>
+            <li>Monitoring and early warnings</li>
+            <li>Optimal management</li>
+            <li>Equitable allocation</li>
+            <li>Reduced uncertainties</li>
+            <li>Hazard and disaster management</li>
+          </ul>
+
+          <h3>Data versus information</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Data</th><th>Information</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>A collection of facts, with no or minimal meaning</td><td>Processed data, organized and put into some context</td></tr>
+                <tr><td>Raw form &mdash; unprocessed and unorganized</td><td>Provides context, meaning and relevance</td></tr>
+                <tr><td>Independent of information</td><td>Dependent on data</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>In short: <strong>data is the building block, while information is the transformed and structured output that enables understanding and decision-making.</strong></p>
+
+          <h3>The DIKW pyramid</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Level</th><th>Meaning</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Data</strong></td><td>Collected facts in unorganized form</td></tr>
+                <tr><td><strong>Information</strong></td><td>Visualized data for a specific purpose</td></tr>
+                <tr><td><strong>Knowledge</strong></td><td>Connected information, applied to achieve a goal</td></tr>
+                <tr><td><strong>Wisdom</strong></td><td>Knowledge applied in action</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="assignment-note">Collecting data and making it useful actually makes the dataset smaller but concentrates on the main goal &mdash; for example, the eucalyptus tree plantation example, or climate change: through prediction models, scientists find out the cause.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">3. Concepts and variables</h2>
+
+        <div class="card">
+          <h3>What are concepts?</h3>
+          <p>Concepts are formed through individuals&rsquo; mental images and perceptions, and their meanings vary from person to person. They are difficult to measure as they are. Examples: <strong>happiness</strong>, <strong>satisfaction</strong>, <strong>performance</strong>.</p>
+
+          <h3>What are variables?</h3>
+          <p>A variable is an entity that exhibits variation or change &mdash; it can take on different values. Any concept that is capable of measurement is a variable.</p>
+
+          <h3>Operationalizing concepts</h3>
+          <p>To minimize the level of variation in people&rsquo;s interpretation, it is essential to <span class="key-term" data-tooltip="The process of transforming abstract concepts into measurable indicators and variables.">operationalize</span> concepts by transforming them into indicators and variables:</p>
+          <ol>
+            <li>Identify indicators.</li>
+            <li>Convert indicators into variables.</li>
+            <li>Choices of indicators may vary with the researcher.</li>
+            <li>There should be a logical link between indicators and their concepts.</li>
+          </ol>
+
+          <h3>Examples: concepts into variables</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Concept</th><th>Indicators</th><th>Variables</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Rich</td><td>Wealth</td><td>Income; assets converted to value (house, boat, car, investments in $)</td></tr>
+                <tr><td>High academic achievement</td><td>Academic performance</td><td>GPA</td></tr>
+                <tr><td>Powerful</td><td>Influence</td><td>?</td></tr>
+                <tr><td>Effectiveness</td><td>Program outcomes</td><td>Enrollments in a program</td></tr>
+                <tr><td>Satisfaction</td><td>Employee feedback</td><td>Employee complaints</td></tr>
+                <tr><td>Water quality</td><td>Microbial contamination</td><td>Bacteria count</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="assignment-note">In qualitative research, measurements and variables do not carry much significance.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">4. Types of variables</h2>
+
+        <div class="card">
+          <h3>From the viewpoint of causal relationship</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Type</th><th>Meaning</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Independent</strong> (change variable)</td><td>Responsible for bringing about change in a phenomenon; the variable you have control over</td><td>Precipitation &rarr; runoff; sunny days in London &rarr; revenue generated</td></tr>
+                <tr><td><strong>Dependent</strong> (outcome variable)</td><td>The effects, impacts or consequences of a change in the independent variable</td><td>Runoff; revenue generated</td></tr>
+                <tr><td><strong>Extraneous</strong> (influencing)</td><td>Factors in the research environment that may affect the dependent variable but cannot be controlled; they may increase or decrease the strength of the relationship</td><td>Uncontrolled environmental factors</td></tr>
+                <tr><td><strong>Intervening</strong> (linking)</td><td>Completes the relationship between the independent and dependent variables</td><td>Tourism activities linking sunny days in London to revenue</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="warning-box">
+            <span class="box-label">Remember</span>
+            <p style="margin:0">Extraneous variables are dangerous if not controlled &mdash; they may damage a study&rsquo;s validity. And <strong>correlation between two variables does NOT imply causation</strong> (e.g. intelligence &ndash; education &ndash; good grades; workplace stress &ndash; physical illness &ndash; absenteeism).</p>
+          </div>
+
+          <h3>From the viewpoint of unit of measurement</h3>
+          <p>Variables can be <strong>categorical/qualitative</strong> or <strong>continuous/quantitative</strong> &mdash; there is very little difference between the two pairs of terms.</p>
+
+          <h3>Measurement scales</h3>
+          <div class="table-wrap">
+            <table>
+            <thead>
+                <tr><th>Scale</th><th>Properties</th><th>Examples</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Nominal</strong></td><td>Each group has a characteristic common to all classified within it; the sequence of listing subgroups is irrelevant</td><td>Gender (male/female); religion (Islam/Christianity/Hindu); tree, house, car, name</td></tr>
+                <tr><td><strong>Ordinal</strong></td><td>Nominal characteristics plus related subgroups arranged in ascending or descending order; ranked by magnitude but actual magnitude is not quantifiable; distance between categories is not equal</td><td>Income (above average / average / below average); age groups (infant / young / old)</td></tr>
+                <tr><td><strong>Interval</strong></td><td>Ordinal plus an arbitrary starting and ending point; equally spaced intervals; not an absolute measurement &mdash; 60&deg;C is not twice as hot as 30&deg;C</td><td>Celsius scale for temperature (0&ndash;100&deg;C)</td></tr>
+                <tr><td><strong>Ratio</strong></td><td>All properties of an interval scale plus a fixed zero starting point; absolute measurement &mdash; 60 cm is twice as long as 30 cm; supports mathematical operations</td><td>Height in cm; flow volume</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="assignment-note">A simple way to distinguish them: are the values just labels, categories with names, equally spaced numbers, or numbers with a meaningful zero?</p>
+
+          <h3>Why does measurement matter?</h3>
+          <ul>
+            <li>It defines the type of analysis.</li>
+            <li>It determines the type of applicable statistical procedures.</li>
+            <li>It shapes the way the data can be interpreted.</li>
+            <li>It determines how the outcomes can be communicated.</li>
+            <li>The style of your report entirely depends on the way variables are measured &mdash; the way a question has been asked and its response recorded.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5. Data for hydroinformatics</h2>
+
+        <div class="card">
+          <h3>The water cycle as a data system</h3>
+          <p>Hydroinformatics works with data from the entire <span class="key-term" data-tooltip="The continuous movement of water on, above and below the surface of the Earth.">water cycle</span> &mdash; precipitation, evapotranspiration, soil moisture, runoff, groundwater and water quality &mdash; collected through applied observational systems such as remote sensing sensors and Earth observation satellites (e.g. Terra and Aqua). Hydrological sensors monitor water quality and water levels in rainwater, surface water, groundwater, rivers and reservoirs.</p>
+          <p class="assignment-note">As we collect more data, the challenge increases: to utilize detailed data effectively in analysis, modeling and prediction studies. Classic problems relate to data storage, representation, search, communication, visualization, knowledge and discovery.</p>
+
+          <h3>Trends in hydroinformatics</h3>
+          <ul>
+            <li><strong>Crowdsourcing</strong> &mdash; citizen-contributed observations.</li>
+            <li><strong>Automated sensor data retrieval</strong> &mdash; SCADA (supervisory control and data acquisition) and telemetry (automatic measurement and wireless transmission of data from remote sources).</li>
+            <li><strong>Space-based remote sensing</strong> &mdash; satellite observations of the water cycle.</li>
+            <li><strong>Artificial intelligence systems</strong> &mdash; machine learning for forecasting and pattern detection.</li>
+            <li><strong>Cloud computing</strong> &mdash; scalable storage and processing.</li>
+          </ul>
+          <p>For water managers and engineers, big data shows promise in planning optimum water systems, detecting ecosystem changes through big remote sensing and GIS, forecasting and detecting natural and manmade calamities, scheduling irrigations, mitigating environmental pollution, and studying climate change impacts.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">6. Why hydroinformatics matters</h2>
+
+        <div class="card">
+          <p>Why do we need hydroinformatics as water professionals?</p>
+          <ol>
+            <li><strong>To build the adaptive capacity</strong> of regions that are prone to water-related disasters.</li>
+            <li><strong>To track the progress</strong> of water-related interventions in natural or urban environments.</li>
+            <li><strong>To practice multi-stakeholder decision-making</strong> and evidence-based implementation.</li>
+            <li><strong>To bring sustainable development</strong> to basin-level management of rivers &mdash; the hydroinformatics approach to Integrated River Basin Management (IRBM).</li>
+            <li><strong>To solve water-related conflicts among stakeholders</strong> &mdash; for example, hydroinformatics in flood forecasting and flood management.</li>
+          </ol>
+          <div class="warning-box">
+            <span class="box-label">Think about it</span>
+            <p style="margin:0">List out the water-related issues in Pakistan: mismanagement, dams, waterlogging, salinity, poor quality groundwater, politics, corruption, inequitable distribution &mdash; how could better data and information help address each?</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">7. Hydroinformatics in action in Pakistan</h2>
+
+        <div class="card">
+          <h3>University projects and startups</h3>
+          <ul>
+            <li><strong>Smart water sensor</strong> &mdash; an Arduino-based flow measurement sensor developed at the University of Utah by USPCAS-W students.</li>
+            <li><strong>Soil moisture sensor and database</strong> &mdash; USPCAS-W students determined soil moisture in soil samples and, according to the crop water requirement (fed into a database), the system tells how much more water is required.</li>
+            <li><strong>Sensor installation for altimetric application</strong> at Guddu/Sukkur barrages by USPCAS-W &mdash; Indus River water level monitoring in Sindh using satellite radar altimetry.</li>
+            <li><strong>ERFMS Portal</strong> by the University of Agriculture Faisalabad.</li>
+            <li><strong>TRIM &mdash; The River Indus Monitor</strong> by USPCAS-W (trim-uspcasw.vercel.app).</li>
+          </ul>
+
+          <h3>Government initiatives</h3>
+          <ul>
+            <li><strong>Irrigation Advisory System by PCRWR</strong> &mdash; combines NASA weather measurements (temperature, wind speed, pressure, solar radiation, humidity) with weather prediction models to create real-time estimates of the water needed by specific crops.</li>
+            <li><strong>Surface and Groundwater Discharge Portal</strong> by the Punjab Irrigation Department.</li>
+            <li><strong>Rotational Program and Tail Watercourse</strong> by the Punjab Irrigation Department.</li>
+            <li><strong>Pakistan Meteorological Department daily database</strong> &mdash; including rim stations and the eastern (Indus, Jhelum, Chenab) and western (Kabul) rivers.</li>
+            <li><strong>WAPDA</strong> monitoring and telecommunication systems.</li>
+            <li><strong>Plans proposed by the Ministry of Water Resources:</strong> flood forecasting and early warning systems; radar networks of PMD (existing + proposed); Meteor Bus telecommunication system of WAPDA; high frequency radio network at western rivers; wireless network for eastern rivers; PCIW&rsquo;s cross-border hydraulic data sharing plan.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">Key takeaways</h2>
+        <div class="key-takeaways">
+          <ul>
+            <li><strong>Data</strong> is raw and unorganized; <strong>information</strong> is processed data with context &mdash; and the DIKW pyramid climbs from data to information to knowledge to wisdom.</li>
+            <li><strong>Concepts</strong> (happiness, satisfaction, water quality) must be <strong>operationalized</strong> into indicators and variables before they can be measured.</li>
+            <li>Variables are classified by <strong>causal role</strong> (independent, dependent, extraneous, intervening) and by <strong>measurement scale</strong> (nominal, ordinal, interval, ratio) &mdash; and correlation does not imply causation.</li>
+            <li>The measurement scale of a variable defines the analysis, the statistics, the interpretation and the way results are communicated.</li>
+            <li>Hydroinformatics turns water-cycle data into decisions &mdash; through crowdsourcing, sensors, remote sensing, AI and cloud computing.</li>
+            <li>In Pakistan, hydroinformatics is already in action &mdash; from USPCAS-W student sensors and TRIM to PCRWR&rsquo;s irrigation advisory system and the Ministry of Water Resources&rsquo; flood forecasting plans.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block" id="reading">
+        <h2 class="section-title">Reading</h2>
+        <div class="card">
+          <ul class="resource-list">
+            <li><a href="https://www.ontotext.com/knowledgehub/fundamentals/dikw-pyramid/" target="_blank" rel="noopener">The DIKW pyramid &mdash; Ontotext Knowledge Hub</a></li>
+            <li><a href="https://www.mdpi.com/2073-4441/12/3/680" target="_blank" rel="noopener">Hydrological sensors for monitoring water quality and water levels &mdash; Water (MDPI)</a></li>
+            <li><a href="https://www.mdpi.com/2073-4441/9/1/59" target="_blank" rel="noopener">Vojinovic, Z. and Abbott, M.B. (2017). Twenty-five years of hydroinformatics. Water, 9(1), 59.</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block" id="assignment">
+        <h2 class="section-title">Assignment</h2>
+        <div class="assignment-box">
+          <p style="margin-top:0">Answer the following:</p>
+          <ol>
+            <li>Give three examples from your undergraduate degree or last semester where you used hydrological data and derived information from it.</li>
+            <li>For the concept &ldquo;powerful&rdquo;, identify indicators and convert them into measurable variables.</li>
+            <li>Explain, with an example, why correlation between two variables does not imply causation.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section-block" id="quiz">
+        <div class="card">
+          <h2 class="section-title">Quick Quiz</h2>
+          <p>Test yourself on this lecture. Select an answer for each question, then click <strong>Check my answers</strong> to reveal the key and your score.</p>
+
+          <div class="quiz" data-quiz>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Data is raw and unorganized; information is processed data with context."
+                 data-feedback-incorrect="Data is raw facts; information is processed data with context and meaning."
+                 data-feedback-unanswered="Data is raw; information is processed.">
+              <p class="quiz-q">1. The difference between data and information is that:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Data is always numeric and information is always text</button>
+                <button class="quiz-option" data-correct="true">Data is raw, unprocessed facts while information is processed data with context, meaning and relevance</button>
+                <button class="quiz-option">Information is independent of data</button>
+                <button class="quiz-option">Data comes from satellites and information from surveys</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The DIKW pyramid climbs Data → Information → Knowledge → Wisdom."
+                 data-feedback-incorrect="The correct order is Data → Information → Knowledge → Wisdom."
+                 data-feedback-unanswered="DIKW: Data, Information, Knowledge, Wisdom.">
+              <p class="quiz-q">2. In the DIKW pyramid, the correct order is:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Wisdom, Knowledge, Information, Data</button>
+                <button class="quiz-option">Data, Knowledge, Information, Wisdom</button>
+                <button class="quiz-option" data-correct="true">Data, Information, Knowledge, Wisdom</button>
+                <button class="quiz-option">Information, Data, Wisdom, Knowledge</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Concepts are mental images that vary person to person; variables are measurable entities."
+                 data-feedback-incorrect="Concepts are mental images; variables are measurable entities that exhibit variation."
+                 data-feedback-unanswered="Concepts are mental; variables are measurable.">
+              <p class="quiz-q">3. Which statement is true?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Concepts are measurable and variables are abstract</button>
+                <button class="quiz-option" data-correct="true">Concepts are formed through mental images and perceptions, while variables are entities that can take on different values and be measured</button>
+                <button class="quiz-option">Concepts and variables are the same thing</button>
+                <button class="quiz-option">Variables cannot be measured</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Precipitation is the independent variable and runoff is the dependent variable."
+                 data-feedback-incorrect="Precipitation is the independent variable; runoff depends on it."
+                 data-feedback-unanswered="Precipitation is independent; runoff is dependent.">
+              <p class="quiz-q">4. In the relationship &ldquo;precipitation &rarr; runoff&rdquo;, precipitation is the:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Dependent variable</button>
+                <button class="quiz-option">Intervening variable</button>
+                <button class="quiz-option" data-correct="true">Independent variable</button>
+                <button class="quiz-option">Extraneous variable</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Tourism activities complete the link between sunny days and revenue — an intervening variable."
+                 data-feedback-incorrect="Tourism activities complete the relationship between sunny days and revenue — an intervening variable."
+                 data-feedback-unanswered="Tourism activities are the intervening variable.">
+              <p class="quiz-q">5. In &ldquo;sunny days in London &rarr; revenue generated&rdquo;, &ldquo;tourism activities&rdquo; is an example of a(n):</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Independent variable</button>
+                <button class="quiz-option">Dependent variable</button>
+                <button class="quiz-option" data-correct="true">Intervening variable</button>
+                <button class="quiz-option">Nominal variable</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Correlation does not imply causation."
+                 data-feedback-incorrect="Correlation between two variables does NOT imply causation."
+                 data-feedback-unanswered="Correlation does not imply causation.">
+              <p class="quiz-q">6. If two variables are correlated, we can conclude that:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">One variable causes the other</button>
+                <button class="quiz-option" data-correct="true">They are associated, but we cannot designate cause and effect</button>
+                <button class="quiz-option">They are always independent</button>
+                <button class="quiz-option">They must be measured on the same scale</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Gender (male/female) is a nominal variable — labels with no order."
+                 data-feedback-incorrect="Gender is nominal — labels with no meaningful order."
+                 data-feedback-unanswered="Gender is a nominal variable.">
+              <p class="quiz-q">7. Gender (male/female) is an example of which measurement scale?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Ratio</button>
+                <button class="quiz-option">Interval</button>
+                <button class="quiz-option" data-correct="true">Nominal</button>
+                <button class="quiz-option">Ordinal</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The Celsius scale has an arbitrary zero and equally spaced intervals — an interval scale."
+                 data-feedback-incorrect="Celsius has an arbitrary start point and equal intervals — an interval scale."
+                 data-feedback-unanswered="Celsius is an interval scale.">
+              <p class="quiz-q">8. The Celsius temperature scale is an example of which measurement scale?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Nominal</button>
+                <button class="quiz-option">Ordinal</button>
+                <button class="quiz-option" data-correct="true">Interval</button>
+                <button class="quiz-option">Ratio</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Height has a meaningful zero, so 60 cm is twice as long as 30 cm — a ratio scale."
+                 data-feedback-incorrect="Height has a fixed zero point and supports ratios — a ratio scale."
+                 data-feedback-unanswered="Height is a ratio scale.">
+              <p class="quiz-q">9. Height in centimetres is a ratio scale because:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">It has no zero point</button>
+                <button class="quiz-option">Its categories have no order</button>
+                <button class="quiz-option" data-correct="true">It has a fixed zero starting point, so 60 cm is twice as long as 30 cm</button>
+                <button class="quiz-option">It can only be ranked, not measured</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The measurement scale defines the analysis, the statistics, the interpretation and how results are communicated."
+                 data-feedback-incorrect="The measurement scale defines the type of analysis, statistical procedures, interpretation and communication."
+                 data-feedback-unanswered="Measurement scale determines analysis and statistics.">
+              <p class="quiz-q">10. Why is it important to know how a variable is measured?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">It is only needed for writing reports</button>
+                <button class="quiz-option" data-correct="true">It defines the type of analysis, the applicable statistical procedures, how data can be interpreted and how outcomes are communicated</button>
+                <button class="quiz-option">It determines the size of the dataset</button>
+                <button class="quiz-option">It is not important for data analysis</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-actions">
+              <button class="btn btn-blue" data-check>Check my answers</button>
+              <button class="btn btn-ghost-dark" data-reset>Try again</button>
+            </div>
+
+            <div class="score-banner" data-score-banner hidden>
+              <span>Your score: <span data-score>0</span> / <span data-total>10</span></span>
+              <span class="score-note">The key is shown above &mdash; correct answers are highlighted in green.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Hydroinformatics</h4>
+          <p style="margin:0">Lecture materials for Hydroinformatics: Data Management and Analysis, taught by Dr. Arjumand Zehra Zaidi.</p>
+        </div>
+        <div>
+          <h4>Course</h4>
+          <ul>
+            <li><a href="../index.html">All lectures</a></li>
+            <li><a href="#reading">Reading material</a></li>
+            <li><a href="#assignment">Assignment</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Instructor</h4>
+          <ul>
+            <li><a href="https://water.muet.edu.pk/faculty/dr-arjumand-zehra-zaidi" target="_blank" rel="noopener">Faculty profile</a></li>
+            <li><a href="https://arjzaidi.wordpress.com" target="_blank" rel="noopener">Teaching site</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; Dr. Arjumand Zehra Zaidi &middot; US-Pakistan Center for Advanced Studies in Water, Mehran University of Engineering &amp; Technology, Jamshoro
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/quiz.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 4: Basic Statistics — From Data to Decisions | Hydroinformatics</title>
+  <meta name="description" content="Lecture 4 &mdash; Basic Statistics: populations and samples, distributions, measures of center and spread, normal distribution, covariance, correlation and regression. HID-661, Dr. Arjumand Zehra Zaidi, USPCAS-W, MUET Jamshoro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../../index.html">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>
+        <span class="brand-text">
+          <strong>Hydroinformatics</strong>
+          <small>USPCAS-W &middot; MUET Jamshoro</small>
+        </span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">All Lectures</a>
+        <a href="#reading">Reading</a>
+        <a href="#assignment">Assignment</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="hero-kicker">Lecture 4 &middot; HID-661 &middot; Fall 2026</p>
+        <h1>Basic Statistics: From Data to Decisions</h1>
+        <p class="hero-sub">Hydroinformatics: Data Management and Analysis &mdash; USPCAS-W, Mehran University of Engineering &amp; Technology, Jamshoro</p>
+        <div class="hero-meta">
+          <span class="chip">Text-based lecture</span>
+          <span class="chip">Interactive quiz included</span>
+          <span class="chip">Dr. Arjumand Zehra Zaidi</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="../../../assets/downloads/lecture-04-basic-statistics.pdf">Download PDF</a>
+          <a class="btn btn-ghost" href="../../../assets/downloads/lecture-04-basic-statistics.pptx">Download PPTX</a>
+        </div>
+      </div>
+      <div class="hero-wave"><svg viewBox="0 0 1440 46" preserveAspectRatio="none"><path fill="#f4f9fd" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,24 L1440,46 L0,46 Z"/></svg></div>
+    </section>
+
+    <div class="container">
+
+      <section class="card at-a-glance">
+        <h2 class="section-title">In this lecture</h2>
+        <ol>
+          <li>The statistical workflow &mdash; ask, collect, describe, interpret</li>
+          <li>Populations, samples, parameters and statistics</li>
+          <li>Sampling strategies &mdash; random, stratified, uniform, convenience</li>
+          <li>Describing data &mdash; center (mean, median, mode) and spread (range, variance, standard deviation)</li>
+          <li>The normal distribution, skew and z-scores</li>
+          <li>Covariance, correlation and regression &mdash; from relationships to predictions</li>
+        </ol>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">1. The statistical workflow</h2>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Step</th><th>Question</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>1. Ask</strong></td><td>What do we want to understand?</td></tr>
+                <tr><td><strong>2. Collect</strong></td><td>Who or what should we measure?</td></tr>
+                <tr><td><strong>3. Describe</strong></td><td>What patterns appear in the data?</td></tr>
+                <tr><td><strong>4. Interpret</strong></td><td>What can we responsibly conclude?</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Statistics is the bridge <strong>from data to decisions</strong> &mdash; every analysis starts with a question and ends with a responsible conclusion.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">2. Populations and samples</h2>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Term</th><th>Definition</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Population</strong></td><td>An individual or group that represents all the members of a certain group or category of interest</td></tr>
+                <tr><td><strong>Sample</strong></td><td>A subset drawn from the larger population</td></tr>
+                <tr><td><strong>Parameter</strong></td><td>A value that is either derived from, or applied to, population data</td></tr>
+                <tr><td><strong>Statistic</strong></td><td>A value derived from sample data</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Example: average income of faculty</h3>
+          <p>Suppose we want to know the average income of the current full-time, tenured faculty at USPCAS-W. One way: get a list of <em>every</em> full-time tenured faculty member and find each annual income &mdash; because this list contains every member of the group of interest, it is a <strong>population</strong>, and the mean we calculate is a <strong>parameter</strong>. Another way: randomly select a subset of faculty names and average their incomes &mdash; this subset is a <strong>sample</strong> (a random sample), and the mean we generate is a <strong>statistic</strong>.</p>
+
+          <h3>Few things to remember</h3>
+          <ul>
+            <li><strong>A population does not need to be large.</strong> If we want the average height of the students in this class, all of you comprise a population. A population is the collection of people, animals, locations, etc. that the study focuses on &mdash; e.g. Ford vehicles assembled in the United States during 2005.</li>
+            <li><strong>Samples are not necessarily good representations</strong> of the populations from which they were selected. When such differences exist, it is difficult to apply results generated from a sample to the larger population.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">3. Sampling strategies</h2>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Strategy</th><th>Meaning</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Random sampling</strong></td><td>The likelihood of selection of each member of the population is equal &mdash; &ldquo;random&rdquo; does not mean haphazard</td><td>Pick any streamflow value from a population</td></tr>
+                <tr><td><strong>Stratified sampling</strong></td><td>The population is divided into groups, and then random sampling is used within each group</td><td>Pick a streamflow value from the annual maximum series</td></tr>
+                <tr><td><strong>Uniform sampling</strong></td><td>Data are selected such that the points are uniformly far apart in time or space</td><td>Pick streamflow values measured on Monday midnight</td></tr>
+                <tr><td><strong>Convenience sampling</strong></td><td>Data are collected according to the convenience of the experimenter</td><td>Pick streamflow during summer</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="assignment-note">Benefit of random sampling: although randomly selected samples may differ from the larger population in important ways (especially if the sample is small), these differences are due to <em>chance</em> rather than to a systematic bias in the selection process. Representative sampling aims to make the sample look similar to the population on some important variables.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">4. Describing data</h2>
+
+        <div class="card">
+          <h3>Distributions</h3>
+          <p>A <strong>distribution</strong> shows the shape of data. A <strong>frequency table</strong> counts how often values occur; a <strong>histogram</strong> turns those counts into a visible pattern. When looking at a distribution, look for:</p>
+          <ul>
+            <li><strong>Center</strong></li>
+            <li><strong>Spread</strong></li>
+            <li><strong>Shape</strong></li>
+            <li><strong>Unusual values</strong></li>
+          </ul>
+          <p>Some values of a <span class="key-term" data-tooltip="A variable that depends on a random process — e.g. the number on top after tossing a die.">random variable</span> occur more frequently than others. For example, heights of university students around 5&rsquo;7&quot; are much more common than heights around 4&rsquo; or 7&rsquo;. The frequency distribution shows which values are most common (where the curve is highest). In a <strong>probability distribution</strong>, the area under the curve between two values <em>a</em> and <em>b</em> is the probability that the random variable takes on values between <em>a</em> and <em>b</em>.</p>
+
+          <h3>Three ways to describe the center</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Measure</th><th>Meaning</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Mean</strong></td><td>The arithmetic average &mdash; sum &divide; count</td></tr>
+                <tr><td><strong>Median</strong></td><td>The middle value when the data is ordered</td></tr>
+                <tr><td><strong>Mode</strong></td><td>The most frequent value</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The best measure depends on the <strong>shape of the data</strong>.</p>
+
+          <div class="warning-box">
+            <span class="box-label">Watch the outlier</span>
+            <p style="margin:0">Slide the outlier in &mdash; and watch the mean move. With 6 values the mean is 7.5; add one outlier (40) and the mean jumps to 12.14. The mean is sensitive to extreme values.</p>
+          </div>
+
+          <p><strong>Problem using mean values:</strong> the mean alone tells us nothing about the highest or lowest score in the distribution, and nothing about the variety of the scores. That is why we also need measures of variability.</p>
+
+          <h3>Measures of variability</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Measure</th><th>Meaning</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Range</strong></td><td>Measure of total spread (maximum &minus; minimum). Can be misleading: if 1 student scores 1, another scores 20, and the other 98 all score 10, the range is 19 even though the scores are not really spread out.</td></tr>
+                <tr><td><strong>Variance</strong></td><td>Statistical average of the amount of dispersion in a distribution &mdash; the average squared deviation of each score from the mean: sum of (score &minus; mean)&sup2; divided by n &minus; 1.</td></tr>
+                <tr><td><strong>Standard deviation</strong></td><td>The square root of the variance &mdash; the average difference from the mean.</td></tr>
+                <tr><td><strong>Covariance</strong></td><td>How two variables vary together (covered in Section 6).</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Why square the deviations? Why n &minus; 1?</h3>
+          <ul>
+            <li><strong>Why square?</strong> Squaring removes the sign of the deviations so they do not cancel out, and gives more weight to large deviations.</li>
+            <li><strong>Why n &minus; 1?</strong> Because the sample mean usually differs from the population mean, the variance and standard deviation calculated using the sample mean will probably be <em>smaller</em> than they would have been with the population mean &mdash; we would underestimate the true population variance. Using n &minus; 1 in the denominator adjusts for this underestimation.</li>
+          </ul>
+          <p class="assignment-note">When combined, the mean and standard deviation provide a pretty good picture of what the distribution of scores is like.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5. The normal distribution, skew and z-scores</h2>
+
+        <div class="card">
+          <h3>Characteristics of a normal distribution</h3>
+          <ul>
+            <li>Symmetrical.</li>
+            <li>Mean, median and mode are all in the center of the distribution.</li>
+            <li>It is <strong>asymptotic</strong> &mdash; the upper and lower tails never actually touch the baseline (the X axis).</li>
+          </ul>
+          <div class="example-box">
+            <span class="box-label">Worked example</span>
+            <p style="margin:0">Industrial effluent from contributing industries to a stream contains bacteria. The total bacteria concentration in that stream, monitored randomly, follows a normal distribution with a mean of 550 counts/100 ml and a standard deviation of 150 counts/100 ml. What is the probability that the total concentration exceeds 700 counts/100 ml?</p>
+          </div>
+
+          <h3>Skew</h3>
+          <p>When a sample of scores is not normally distributed:</p>
+          <ul>
+            <li><strong>Positively skewed:</strong> elongated tail at the higher end of the distribution &mdash; most scores occur at the low end, with a few scores at the higher end.</li>
+            <li><strong>Negatively skewed:</strong> elongated tail at the lower end of the distribution.</li>
+          </ul>
+          <p class="assignment-note">Probabilities that statisticians have generated using the normal distribution may not apply well to skewed or otherwise non-normal distributions of data.</p>
+
+          <h3>Standardization and z-scores</h3>
+          <p><strong>Standardization</strong> is the process of converting each score in a distribution to a <strong>z-score</strong> (also called a standard score). A z-score indicates how far above or below the mean a given score is, <strong>in standard deviation units</strong>.</p>
+
+          <h3>Standard error</h3>
+          <p>The <strong>standard error</strong> is the standard deviation of the sampling distribution of some statistic &mdash; a measure of how much random variation we would expect from samples of equal size drawn from the same population. The standard error of the mean provides the average difference between the expected value (e.g. the population mean) and an individual sample mean &mdash; how much error we can expect when we say that a sample mean represents the mean of the larger population.</p>
+          <ul>
+            <li>The <strong>larger the sample, the smaller the standard error</strong>.</li>
+            <li>The larger the sample standard deviation, the greater the assumed variation of scores in the population, and consequently the <strong>larger the standard error</strong> of the mean.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">6. Covariance</h2>
+
+        <div class="card">
+          <p>From variance to covariance:</p>
+          <ul>
+            <li><strong>Variance</strong> &rarr; how does one variable vary?</li>
+            <li><strong>Covariance</strong> &rarr; how do two variables vary together?</li>
+          </ul>
+          <p><strong>Key idea: covariance tells us the direction of a relationship.</strong></p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Covariance</th><th>Meaning</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Positive (+)</strong></td><td>Both variables tend to increase or decrease together &mdash; e.g. rainfall &uarr; &rarr; streamflow &uarr;</td></tr>
+                <tr><td><strong>Negative (&minus;)</strong></td><td>One tends to increase when the other decreases</td></tr>
+                <tr><td><strong>Near zero</strong></td><td>No clear linear co-movement</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>How is covariance calculated?</h3>
+          <p>For two variables X and Y: Cov(X, Y) = &Sigma;(X<sub>i</sub> &minus; X&#772;)(Y<sub>i</sub> &minus; &#375;) / (n &minus; 1). Think of it in three simple steps:</p>
+          <ol>
+            <li>Find how far each observation is from its mean.</li>
+            <li>Multiply the deviations of X and Y.</li>
+            <li>Take their average.</li>
+          </ol>
+          <p class="assignment-note">Positive products &rarr; positive covariance. Can you think of any examples with negative and zero covariance?</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">7. Correlation</h2>
+
+        <div class="card">
+          <p><strong>Correlation</strong> describes relations among two or more variables &mdash; how two variables relate to each other. One variable may cause variation, or changes, in another variable.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Type</th><th>Meaning</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Positive correlation</strong></td><td>Values on the two variables move in the same direction</td></tr>
+                <tr><td><strong>Negative correlation</strong></td><td>On average, as scores on one variable go up, scores on the other go down</td></tr>
+                <tr><td><strong>Strength / magnitude</strong></td><td>Ranges from &minus;1 to +1; the most commonly used is the Pearson product-moment correlation coefficient</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <ul>
+            <li>A correlation coefficient of <strong>0</strong> indicates no relationship between the two variables.</li>
+            <li>The closer the coefficient is to &minus;1.00 or +1.00, the <strong>stronger</strong> the relationship.</li>
+            <li>Perfect correlations are never found in actual research &mdash; coefficients generally stay between &minus;.70 and +.70.</li>
+            <li>Rules of thumb: &plusmn;.20 weak, .20&ndash;.50 moderate, &gt;.50 strong &mdash; but take these with a grain of salt: even a &ldquo;small&rdquo; correlation between alcohol consumption and liver disease (e.g. +.15) is important.</li>
+          </ul>
+
+          <h3>Requirements for Pearson correlation</h3>
+          <ul>
+            <li>Both variables must be measured on an <strong>interval or ratio scale</strong> (continuous variables).</li>
+            <li>Simple Pearson correlations are designed to examine <strong>linear</strong> relations among variables.</li>
+          </ul>
+
+          <h3>Principal drawback of correlational research</h3>
+          <p>It does not allow for the careful controls necessary for drawing conclusions about <strong>causal</strong> associations between variables.</p>
+
+          <div class="warning-box">
+            <span class="box-label">A big mistake!</span>
+            <p style="margin:0">People mistakenly make claims of causation as a function of correlations all the time &mdash; very common in advertisements and news stories. <strong>Correlation</strong> means variation in one variable corresponds with variation in another; <strong>causation</strong> means variation in one variable causes variation in another. Evidence of a relationship does not necessarily mean a causal relationship &mdash; e.g. SAT scores correlate with first-year college GPA (r &asymp; .40), but it would be difficult to argue that higher SAT scores <em>cause</em> higher achievement; some other variable or set of variables is probably responsible.</p>
+          </div>
+
+          <h3>Coefficient of determination</h3>
+          <p>The <strong>squared correlation coefficient</strong> is known as the coefficient of determination &mdash; the percentage of variance explained in each of the two correlated variables by the other variable. Coefficients of determination also do not necessarily indicate a causal relationship.</p>
+
+          <h3>Covariance vs. correlation &mdash; simple takeaway</h3>
+          <ul>
+            <li><strong>Covariance:</strong> do X and Y move together?</li>
+            <li><strong>Correlation:</strong> how strongly do they move together?</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">8. Regression</h2>
+
+        <div class="card">
+          <p><strong>Regression</strong> describes the nature and strength of the relations between variables. The purpose of regression analysis is to <strong>make predictions</strong> about the value of the dependent variable given certain values of the predictor variable(s).</p>
+          <ul>
+            <li>Stronger correlations lead to more accurate predictions.</li>
+            <li>Regression yields a formula for calculating the predicted value of one variable when we know the actual value of other variable(s).</li>
+            <li>Regression of Y on X is different from regression of X on Y.</li>
+            <li>The Pearson correlation coefficient is nothing more than a simple linear regression coefficient that has been standardized.</li>
+            <li>The dependent variable is also called the <strong>criterion variable</strong>.</li>
+          </ul>
+
+          <h3>Linear bivariate regression</h3>
+          <ul>
+            <li>Assumption: the two variables are <strong>linearly related</strong>.</li>
+            <li>Involves a single independent (predictor) variable and a single dependent (outcome) variable.</li>
+            <li>Unlike correlation, regression always designates a predictor variable and a dependent variable.</li>
+          </ul>
+
+          <h3>Ordinary least squares (OLS) regression</h3>
+          <p>OLS minimizes the <strong>sum of squared deviations</strong>. The line of least squares is the <strong>regression line</strong> &mdash; it represents the predicted values of Y at any given value of X. In any scatter plot, there is only one line that produces the smallest sum of squares. The regression line is defined by its <strong>slope</strong> and <strong>intercept</strong>:</p>
+          <ul>
+            <li><strong>Regression coefficient (slope):</strong> the rate of change in Y with respect to change in X.</li>
+            <li><strong>Intercept:</strong> the value of Y when X = 0.</li>
+          </ul>
+
+          <h3>The coefficient of determination R&sup2;</h3>
+          <p>R&sup2; is a statistical measure that explains the <strong>proportion of variance in the dependent variable that is predictable from the independent variable(s)</strong>.</p>
+          <ul>
+            <li><strong>High R&sup2;:</strong> points close to the regression line.</li>
+            <li><strong>Low R&sup2;:</strong> points scattered far from the regression line.</li>
+            <li>If R&sup2; = 1, the regression line perfectly fits the data; if R&sup2; = 0, the independent variable explains none of the variability in the dependent variable.</li>
+            <li>Example: R&sup2; = 0.96 means 96% of the variability in exam scores can be explained by the hours studied.</li>
+          </ul>
+
+          <h3>Predicted vs. actual values &mdash; residuals</h3>
+          <p>In making predictions about the value of Y, we may be incorrect sometimes. Errors in prediction are known as <strong>residuals</strong>:</p>
+          <ul>
+            <li><strong>Underpredicted</strong> &rarr; positive residuals.</li>
+            <li><strong>Overpredicted</strong> &rarr; negative residuals.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">Key takeaways</h2>
+        <div class="key-takeaways">
+          <ul>
+            <li>Statistics is a workflow: <strong>ask &rarr; collect &rarr; describe &rarr; interpret</strong>.</li>
+            <li>A <strong>parameter</strong> describes a population; a <strong>statistic</strong> is derived from a sample &mdash; and samples are not necessarily representative.</li>
+            <li>Describe data by its <strong>center</strong> (mean, median, mode) and <strong>spread</strong> (range, variance, standard deviation) &mdash; the mean is sensitive to outliers.</li>
+            <li>The <strong>normal distribution</strong> is symmetrical with mean = median = mode; skewed data needs care, and z-scores express values in standard deviation units.</li>
+            <li><strong>Covariance</strong> tells the direction of a relationship; <strong>correlation</strong> tells its strength (&minus;1 to +1) &mdash; but correlation does not imply causation.</li>
+            <li><strong>Regression</strong> predicts a dependent variable from predictor(s) using the line of least squares; R&sup2; tells how much variance is explained, and prediction errors are <strong>residuals</strong>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block" id="reading">
+        <h2 class="section-title">Reading</h2>
+        <div class="card">
+          <ul class="resource-list">
+            <li><a href="https://courses.lumenlearning.com/msstate-waymaker-psychology/chapter/reading-correlational-research/" target="_blank" rel="noopener">Correlational research &mdash; Lumen Learning</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block" id="assignment">
+        <h2 class="section-title">Homework</h2>
+        <div class="assignment-box">
+          <p style="margin-top:0">Answer the following:</p>
+          <ol>
+            <li>For a small dataset of streamflow values (e.g. 10 values of your choice), compute the mean, median, mode, range, variance and standard deviation by hand, and explain what each tells you.</li>
+            <li>Give one example each of positive, negative and near-zero covariance between two hydrological variables, and explain why.</li>
+            <li>Using any two continuous variables of your choice, explain the difference between correlation and causation, and interpret what an R&sup2; of 0.96 would mean.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section-block" id="quiz">
+        <div class="card">
+          <h2 class="section-title">Quick Quiz</h2>
+          <p>Test yourself on this lecture. Select an answer for each question, then click <strong>Check my answers</strong> to reveal the key and your score.</p>
+
+          <div class="quiz" data-quiz>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The workflow is ask, collect, describe, interpret."
+                 data-feedback-incorrect="The statistical workflow is ask, collect, describe, interpret."
+                 data-feedback-unanswered="The workflow: ask, collect, describe, interpret.">
+              <p class="quiz-q">1. The statistical workflow, in order, is:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Collect, ask, interpret, describe</button>
+                <button class="quiz-option" data-correct="true">Ask, collect, describe, interpret</button>
+                <button class="quiz-option">Describe, collect, ask, interpret</button>
+                <button class="quiz-option">Interpret, describe, collect, ask</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! A parameter is derived from or applied to population data; a statistic comes from sample data."
+                 data-feedback-incorrect="Parameters come from populations; statistics come from samples."
+                 data-feedback-unanswered="Parameter = population; statistic = sample.">
+              <p class="quiz-q">2. The difference between a parameter and a statistic is that:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Parameters are always larger than statistics</button>
+                <button class="quiz-option" data-correct="true">Parameters are values derived from or applied to population data, while statistics are values derived from sample data</button>
+                <button class="quiz-option">Statistics describe populations and parameters describe samples</button>
+                <button class="quiz-option">There is no difference</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Random means every member of the population has an equal chance of being selected."
+                 data-feedback-incorrect="In statistics, random means every member of the population has an equal chance of selection — not haphazard."
+                 data-feedback-unanswered="Random = equal chance of selection.">
+              <p class="quiz-q">3. In statistical jargon, &ldquo;random sampling&rdquo; means:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Choosing data haphazardly</button>
+                <button class="quiz-option" data-correct="true">The likelihood of selection of each member of the population is equal</button>
+                <button class="quiz-option">Choosing data at the experimenter&rsquo;s convenience</button>
+                <button class="quiz-option">Selecting points uniformly far apart in time</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Dividing the population into groups and then sampling randomly within each is stratified sampling."
+                 data-feedback-incorrect="Stratified sampling divides the population into groups and then uses random sampling."
+                 data-feedback-unanswered="Stratified = divide into groups, then random sample.">
+              <p class="quiz-q">4. Picking a streamflow value from the annual maximum series is an example of:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Convenience sampling</button>
+                <button class="quiz-option">Uniform sampling</button>
+                <button class="quiz-option" data-correct="true">Stratified sampling</button>
+                <button class="quiz-option">Simple random sampling</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Adding an outlier moved the mean from 7.5 to 12.14 — the mean is sensitive to extreme values."
+                 data-feedback-incorrect="The mean is sensitive to outliers — adding 40 moved the mean from 7.5 to 12.14."
+                 data-feedback-unanswered="The mean is sensitive to outliers.">
+              <p class="quiz-q">5. In the outlier example, adding one value (40) to six values (mean 7.5) changed the mean to 12.14. This shows that:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">The median is always larger than the mean</button>
+                <button class="quiz-option" data-correct="true">The mean is sensitive to extreme values (outliers)</button>
+                <button class="quiz-option">The mode is affected by outliers</button>
+                <button class="quiz-option">The range is unaffected by outliers</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Using n−1 adjusts for the underestimation of population variance when using the sample mean."
+                 data-feedback-incorrect="We use n−1 because the sample mean usually differs from the population mean, and using it underestimates the true variance."
+                 data-feedback-unanswered="n−1 corrects the underestimation of variance.">
+              <p class="quiz-q">6. Why do we use n &minus; 1 in the denominator when calculating sample variance?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">To make the variance larger than the standard deviation</button>
+                <button class="quiz-option">Because samples always have an odd number of values</button>
+                <button class="quiz-option" data-correct="true">Because the sample mean usually differs from the population mean, and using it would underestimate the true population variance</button>
+                <button class="quiz-option">It is just a convention with no reason</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! A normal distribution is symmetrical, with mean = median = mode in the center, and is asymptotic."
+                 data-feedback-incorrect="A normal distribution is symmetrical, has mean = median = mode in the center, and is asymptotic."
+                 data-feedback-unanswered="Normal: symmetrical, centered, asymptotic.">
+              <p class="quiz-q">7. Which is a characteristic of a normal distribution?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">It is always positively skewed</button>
+                <button class="quiz-option">Its tails touch the X axis</button>
+                <button class="quiz-option" data-correct="true">It is symmetrical, with mean, median and mode all in the center, and it is asymptotic</button>
+                <button class="quiz-option">Its mean is always larger than its median</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Positive skew has an elongated tail at the higher end, with most scores at the low end."
+                 data-feedback-incorrect="Positively skewed distributions have an elongated tail at the higher end."
+                 data-feedback-unanswered="Positive skew = long tail at the high end.">
+              <p class="quiz-q">8. A positively skewed distribution has:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">An elongated tail at the lower end of the distribution</button>
+                <button class="quiz-option" data-correct="true">An elongated tail at the higher end, with most scores at the low end</button>
+                <button class="quiz-option">No tail at all</button>
+                <button class="quiz-option">Mean = median = mode</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Rainfall ↑ → streamflow ↑ is positive covariance — both move together."
+                 data-feedback-incorrect="Rainfall and streamflow increasing together is positive covariance."
+                 data-feedback-unanswered="Rainfall ↑ → streamflow ↑ = positive covariance.">
+              <p class="quiz-q">9. &ldquo;Rainfall increases &rarr; streamflow increases&rdquo; is an example of:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Negative covariance</button>
+                <button class="quiz-option">Zero covariance</button>
+                <button class="quiz-option" data-correct="true">Positive covariance</button>
+                <button class="quiz-option">No relationship</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Correlation does not imply causation — evidence of a relationship does not mean a causal relationship."
+                 data-feedback-incorrect="Evidence of a correlation does not necessarily mean there is a causal relationship."
+                 data-feedback-unanswered="Correlation does not imply causation.">
+              <p class="quiz-q">10. If two variables are correlated (e.g. SAT scores and first-year GPA, r &asymp; .40), we can conclude that:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Higher SAT scores cause higher GPA</button>
+                <button class="quiz-option" data-correct="true">There is a relationship, but some other variable or set of variables is probably responsible — correlation does not imply causation</button>
+                <button class="quiz-option">The variables are identical</button>
+                <button class="quiz-option">The correlation is perfect</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-actions">
+              <button class="btn btn-blue" data-check>Check my answers</button>
+              <button class="btn btn-ghost-dark" data-reset>Try again</button>
+            </div>
+
+            <div class="score-banner" data-score-banner hidden>
+              <span>Your score: <span data-score>0</span> / <span data-total>10</span></span>
+              <span class="score-note">The key is shown above &mdash; correct answers are highlighted in green.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Hydroinformatics</h4>
+          <p style="margin:0">Lecture materials for Hydroinformatics: Data Management and Analysis, taught by Dr. Arjumand Zehra Zaidi.</p>
+        </div>
+        <div>
+          <h4>Course</h4>
+          <ul>
+            <li><a href="../index.html">All lectures</a></li>
+            <li><a href="#reading">Reading material</a></li>
+            <li><a href="#assignment">Assignment</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Instructor</h4>
+          <ul>
+            <li><a href="https://water.muet.edu.pk/faculty/dr-arjumand-zehra-zaidi" target="_blank" rel="noopener">Faculty profile</a></li>
+            <li><a href="https://arjzaidi.wordpress.com" target="_blank" rel="noopener">Teaching site</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; Dr. Arjumand Zehra Zaidi &middot; US-Pakistan Center for Advanced Studies in Water, Mehran University of Engineering &amp; Technology, Jamshoro
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/quiz.js" defer></script>
+</body>
+</html>

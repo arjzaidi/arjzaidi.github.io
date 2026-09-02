@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 3: Hydroinformatics — An Applied Science | Hydroinformatics</title>
+  <meta name="description" content="Lecture 3 &mdash; Hydroinformatics: An Applied Science: definition, core components, applications, data sources and the water cycle. HID-661, Dr. Arjumand Zehra Zaidi, USPCAS-W, MUET Jamshoro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../../index.html">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>
+        <span class="brand-text">
+          <strong>Hydroinformatics</strong>
+          <small>USPCAS-W &middot; MUET Jamshoro</small>
+        </span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">All Lectures</a>
+        <a href="#reading">Reading</a>
+        <a href="#assignment">Assignment</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="hero-kicker">Lecture 3 &middot; HID-661 &middot; Fall 2026</p>
+        <h1>Hydroinformatics: An Applied Science</h1>
+        <p class="hero-sub">Hydroinformatics: Data Management and Analysis &mdash; USPCAS-W, Mehran University of Engineering &amp; Technology, Jamshoro</p>
+        <div class="hero-meta">
+          <span class="chip">Text-based lecture</span>
+          <span class="chip">Interactive quiz included</span>
+          <span class="chip">Dr. Arjumand Zehra Zaidi</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="../../../assets/downloads/lecture-03-introduction-to-hydroinformatics.pdf">Download PDF</a>
+          <a class="btn btn-ghost" href="../../../assets/downloads/lecture-03-introduction-to-hydroinformatics.pptx">Download PPTX</a>
+        </div>
+      </div>
+      <div class="hero-wave"><svg viewBox="0 0 1440 46" preserveAspectRatio="none"><path fill="#f4f9fd" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,24 L1440,46 L0,46 Z"/></svg></div>
+    </section>
+
+    <div class="container">
+
+      <section class="card at-a-glance">
+        <h2 class="section-title">In this lecture</h2>
+        <ol>
+          <li>Course logistics &mdash; roadmap, schedule and learning outcomes</li>
+          <li>What is hydroinformatics? &mdash; definition and core components</li>
+          <li>The water data pipeline &mdash; from observation to decision</li>
+          <li>Applications &mdash; floods, droughts, water quality and more</li>
+          <li>Data sources &mdash; ground-based and Earth observation</li>
+          <li>Why traditional hydrology alone is no longer sufficient</li>
+        </ol>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">1. Course logistics</h2>
+
+        <div class="card">
+          <h3>Learning outcomes</h3>
+          <p>By the end of the course, students will be able to:</p>
+          <ul>
+            <li>Explain the fundamental concepts, principles and applications of Hydroinformatics in water resources management.</li>
+            <li>Acquire, manage and preprocess hydrological and geospatial datasets from ground-based and Earth observation sources.</li>
+            <li>Analyze and visualize hydrological data using statistical methods and computational tools to identify trends, patterns and anomalies.</li>
+            <li>Apply Python and cloud-based geospatial platforms to solve common water resources problems involving floods, droughts and water quality.</li>
+            <li>Interpret and communicate analytical results to support evidence-based decision-making in water resources management.</li>
+          </ul>
+
+          <h3>Course roadmap</h3>
+          <ul>
+            <li>Includes teaching, labs, assignments, projects and a field visit.</li>
+            <li>Informed and surprise quizzes.</li>
+            <li>Mid-term exam (theory).</li>
+            <li>Final exam (theory and lab).</li>
+            <li>Refer to the course outline for the marks distribution.</li>
+          </ul>
+
+          <h3>Weekly class schedule</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Day</th><th>Session</th><th>Time</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Every Tuesday</td><td>Theory class</td><td>09:00 &ndash; 11:00</td></tr>
+                <tr><td>Every Tuesday</td><td>Lab</td><td>11:00 &ndash; 14:00</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="assignment-note">Office hours: no fixed office hours &mdash; check availability before visiting.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">2. What is hydroinformatics?</h2>
+
+        <div class="card">
+          <h3>An applied science</h3>
+          <p><strong>Hydro</strong> = water; <strong>Informatics</strong> = the study of computational systems. Hydroinformatics is about <strong>information management to aid in understanding and managing water in the natural and built environments</strong>.</p>
+          <p>It sits at the crossroads of several disciplines:</p>
+          <ul>
+            <li>Engineering</li>
+            <li>Computer science</li>
+            <li>Hydrology</li>
+            <li>Geographic information systems (GIS)</li>
+            <li>High-end computing</li>
+          </ul>
+          <p class="assignment-note">This entails issues related to data acquisition, archiving, representation, search, communication, visualization, and their use in modeling and knowledge discovery &mdash; and how these disciplines help us move from data to information to knowledge to wisdom.</p>
+
+          <h3>Definition</h3>
+          <div class="highlight-box">
+            <span class="box-label">Definition</span>
+            <p style="margin:0">Hydroinformatics encompasses the <strong>effective use of data for the characterization of the water cycle</strong> through natural and built environments. It involves the development of theories, methodologies, algorithms and tools, methods for testing concepts, analysis and verification, and knowledge representation and communication.</p>
+          </div>
+          <p>Hydroinformatics combines <strong>hydrology, data science and computing</strong> to support integrated water resources management (IWRM).</p>
+
+          <h3>Core components</h3>
+          <ul>
+            <li>Hydrology &amp; hydraulics</li>
+            <li>Remote sensing &amp; GIS</li>
+            <li>Data science, statistics &amp; artificial intelligence</li>
+            <li>Numerical &amp; hydraulic modeling</li>
+            <li>IoT, sensors &amp; real-time monitoring</li>
+            <li>Cloud computing &amp; decision support systems</li>
+          </ul>
+
+          <h3>Why hydroinformatics?</h3>
+          <ul>
+            <li>Integrates diverse water-related data.</li>
+            <li>Supports evidence-based decision-making.</li>
+            <li>Improves monitoring, forecasting and early warning.</li>
+            <li>Enables sustainable water resources management.</li>
+            <li>Helps address climate change and water security challenges.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">3. The water data pipeline</h2>
+
+        <div class="card">
+          <p>Hydroinformatics works as a pipeline from the water system to sustainable management:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Stage</th><th>What happens</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Water system</strong></td><td>Rivers, lakes, groundwater, watersheds</td></tr>
+                <tr><td><strong>Observe</strong></td><td>Monitor and collect data &mdash; sensors, gauges, remote sensing, GIS</td></tr>
+                <tr><td><strong>Store</strong></td><td>Manage and integrate data &mdash; databases, cloud, QA/QC</td></tr>
+                <tr><td><strong>Analyze &amp; model</strong></td><td>Statistics, GIS, AI, simulation</td></tr>
+                <tr><td><strong>Decide</strong></td><td>Decision support &mdash; risk assessment, planning</td></tr>
+                <tr><td><strong>Manage</strong></td><td>Sustainable water resources &mdash; IWRM, policy, operations</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="warning-box">
+            <span class="box-label">Think about it</span>
+            <p style="margin:0">Why is hydroinformatics considered an interdisciplinary field?</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">4. Applications</h2>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Application</th><th>What it looks like in practice</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Flood forecasting &amp; early warning</strong></td><td>Real-time hydrographs, river gauge status and GIS inundation maps</td></tr>
+                <tr><td><strong>Drought monitoring</strong></td><td>Satellite soil moisture index (SMI) and vegetation health maps (NDVI)</td></tr>
+                <tr><td><strong>Water quality assessment</strong></td><td>Contamination heatmaps and key performance indicators (KPIs) for testing parameters</td></tr>
+                <tr><td><strong>Irrigation &amp; agriculture</strong></td><td>Crop water stress indexes and SCADA canal distribution schemes</td></tr>
+                <tr><td><strong>Urban water management</strong></td><td>Smart-city AI sensor grids, pipe networks and digital twins</td></tr>
+                <tr><td><strong>Groundwater monitoring</strong></td><td>Borehole extraction versus recharge graphs</td></tr>
+                <tr><td><strong>Climate change impact</strong></td><td>Long-term multi-decadal trend lines and extreme-weather scenario projections</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Digital twins</h3>
+          <div class="highlight-box">
+            <span class="box-label">Definition</span>
+            <p style="margin:0">A <span class="key-term" data-tooltip="A digital model of a real-world system that is continuously updated using real-time or near-real-time data to monitor, understand and predict its behaviour.">digital twin</span> is a digital model of a real-world system that is continuously updated using real-time or near-real-time data to monitor, understand and predict its behaviour.</p>
+          </div>
+          <p><strong>Example in hydroinformatics:</strong> a digital twin of a river system can combine river gauge data, satellite observations, rainfall, weather forecasts and hydrological models to show the current river condition and predict future water levels or floods.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5. The water cycle and water management</h2>
+
+        <div class="card">
+          <p>Understanding the water cycle is the <strong>first step toward sustainable water management</strong>. The global water cycle is a complex system &mdash; and water is distributed very unevenly across the globe.</p>
+
+          <div class="warning-box">
+            <span class="box-label">Discuss</span>
+            <p style="margin:0">What are the causes of water scarcity and their impacts? How can we optimize? How can we minimize uncertainty?</p>
+          </div>
+          <p class="assignment-note">Causes include climate change, urbanization, population growth, lifestyle and technology advancement. Impacts include growing uncertainties, higher demand for water (food production, daily demand), uncontrolled extraction of water and wastage. Optimization means allocation as per requirement.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">6. Data sources</h2>
+
+        <div class="card">
+          <div class="highlight-box">
+            <span class="box-label">Classroom activity</span>
+            <p style="margin:0">Imagine you are responsible for managing a river basin. What data would you collect to make informed water management decisions? Classify your answers into hydro-meteorological datasets and geospatial datasets. Can you identify some commonly used datasets?</p>
+          </div>
+
+          <h3>Ground-based observations</h3>
+          <ul>
+            <li><strong>Weather data:</strong> rainfall, temperature, humidity, wind speed, solar radiation (e.g. Pakistan Meteorological Department &mdash; PMD).</li>
+            <li><strong>Hydrological data:</strong> river discharge, water levels, canal flows, reservoir storage (e.g. Irrigation Department, WAPDA, IRSA).</li>
+            <li><strong>Groundwater data:</strong> groundwater levels and well observations.</li>
+            <li><strong>Water quality data:</strong> pH, EC, TDS, dissolved oxygen, turbidity, etc.</li>
+          </ul>
+
+          <h3>Earth observation (satellite data)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Variable</th><th>Example products / missions</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Precipitation</td><td>CHIRPS, GPM</td></tr>
+                <tr><td>Vegetation</td><td>NDVI, EVI</td></tr>
+                <tr><td>Evapotranspiration</td><td>WaPOR, MODIS ET</td></tr>
+                <tr><td>Land use / land cover</td><td>Sentinel-2, Landsat, ESRI Land Cover</td></tr>
+                <tr><td>Surface water &amp; floods</td><td>Sentinel-1/2, Global Surface Water</td></tr>
+                <tr><td>Water levels</td><td>Satellite altimetry &mdash; Sentinel-3, ICESat-2, Jason-3</td></tr>
+                <tr><td>Groundwater storage</td><td>GRACE</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>From data to decisions</h3>
+          <ul>
+            <li><strong>GIS &amp; remote sensing</strong> &mdash; applications in water resources.</li>
+            <li><strong>Hydrological models</strong> &mdash; conceptual, physical and data-driven.</li>
+            <li><strong>Decision support</strong> &mdash; forecasting, planning and management.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">Key takeaways</h2>
+        <div class="key-takeaways">
+          <ul>
+            <li>Hydroinformatics is the <strong>effective use of data to characterize the water cycle</strong> &mdash; at the crossroads of hydrology, computer science, engineering, GIS and high-end computing.</li>
+            <li>The water data pipeline runs <strong>observe &rarr; store &rarr; analyze &amp; model &rarr; decide &rarr; manage</strong>.</li>
+            <li>Applications span flood forecasting, drought monitoring, water quality, irrigation, urban water, groundwater and climate change impact assessment &mdash; increasingly through <strong>digital twins</strong>.</li>
+            <li>Data comes from <strong>ground-based observations</strong> (PMD, WAPDA, IRSA) and <strong>Earth observation</strong> (CHIRPS, GPM, Sentinel, Landsat, GRACE, altimetry).</li>
+            <li>Traditional hydrology alone is no longer sufficient &mdash; managing complex water systems needs integrated data, models and decision support.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block" id="reading">
+        <h2 class="section-title">Reading</h2>
+        <div class="card">
+          <ul class="resource-list">
+            <li><a href="https://hydro-informatics.com/index.html" target="_blank" rel="noopener">Hydro-informatics.com &mdash; open-source hydroinformatics textbook</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block" id="assignment">
+        <h2 class="section-title">Assignment</h2>
+        <div class="assignment-box">
+          <p style="margin-top:0">Answer the following:</p>
+          <ol>
+            <li>Why is traditional hydrology alone no longer sufficient for water resources management?</li>
+            <li>List the hydro-meteorological and geospatial datasets you would collect to manage a river basin, and name the source for each.</li>
+            <li>Explain, with an example, how a digital twin of a river system works.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section-block" id="quiz">
+        <div class="card">
+          <h2 class="section-title">Quick Quiz</h2>
+          <p>Test yourself on this lecture. Select an answer for each question, then click <strong>Check my answers</strong> to reveal the key and your score.</p>
+
+          <div class="quiz" data-quiz>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Hydroinformatics is about information management to aid in understanding and managing water."
+                 data-feedback-incorrect="Hydroinformatics is about information management to aid in understanding and managing water in natural and built environments."
+                 data-feedback-unanswered="Hydroinformatics = information management for water.">
+              <p class="quiz-q">1. Hydroinformatics is best described as:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">The study of fish habitats in rivers</button>
+                <button class="quiz-option" data-correct="true">Information management to aid in understanding and managing water in the natural and built environments</button>
+                <button class="quiz-option">The design of dams and barrages</button>
+                <button class="quiz-option">The study of ocean currents</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Hydroinformatics sits at the crossroads of engineering, computer science, hydrology, GIS and high-end computing."
+                 data-feedback-incorrect="Hydroinformatics combines engineering, computer science, hydrology, GIS and high-end computing."
+                 data-feedback-unanswered="Hydroinformatics is interdisciplinary.">
+              <p class="quiz-q">2. Hydroinformatics is considered interdisciplinary because it combines:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Only hydrology and meteorology</button>
+                <button class="quiz-option">Only computer science and mathematics</button>
+                <button class="quiz-option" data-correct="true">Engineering, computer science, hydrology, GIS and high-end computing</button>
+                <button class="quiz-option">Only remote sensing and statistics</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The pipeline runs observe → store → analyze & model → decide → manage."
+                 data-feedback-incorrect="The pipeline is observe → store → analyze & model → decide → manage."
+                 data-feedback-unanswered="The pipeline: observe, store, analyze, decide, manage.">
+              <p class="quiz-q">3. In the water data pipeline, the correct order is:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Manage, decide, analyze, store, observe</button>
+                <button class="quiz-option" data-correct="true">Observe, store, analyze &amp; model, decide, manage</button>
+                <button class="quiz-option">Store, observe, decide, analyze, manage</button>
+                <button class="quiz-option">Analyze, observe, store, manage, decide</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! A digital twin is a digital model continuously updated with real-time data to monitor, understand and predict behaviour."
+                 data-feedback-incorrect="A digital twin is a digital model of a real-world system continuously updated with real-time data."
+                 data-feedback-unanswered="A digital twin is a live digital model of a real system.">
+              <p class="quiz-q">4. A digital twin is:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">A second computer used for backup</button>
+                <button class="quiz-option">A paper map of a river basin</button>
+                <button class="quiz-option" data-correct="true">A digital model of a real-world system continuously updated using real-time or near-real-time data to monitor, understand and predict its behaviour</button>
+                <button class="quiz-option">A satellite that orbits twice a day</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Drought monitoring uses soil moisture indices (SMI) and vegetation health maps (NDVI)."
+                 data-feedback-incorrect="Drought monitoring uses satellite soil moisture indices and vegetation health maps like NDVI."
+                 data-feedback-unanswered="Drought monitoring uses SMI and NDVI.">
+              <p class="quiz-q">5. Drought monitoring in hydroinformatics typically uses:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Borehole extraction graphs only</button>
+                <button class="quiz-option" data-correct="true">Satellite soil moisture index (SMI) and vegetation health maps (NDVI)</button>
+                <button class="quiz-option">Canal distribution schemes only</button>
+                <button class="quiz-option">Contamination heatmaps</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! CHIRPS and GPM are satellite precipitation products."
+                 data-feedback-incorrect="CHIRPS and GPM are precipitation products."
+                 data-feedback-unanswered="CHIRPS and GPM are precipitation datasets.">
+              <p class="quiz-q">6. CHIRPS and GPM are examples of satellite data for:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Vegetation</button>
+                <button class="quiz-option">Groundwater storage</button>
+                <button class="quiz-option" data-correct="true">Precipitation</button>
+                <button class="quiz-option">Water levels</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! GRACE measures groundwater storage changes."
+                 data-feedback-incorrect="GRACE measures groundwater storage."
+                 data-feedback-unanswered="GRACE is used for groundwater storage.">
+              <p class="quiz-q">7. Which satellite mission is used for groundwater storage monitoring?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Sentinel-2</button>
+                <button class="quiz-option">Jason-3</button>
+                <button class="quiz-option" data-correct="true">GRACE</button>
+                <button class="quiz-option">CHIRPS</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! PMD provides weather data; WAPDA/IRSA provide hydrological data."
+                 data-feedback-incorrect="PMD provides weather data, while WAPDA and IRSA provide hydrological data."
+                 data-feedback-unanswered="PMD = weather; WAPDA/IRSA = hydrology.">
+              <p class="quiz-q">8. In Pakistan, weather data (rainfall, temperature) is primarily provided by:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">IRSA</button>
+                <button class="quiz-option" data-correct="true">Pakistan Meteorological Department (PMD)</button>
+                <button class="quiz-option">WAPDA</button>
+                <button class="quiz-option">PCRWR</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! WaPOR and MODIS ET provide evapotranspiration data."
+                 data-feedback-incorrect="WaPOR and MODIS ET are evapotranspiration products."
+                 data-feedback-unanswered="WaPOR/MODIS ET = evapotranspiration.">
+              <p class="quiz-q">9. WaPOR and MODIS ET are satellite products for:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Land use / land cover</button>
+                <button class="quiz-option">Precipitation</button>
+                <button class="quiz-option" data-correct="true">Evapotranspiration</button>
+                <button class="quiz-option">Water quality</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Traditional hydrology alone is insufficient because complex water systems need integrated data, models and decision support."
+                 data-feedback-incorrect="Traditional hydrology alone is no longer sufficient because water systems are complex and need integrated data, models and decision support."
+                 data-feedback-unanswered="Traditional hydrology alone is insufficient for complex water systems.">
+              <p class="quiz-q">10. Why is traditional hydrology alone no longer sufficient?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Because rainfall data is no longer collected</button>
+                <button class="quiz-option">Because rivers no longer follow physical laws</button>
+                <button class="quiz-option" data-correct="true">Because managing complex water systems requires integrated data, computational models and decision support</button>
+                <button class="quiz-option">It is still fully sufficient</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-actions">
+              <button class="btn btn-blue" data-check>Check my answers</button>
+              <button class="btn btn-ghost-dark" data-reset>Try again</button>
+            </div>
+
+            <div class="score-banner" data-score-banner hidden>
+              <span>Your score: <span data-score>0</span> / <span data-total>10</span></span>
+              <span class="score-note">The key is shown above &mdash; correct answers are highlighted in green.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Hydroinformatics</h4>
+          <p style="margin:0">Lecture materials for Hydroinformatics: Data Management and Analysis, taught by Dr. Arjumand Zehra Zaidi.</p>
+        </div>
+        <div>
+          <h4>Course</h4>
+          <ul>
+            <li><a href="../index.html">All lectures</a></li>
+            <li><a href="#reading">Reading material</a></li>
+            <li><a href="#assignment">Assignment</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Instructor</h4>
+          <ul>
+            <li><a href="https://water.muet.edu.pk/faculty/dr-arjumand-zehra-zaidi" target="_blank" rel="noopener">Faculty profile</a></li>
+            <li><a href="https://arjzaidi.wordpress.com" target="_blank" rel="noopener">Teaching site</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; Dr. Arjumand Zehra Zaidi &middot; US-Pakistan Center for Advanced Studies in Water, Mehran University of Engineering &amp; Technology, Jamshoro
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/quiz.js" defer></script>
+</body>
+</html>
