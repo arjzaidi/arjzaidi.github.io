@@ -332,6 +332,31 @@
             <li>Unlike correlation, regression always designates a predictor variable and a dependent variable.</li>
           </ul>
 
+          <h3>Worked example &mdash; identify the variables yourself</h3>
+          <div class="example-box">
+            <span class="box-label">Real-world problem</span>
+            <p style="margin:0"><strong>Tarbela Reservoir inflow forecast.</strong> The Indus River System Authority (IRSA) wants to forecast the summer inflow into Tarbela Reservoir so it can plan irrigation releases and issue flood warnings weeks in advance. It has 30 years of records: the average May&ndash;July air temperature measured at high-altitude weather stations in the upper Indus catchment, and the corresponding total summer inflow volume recorded at the reservoir. IRSA wants to build a simple linear model &mdash; inflow = a + b &times; temperature &mdash; so that from a seasonal temperature forecast alone, it can predict how much water will arrive at Tarbela.</p>
+          </div>
+          <p>Before reading on, decide for yourself: which variable is which?</p>
+
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">1. Which variable is the <strong>dependent (outcome)</strong> variable &mdash; the one we want to predict?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>Total summer inflow volume at Tarbela Reservoir.</strong> It is the outcome we are trying to predict &mdash; in the model inflow = a + b &times; temperature, inflow is Y.</div>
+          </div>
+
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">2. Which variable is the <strong>independent (predictor)</strong> variable &mdash; the one we use to make the prediction?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>Average May&ndash;July air temperature in the upper Indus catchment.</strong> It is the predictor we know (or can forecast) first &mdash; in the model, temperature is X.</div>
+          </div>
+
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">3. In the model inflow = a + b &times; temperature, what does the <strong>slope b</strong> tell us?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>The expected change in inflow volume for each 1&nbsp;&deg;C rise in average temperature.</strong> For example, b = 0.8 million acre-feet per &deg;C means a 1&nbsp;&deg;C warmer season is associated with about 0.8 million acre-feet more inflow. The intercept a is the predicted inflow when temperature is 0&nbsp;&deg;C.</div>
+          </div>
+
           <h3>Ordinary least squares (OLS) regression</h3>
           <p>OLS minimizes the <strong>sum of squared deviations</strong>. The line of least squares is the <strong>regression line</strong> &mdash; it represents the predicted values of Y at any given value of X. In any scatter plot, there is only one line that produces the smallest sum of squares. The regression line is defined by its <strong>slope</strong> and <strong>intercept</strong>:</p>
           <ul>

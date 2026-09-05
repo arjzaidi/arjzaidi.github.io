@@ -81,4 +81,21 @@
       checkBtn.disabled = false;
     });
   });
+
+  // Interactive reveal buttons (worked examples)
+  // Markup: <div class="reveal-item" data-reveal> ... <button data-reveal-btn> ... <div data-reveal-answer>
+  document.querySelectorAll("[data-reveal]").forEach(function (item) {
+    var btn = item.querySelector("[data-reveal-btn]");
+    var answer = item.querySelector("[data-reveal-answer]");
+    if (!btn || !answer) return;
+    btn.addEventListener("click", function () {
+      if (answer.classList.contains("show")) {
+        answer.classList.remove("show");
+        btn.textContent = btn.dataset.revealLabel || "Show answer";
+      } else {
+        answer.classList.add("show");
+        btn.textContent = btn.dataset.hideLabel || "Hide answer";
+      }
+    });
+  });
 })();

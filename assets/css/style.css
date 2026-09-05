@@ -476,6 +476,33 @@ main { padding-bottom: 72px; }
 .example-box .box-label { color: #c0392b; }
 .solution-box .box-label { color: #1e8449; }
 
+/* ---------- Interactive reveal (worked examples) ---------- */
+.reveal-item { margin: 16px 0; }
+.reveal-question { font-weight: 600; color: var(--navy); margin: 0 0 8px; }
+.reveal-btn {
+  display: inline-block;
+  background: var(--blue-soft);
+  border: 1px solid var(--blue-mid);
+  color: var(--navy);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background .15s ease;
+}
+.reveal-btn:hover { background: rgba(46, 134, 193, .18); }
+.reveal-answer {
+  display: none;
+  margin-top: 10px;
+  background: #eafaf1;
+  border-left: 4px solid #27ae60;
+  padding: 12px 16px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.reveal-answer.show { display: block; }
+
 /* ---------- Collapsible sections ---------- */
 details {
   background: var(--blue-soft);
