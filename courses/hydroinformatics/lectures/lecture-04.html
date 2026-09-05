@@ -364,6 +364,52 @@
             <li><strong>Intercept:</strong> the value of Y when X = 0.</li>
           </ul>
 
+          <h3>Worked example &mdash; compute the slope and intercept</h3>
+          <p>Here is a small, realistic dataset for the Tarbela problem &mdash; 10 recent years of average May&ndash;July temperature (X, in &deg;C) and the corresponding total summer inflow volume (Y, in million acre-feet, MAF):</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Year</th><th>Temperature X (&deg;C)</th><th>Inflow Y (MAF)</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td>12</td><td>25.1</td></tr>
+                <tr><td>2</td><td>13</td><td>27.4</td></tr>
+                <tr><td>3</td><td>14</td><td>30.2</td></tr>
+                <tr><td>4</td><td>15</td><td>32.8</td></tr>
+                <tr><td>5</td><td>16</td><td>34.5</td></tr>
+                <tr><td>6</td><td>17</td><td>38.6</td></tr>
+                <tr><td>7</td><td>18</td><td>39.2</td></tr>
+                <tr><td>8</td><td>19</td><td>42.7</td></tr>
+                <tr><td>9</td><td>20</td><td>45.3</td></tr>
+                <tr><td>10</td><td>21</td><td>47.6</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Using the least-squares formulas below, find the <strong>slope b</strong> and <strong>intercept a</strong> of the regression line inflow = a + b &times; temperature. Then use your line to predict the inflow for a season with an average temperature of 19&nbsp;&deg;C.</p>
+          <div class="highlight-box">
+            <span class="box-label">Least-squares formulas</span>
+            <p style="margin:0">b = (n&middot;&Sigma;XY &minus; &Sigma;X&middot;&Sigma;Y) / (n&middot;&Sigma;X&sup2; &minus; (&Sigma;X)&sup2;) &nbsp;&nbsp;and&nbsp;&nbsp; a = &Ymacr; &minus; b&middot;X&#772;</p>
+          </div>
+          <p>Useful sums to check your arithmetic: &Sigma;X = 165, &Sigma;Y = 363.4, &Sigma;XY = 6202.9, &Sigma;X&sup2; = 2805, n = 10.</p>
+
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">4. What is the <strong>slope b</strong> of the regression line?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>b &asymp; 2.51 MAF per &deg;C.</strong> Using the formula: b = (10&times;6202.9 &minus; 165&times;363.4) / (10&times;2805 &minus; 165&sup2;) = (62029 &minus; 59961) / (28050 &minus; 27225) = 2068 / 825 &asymp; 2.51. So each 1&nbsp;&deg;C warmer season is associated with about 2.5 million acre-feet more inflow.</div>
+          </div>
+
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">5. What is the <strong>intercept a</strong> of the regression line?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>a &asymp; &minus;5.02 MAF.</strong> First find the means: X&#772; = 165/10 = 16.5 and &Ymacr; = 363.4/10 = 36.34. Then a = &Ymacr; &minus; b&middot;X&#772; = 36.34 &minus; 2.51&times;16.5 &asymp; 36.34 &minus; 41.36 &asymp; &minus;5.02. The regression line is therefore <strong>inflow &asymp; &minus;5.02 + 2.51 &times; temperature</strong>.</div>
+          </div>
+
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">6. Using your line, what inflow would you predict for a season with an average temperature of <strong>19&nbsp;&deg;C</strong>?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>&asymp; 42.6 MAF.</strong> inflow = &minus;5.02 + 2.51 &times; 19 = &minus;5.02 + 47.69 &asymp; 42.6 MAF. (The actual value in the dataset for 19&nbsp;&deg;C is 42.7 MAF &mdash; very close, because the fit is strong.)</div>
+          </div>
+
           <h3>The coefficient of determination R&sup2;</h3>
           <p>R&sup2; is a statistical measure that explains the <strong>proportion of variance in the dependent variable that is predictable from the independent variable(s)</strong>.</p>
           <ul>
