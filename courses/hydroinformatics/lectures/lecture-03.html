@@ -143,6 +143,37 @@
             <li>Enables sustainable water resources management.</li>
             <li>Helps address climate change and water security challenges.</li>
           </ul>
+
+          <h3>From data to wisdom &mdash; a worked example</h3>
+          <p>Hydroinformatics moves from <strong>data</strong> to <strong>information</strong> to <strong>knowledge</strong> to <strong>wisdom</strong> (the DIKW pyramid). Here is the journey for a single river gauge reading:</p>
+          <div class="example-box">
+            <span class="box-label">Worked example</span>
+            <p style="margin:0">A river gauge on the Indus at Sukkur transmits a reading of <strong>12,500 cusecs</strong>. Follow the journey from data to wisdom.</p>
+          </div>
+
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">1. What is the <strong>data</strong> in this example?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>The raw reading itself &mdash; &ldquo;12,500 cusecs&rdquo; &mdash; is data: a single, unprocessed observation with no context attached.</div>
+          </div>
+
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">2. What turns it into <strong>information</strong>?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Context. Comparing the reading with the gauge&rsquo;s danger level &mdash; &ldquo;12,500 cusecs is above the high-flood level at Sukkur&rdquo; &mdash; is information: data organized to answer a question.</div>
+          </div>
+
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">3. What is the <strong>knowledge</strong>?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Understanding. This is the highest reading since 2010, upstream rainfall is continuing, and downstream districts are likely to be inundated. Knowledge connects information with experience, models and other datasets.</div>
+          </div>
+
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">4. What is the <strong>wisdom</strong>?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Deciding what to do: issue evacuation orders for vulnerable villages, coordinate reservoir releases and position rescue teams &mdash; the right action at the right time.</div>
+          </div>
         </div>
       </section>
 
@@ -169,6 +200,36 @@
           <div class="warning-box">
             <span class="box-label">Think about it</span>
             <p style="margin:0">Why is hydroinformatics considered an interdisciplinary field?</p>
+          </div>
+
+          <h3>Worked example &mdash; the 2022 Pakistan floods through the pipeline</h3>
+          <div class="example-box">
+            <span class="box-label">Real-world problem</span>
+            <p style="margin:0">In the summer of 2022, record monsoon rainfall and glacial melt triggered catastrophic flooding across Pakistan &mdash; more than <strong>33 million people affected</strong> and over <strong>1,700 lives lost</strong>. Trace how each stage of the water data pipeline was (or should have been) involved.</p>
+          </div>
+
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">1. <strong>Observe</strong> &mdash; what data would you collect?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Rainfall from PMD stations and GPM/CHIRPS satellite products, river levels and discharge from WAPDA/IRSA gauges, soil moisture, and flood extent from Sentinel-1 SAR &mdash; which can see through clouds when optical satellites cannot.</div>
+          </div>
+
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">2. <strong>Store</strong> &mdash; how would you manage this data?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Integrate the scattered records into databases and cloud platforms, apply quality control (QA/QC) to remove erroneous gauge readings, and keep a consistent time series for analysis.</div>
+          </div>
+
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">3. <strong>Analyze &amp; model</strong> &mdash; what would you do with the data?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Run hydrological and hydraulic models to convert rainfall into predicted river levels, map inundation with GIS, and use statistics and AI to detect anomalies &mdash; e.g. rainfall far above the seasonal norm.</div>
+          </div>
+
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">4. <strong>Decide &amp; manage</strong> &mdash; what decisions follow?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Issue early warnings and evacuation orders, coordinate reservoir releases to reduce peak flows, and plan relief operations &mdash; then use the lessons to improve floodplain policy and infrastructure for the next event.</div>
           </div>
         </div>
       </section>
@@ -200,6 +261,66 @@
             <p style="margin:0">A <span class="key-term" data-tooltip="A digital model of a real-world system that is continuously updated using real-time or near-real-time data to monitor, understand and predict its behaviour.">digital twin</span> is a digital model of a real-world system that is continuously updated using real-time or near-real-time data to monitor, understand and predict its behaviour.</p>
           </div>
           <p><strong>Example in hydroinformatics:</strong> a digital twin of a river system can combine river gauge data, satellite observations, rainfall, weather forecasts and hydrological models to show the current river condition and predict future water levels or floods.</p>
+
+          <h3>Worked example &mdash; flood forecasting and early warning</h3>
+          <div class="example-box">
+            <span class="box-label">Real-world problem</span>
+            <p style="margin:0">A flood early warning system for the Indus River must tell authorities, days in advance, which districts are at risk. What does it combine?</p>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">1. What <strong>inputs</strong> feed the system?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Rainfall observations and forecasts (PMD, GPM, CHIRPS), river levels and discharge (WAPDA/IRSA gauges), snow and glacier melt estimates, and digital elevation models for inundation mapping.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">2. What <strong>outputs</strong> does it produce?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Forecast hydrographs at key river stations, flood inundation maps, and warnings graded by severity &mdash; e.g. &ldquo;very high flood&rdquo; at a specific gauge &mdash; so authorities can evacuate before the water arrives.</div>
+          </div>
+
+          <h3>Worked example &mdash; drought monitoring in Tharparkar</h3>
+          <div class="example-box">
+            <span class="box-label">Real-world problem</span>
+            <p style="margin:0">Tharparkar district in Sindh experiences recurring droughts. Ground-based rain gauges are sparse, so how can drought be monitored across the whole district?</p>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">1. Which <strong>satellite products</strong> would you use?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Satellite soil moisture indices (SMI) and vegetation health maps (NDVI) &mdash; e.g. from MODIS &mdash; show where vegetation is drying out, even where no rain gauge exists.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">2. How does this <strong>support decisions</strong>?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Early detection of vegetation stress lets authorities trigger relief (fodder, water tankers) and drought-response programs before conditions become catastrophic.</div>
+          </div>
+
+          <h3>Worked example &mdash; water quality in the Indus</h3>
+          <div class="example-box">
+            <span class="box-label">Real-world problem</span>
+            <p style="margin:0">The Indus receives municipal and industrial effluent along its course. How would you assess and communicate the resulting water quality?</p>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">1. What <strong>parameters</strong> would you monitor?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>pH, electrical conductivity (EC), total dissolved solids (TDS), dissolved oxygen (DO) and turbidity &mdash; measured at sampling stations along the river.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">2. How would you <strong>communicate</strong> the results?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Contamination heatmaps along the river and key performance indicators (KPIs) per parameter, so regulators and the public can see where and when standards are exceeded.</div>
+          </div>
+
+          <h3>Digital twin &mdash; think it through</h3>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">1. What <strong>data streams</strong> keep a river digital twin continuously updated?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>River gauge data, satellite observations, rainfall, weather forecasts and hydrological model outputs &mdash; all feeding the twin in real time or near-real time.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">2. What can the twin <strong>predict</strong>?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Future water levels and flood extent under different rainfall scenarios &mdash; letting operators test &ldquo;what if&rdquo; options (e.g. reservoir releases) before acting in the real world.</div>
+          </div>
         </div>
       </section>
 
@@ -214,6 +335,27 @@
             <p style="margin:0">What are the causes of water scarcity and their impacts? How can we optimize? How can we minimize uncertainty?</p>
           </div>
           <p class="assignment-note">Causes include climate change, urbanization, population growth, lifestyle and technology advancement. Impacts include growing uncertainties, higher demand for water (food production, daily demand), uncontrolled extraction of water and wastage. Optimization means allocation as per requirement.</p>
+
+          <h3>Worked example &mdash; Pakistan&rsquo;s shrinking per-capita water availability</h3>
+          <div class="example-box">
+            <span class="box-label">Real-world problem</span>
+            <p style="margin:0">Pakistan&rsquo;s per-capita water availability has fallen from roughly <strong>5,000 m&sup3; per person per year in 1951</strong> to about <strong>1,000 m&sup3; today</strong> &mdash; approaching the internationally recognized threshold of water scarcity (1,000 m&sup3; per person per year).</p>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">1. Why has per-capita availability <strong>fallen so sharply</strong>?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Population growth is the dominant driver &mdash; the same (roughly constant) renewable water resource is divided among many more people. Climate change adds uncertainty to supply.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">2. What are the <strong>impacts</strong> of scarcity?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Higher competition between agriculture, industry and domestic use; uncontrolled groundwater extraction; food insecurity; and growing uncertainty in water planning.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">3. How can <strong>hydroinformatics help</strong>?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>By quantifying supply and demand with better data, optimizing allocation (e.g. canal scheduling), reducing wastage through monitoring, and supporting evidence-based policy &mdash; allocation as per requirement.</div>
+          </div>
         </div>
       </section>
 
@@ -258,6 +400,37 @@
             <li><strong>Hydrological models</strong> &mdash; conceptual, physical and data-driven.</li>
             <li><strong>Decision support</strong> &mdash; forecasting, planning and management.</li>
           </ul>
+
+          <h3>Which dataset for which problem? &mdash; a quick check</h3>
+          <div class="example-box">
+            <span class="box-label">Classroom activity</span>
+            <p style="margin:0">For each problem below, name the dataset or product you would reach for first.</p>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">1. You need daily rainfall over the last 40 years for a basin with few rain gauges.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>CHIRPS</strong> &mdash; a long-record satellite-gauge merged precipitation product, ideal for data-sparse basins.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">2. You need to map the current flood extent after heavy rain &mdash; but it is cloudy.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>Sentinel-1 SAR</strong> &mdash; radar sees through clouds and works day and night; combine with the Global Surface Water dataset for historical context.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">3. You want to estimate how much groundwater is being lost in the Indus basin.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>GRACE</strong> &mdash; the satellite mission that measures changes in total water storage, including groundwater.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">4. You need to map land use / land cover for a watershed study.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>Sentinel-2 or Landsat</strong> &mdash; optical missions widely used for land cover classification; ESRI Land Cover is a ready-made global product.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">5. You need to estimate crop water consumption (evapotranspiration) for irrigation planning.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>WaPOR or MODIS ET</strong> &mdash; evapotranspiration products designed for agricultural water management.</div>
+          </div>
         </div>
       </section>
 
@@ -438,6 +611,48 @@
                 <button class="quiz-option">Because rivers no longer follow physical laws</button>
                 <button class="quiz-option" data-correct="true">Because managing complex water systems requires integrated data, computational models and decision support</button>
                 <button class="quiz-option">It is still fully sufficient</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The raw reading itself is data — context turns it into information."
+                 data-feedback-incorrect="The raw reading itself is data; context turns it into information."
+                 data-feedback-unanswered="The raw reading is data.">
+              <p class="quiz-q">11. A river gauge transmits &ldquo;12,500 cusecs&rdquo;. At which stage of the DIKW pyramid is this raw reading?</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="true">Data</button>
+                <button class="quiz-option">Information</button>
+                <button class="quiz-option">Knowledge</button>
+                <button class="quiz-option">Wisdom</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Converting rainfall into predicted river levels happens at the analyze & model stage."
+                 data-feedback-incorrect="Converting rainfall into predicted river levels happens at the analyze & model stage."
+                 data-feedback-unanswered="Hydrological modeling belongs to analyze & model.">
+              <p class="quiz-q">12. In the water data pipeline, running a hydrological model to convert rainfall into predicted river levels happens at which stage?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Observe</button>
+                <button class="quiz-option">Store</button>
+                <button class="quiz-option" data-correct="true">Analyze &amp; model</button>
+                <button class="quiz-option">Manage</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Population growth divides the same water resource among many more people."
+                 data-feedback-incorrect="Population growth is the dominant driver — the same water resource is divided among many more people."
+                 data-feedback-unanswered="Population growth is the main driver.">
+              <p class="quiz-q">13. Pakistan&rsquo;s per-capita water availability fell from ~5,000 m&sup3;/year (1951) to ~1,000 m&sup3;/year today mainly because of:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">A decrease in total rainfall</button>
+                <button class="quiz-option" data-correct="true">Population growth dividing the same water resource among more people</button>
+                <button class="quiz-option">The construction of new dams</button>
+                <button class="quiz-option">A decrease in glacier melt</button>
               </div>
               <div class="quiz-feedback"></div>
             </div>
