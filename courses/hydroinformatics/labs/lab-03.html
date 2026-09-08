@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 3: Working with Google Earth Engine 3 — Indices &amp; Export | Hydroinformatics</title>
+  <meta name="description" content="Lab 3 &mdash; Working with Google Earth Engine: spectral index ranges, exporting images, band combinations, mosaicing and extracting index values at GPS points. HID-661, Dr. Arjumand Zehra Zaidi, USPCAS-W, MUET Jamshoro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../../index.html">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>
+        <span class="brand-text">
+          <strong>Hydroinformatics</strong>
+          <small>USPCAS-W &middot; MUET Jamshoro</small>
+        </span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">All Lectures</a>
+        <a href="#labwork">Lab Work</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="hero-kicker">Lab 3 &middot; HID-661 &middot; Fall 2026</p>
+        <h1>Working with Google Earth Engine 3</h1>
+        <p class="hero-sub">Spectral indices, exporting images and extracting values at GPS points &mdash; USPCAS-W, Mehran University of Engineering &amp; Technology, Jamshoro</p>
+        <div class="hero-meta">
+          <span class="chip">Hands-on lab</span>
+          <span class="chip">Interactive quiz included</span>
+          <span class="chip">Dr. Arjumand Zehra Zaidi</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="../../../assets/downloads/lab-03-working-with-google-earth-engine-3.pdf">Download PDF</a>
+          <a class="btn btn-ghost" href="../../../assets/downloads/lab-03-working-with-google-earth-engine-3.pptx">Download PPTX</a>
+        </div>
+      </div>
+      <div class="hero-wave"><svg viewBox="0 0 1440 46" preserveAspectRatio="none"><path fill="#f4f9fd" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,24 L1440,46 L0,46 Z"/></svg></div>
+    </section>
+
+    <div class="container">
+
+      <section class="card at-a-glance">
+        <h2 class="section-title">In this lab</h2>
+        <ol>
+          <li>Spectral indices and their value ranges</li>
+          <li>Exporting single images to Google Drive</li>
+          <li>Common error messages and how to fix them</li>
+          <li>Band combinations</li>
+          <li>Mosaicing all indices into one image</li>
+          <li>Extracting index values at GPS points</li>
+          <li>Zonal statistics for groundwater storage</li>
+        </ol>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">1. Spectral indices and their value ranges</h2>
+
+        <div class="card">
+          <p>Each spectral index has a characteristic range of values. Knowing the expected range helps you set visualization parameters and spot errors.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Index</th><th>Full name</th><th>Typical range</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>NDWI</strong></td><td>Normalized Difference Water Index</td><td>&minus;1 to +1</td></tr>
+                <tr><td><strong>NDSI</strong></td><td>Normalized Difference Snow Index</td><td>&minus;1 to +1</td></tr>
+                <tr><td><strong>SAVI</strong></td><td>Soil Adjusted Vegetation Index</td><td>&minus;1 to +1</td></tr>
+                <tr><td><strong>AVI</strong></td><td>Advanced Vegetation Index</td><td>0.00 to 114.98</td></tr>
+                <tr><td><strong>EVI</strong></td><td>Enhanced Vegetation Index</td><td>&minus;1 to +1</td></tr>
+                <tr><td><strong>DVI</strong></td><td>Difference Vegetation Index</td><td>&minus;1 to +1</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="warning-box">
+            <span class="box-label">Watch out</span>
+            <p style="margin:0">AVI is the odd one out &mdash; it is an unbounded ratio-type index with values well above 1. Do not apply a &minus;1 to +1 palette to it.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">2. Exporting single images to Google Drive</h2>
+
+        <div class="card">
+          <p>To download an image, export it from Earth Engine to your Google Drive, then download it from Drive.</p>
+          <div class="highlight-box">
+            <span class="box-label">Code &mdash; export an image</span>
+            <p style="margin:0">Export.image.toDrive({<br>
+            &nbsp;&nbsp;image: image,<br>
+            &nbsp;&nbsp;description: &lsquo;exportImageToDrive&rsquo;,<br>
+            &nbsp;&nbsp;scale: 10,<br>
+            &nbsp;&nbsp;region: geometry,<br>
+            &nbsp;&nbsp;maxPixels: 1e13<br>
+            });</p>
+          </div>
+          <ul>
+            <li>Set <strong>scale</strong> to the resolution you need (e.g. 10 m for Sentinel-2).</li>
+            <li>Set <strong>region</strong> to the area of interest.</li>
+            <li>Increase <strong>maxPixels</strong> if the export fails with a pixel-count error.</li>
+            <li>Find the exported file in your Google Drive under <strong>Earth Engine Exports</strong>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">3. Common error messages</h2>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Error message</th><th>What it means</th><th>Fix</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Image.select: Pattern &lsquo;B10&rsquo; did not match any bands.</td><td>The band does not exist in this product</td><td>Use the correct product (e.g. B10 is absent in S2_SR); check band names</td></tr>
+                <tr><td>Computation timed out.</td><td>The task exceeded the allowed compute time</td><td>Reduce the region, scale or number of images; use a reducer</td></tr>
+                <tr><td>Exported pixels must be &le; 1e13.</td><td>Too many pixels requested</td><td>Increase maxPixels or reduce the region/scale</td></tr>
+                <tr><td>Invalid argument: &lsquo;geometry&rsquo;.</td><td>A geometry is missing or malformed</td><td>Check that the geometry/region is defined and imported</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">4. Band combinations</h2>
+
+        <div class="card">
+          <p>Different band combinations highlight different features. For Sentinel-2:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Combination</th><th>Bands</th><th>Use</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>True color</td><td>B4, B3, B2</td><td>Natural appearance</td></tr>
+                <tr><td>Color infrared</td><td>B8, B4, B3</td><td>Vegetation appears red</td></tr>
+                <tr><td>Shortwave infrared</td><td>B12, B8, B4</td><td>Bare soil, geology, fire scars</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>In the Code Editor, set the visualization parameters with <code>{bands: [&hellip;], min: &hellip;, max: &hellip;}</code> when adding the layer to the map.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5. Mosaicing all indices into one image</h2>
+
+        <div class="card">
+          <p>Instead of keeping each index as a separate layer, combine them into a single multi-band image:</p>
+          <div class="highlight-box">
+            <span class="box-label">Code &mdash; mosaic indices</span>
+            <p style="margin:0">var indices = NDVI.addBands(NDWI).addBands(NDSI).addBands(SAVI).addBands(AVI).addBands(EVI).addBands(DVI);<br>
+            Map.addLayer(indices, {bands: [&lsquo;NDVI&rsquo;, &lsquo;NDWI&rsquo;, &lsquo;NDSI&rsquo;], min: -1, max: 1}, &lsquo;Indices&rsquo;);</p>
+          </div>
+          <p>Now one image holds all indices, and you can export it once instead of six times.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">6. Extracting index values at GPS points</h2>
+
+        <div class="card">
+          <p>To get index values at your field GPS points:</p>
+          <ol>
+            <li>Import your GPS points as a <strong>CSV</strong> (with latitude/longitude columns) via the Assets tab or a FeatureCollection from a table.</li>
+            <li>Use <code>sampleRegions()</code> to extract the index values at each point:</li>
+          </ol>
+          <div class="highlight-box">
+            <span class="box-label">Code &mdash; extract at points</span>
+            <p style="margin:0">var extracted = indices.sampleRegions({<br>
+            &nbsp;&nbsp;collection: gpsPoints,<br>
+            &nbsp;&nbsp;properties: [&lsquo;NDVI&rsquo;, &lsquo;NDWI&rsquo;, &lsquo;NDSI&rsquo;, &lsquo;SAVI&rsquo;, &lsquo;AVI&rsquo;, &lsquo;EVI&rsquo;, &lsquo;DVI&rsquo;],<br>
+            &nbsp;&nbsp;scale: 10<br>
+            });<br>
+            Export.table.toDrive({collection: extracted, description: &lsquo;indices_at_gps_points&rsquo;, fileFormat: &lsquo;CSV&rsquo;});</p>
+          </div>
+          <p>The exported CSV contains one row per GPS point with the index values &mdash; ready for analysis in Excel or R.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">7. Zonal statistics for groundwater storage</h2>
+
+        <div class="card">
+          <p>To summarize index values within zones (e.g. administrative boundaries or aquifer polygons), use a <strong>reducer</strong> over the region:</p>
+          <div class="highlight-box">
+            <span class="box-label">Code &mdash; zonal statistics</span>
+            <p style="margin:0">var stats = indices.reduceRegions({<br>
+            &nbsp;&nbsp;collection: zones,<br>
+            &nbsp;&nbsp;reducer: ee.Reducer.mean(),<br>
+            &nbsp;&nbsp;scale: 10<br>
+            });</p>
+          </div>
+          <p class="assignment-note">Zonal statistics of indices such as NDWI and NDVI over time are used to study groundwater storage dynamics &mdash; vegetation and water stress respond to changes in subsurface water availability.</p>
+        </div>
+      </section>
+
+      <section class="section-block" id="labwork">
+        <h2 class="section-title">Lab Work</h2>
+        <div class="assignment-box">
+          <p style="margin-top:0">Complete the following steps:</p>
+          <ol>
+            <li>Compute the indices <strong>NDWI, NDSI, SAVI, AVI, EVI and DVI</strong> for your study area.</li>
+            <li>Map each index with an appropriate color palette and value range.</li>
+            <li>Mosaic all indices into a single image.</li>
+            <li>Export the mosaiced image to Google Drive.</li>
+            <li>Extract the index values at your GPS points and export the table as CSV.</li>
+            <li>Compute zonal statistics (mean) of the indices for your study zones.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section-block" id="quiz">
+        <div class="card">
+          <h2 class="section-title">Quick Quiz</h2>
+          <p>Test yourself on this lab. Select an answer for each question, then click <strong>Check my answers</strong> to reveal the key and your score.</p>
+
+          <div class="quiz" data-quiz>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! NDWI ranges from −1 to +1."
+                 data-feedback-incorrect="NDWI ranges from −1 to +1."
+                 data-feedback-unanswered="NDWI: −1 to +1.">
+              <p class="quiz-q">1. The typical value range of NDWI is:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">0 to 100</button>
+                <button class="quiz-option" data-correct="true">&minus;1 to +1</button>
+                <button class="quiz-option">0.00 to 114.98</button>
+                <button class="quiz-option">&minus;100 to +100</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! AVI ranges from 0.00 to 114.98 — the odd one out."
+                 data-feedback-incorrect="AVI ranges from 0.00 to 114.98 — the odd one out."
+                 data-feedback-unanswered="AVI: 0.00 to 114.98.">
+              <p class="quiz-q">2. Which index has a range of 0.00 to 114.98?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">NDVI</button>
+                <button class="quiz-option">NDWI</button>
+                <button class="quiz-option" data-correct="true">AVI</button>
+                <button class="quiz-option">SAVI</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Export.image.toDrive() sends the image to your Google Drive."
+                 data-feedback-incorrect="Export.image.toDrive() sends the image to your Google Drive."
+                 data-feedback-unanswered="Export.image.toDrive() → Google Drive.">
+              <p class="quiz-q">3. To download an image from Earth Engine, you first export it to:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Your local computer directly</button>
+                <button class="quiz-option" data-correct="true">Google Drive</button>
+                <button class="quiz-option">A USB drive</button>
+                <button class="quiz-option">GitHub</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! B4, B3, B2 gives a natural (true color) appearance."
+                 data-feedback-incorrect="B4, B3, B2 gives a natural (true color) appearance."
+                 data-feedback-unanswered="True color = B4, B3, B2.">
+              <p class="quiz-q">4. The true color combination for Sentinel-2 is:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">B8, B4, B3</button>
+                <button class="quiz-option" data-correct="true">B4, B3, B2</button>
+                <button class="quiz-option">B12, B8, B4</button>
+                <button class="quiz-option">B5, B6, B7</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! sampleRegions() extracts pixel values at the points of a collection."
+                 data-feedback-incorrect="sampleRegions() extracts pixel values at the points of a collection."
+                 data-feedback-unanswered="sampleRegions() = extract at points.">
+              <p class="quiz-q">5. To extract index values at GPS points, you use:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Export.image.toDrive()</button>
+                <button class="quiz-option" data-correct="true">sampleRegions()</button>
+                <button class="quiz-option">filterBounds()</button>
+                <button class="quiz-option">Map.addLayer()</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! reduceRegions() computes zonal statistics within each zone."
+                 data-feedback-incorrect="reduceRegions() computes zonal statistics within each zone."
+                 data-feedback-unanswered="reduceRegions() = zonal statistics.">
+              <p class="quiz-q">6. Zonal statistics (e.g. mean index per zone) are computed with:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">normalizedDifference()</button>
+                <button class="quiz-option">addBands()</button>
+                <button class="quiz-option" data-correct="true">reduceRegions()</button>
+                <button class="quiz-option">sort()</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-actions">
+              <button class="btn btn-blue" data-check>Check my answers</button>
+              <button class="btn btn-ghost-dark" data-reset>Try again</button>
+            </div>
+
+            <div class="score-banner" data-score-banner hidden>
+              <span>Your score: <span data-score>0</span> / <span data-total>6</span></span>
+              <span class="score-note">The key is shown above &mdash; correct answers are highlighted in green.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Hydroinformatics</h4>
+          <p style="margin:0">Lecture and lab materials for Hydroinformatics: Data Management and Analysis, taught by Dr. Arjumand Zehra Zaidi.</p>
+        </div>
+        <div>
+          <h4>Course</h4>
+          <ul>
+            <li><a href="../index.html">All lectures</a></li>
+            <li><a href="#labwork">Lab work</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Instructor</h4>
+          <ul>
+            <li><a href="https://water.muet.edu.pk/faculty/dr-arjumand-zehra-zaidi" target="_blank" rel="noopener">Faculty profile</a></li>
+            <li><a href="https://arjzaidi.wordpress.com" target="_blank" rel="noopener">Teaching site</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; Dr. Arjumand Zehra Zaidi &middot; US-Pakistan Center for Advanced Studies in Water, Mehran University of Engineering &amp; Technology, Jamshoro
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/quiz.js" defer></script>
+</body>
+</html>

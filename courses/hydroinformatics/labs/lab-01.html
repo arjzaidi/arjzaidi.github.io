@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 1: Working with Google Earth Engine 1 | Hydroinformatics</title>
+  <meta name="description" content="Lab 1 &mdash; Working with Google Earth Engine: sign up, the Code Editor, the Data Catalog, your first script, data types and visualizing elevation data. HID-661, Dr. Arjumand Zehra Zaidi, USPCAS-W, MUET Jamshoro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../../index.html">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>
+        <span class="brand-text">
+          <strong>Hydroinformatics</strong>
+          <small>USPCAS-W &middot; MUET Jamshoro</small>
+        </span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">All Lectures</a>
+        <a href="#labwork">Lab Work</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="hero-kicker">Lab 1 &middot; HID-661 &middot; Fall 2026</p>
+        <h1>Working with Google Earth Engine 1</h1>
+        <p class="hero-sub">Search, find and visualize a broad range of remotely sensed datasets &mdash; USPCAS-W, Mehran University of Engineering &amp; Technology, Jamshoro</p>
+        <div class="hero-meta">
+          <span class="chip">Hands-on lab</span>
+          <span class="chip">Interactive quiz included</span>
+          <span class="chip">Dr. Arjumand Zehra Zaidi</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="../../../assets/downloads/lab-01-working-with-google-earth-engine-1.pdf">Download PDF</a>
+          <a class="btn btn-ghost" href="../../../assets/downloads/lab-01-working-with-google-earth-engine-1.pptx">Download PPTX</a>
+        </div>
+      </div>
+      <div class="hero-wave"><svg viewBox="0 0 1440 46" preserveAspectRatio="none"><path fill="#f4f9fd" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,24 L1440,46 L0,46 Z"/></svg></div>
+    </section>
+
+    <div class="container">
+
+      <section class="card at-a-glance">
+        <h2 class="section-title">In this lab</h2>
+        <ol>
+          <li>What is Google Earth Engine?</li>
+          <li>Signing up and accessing the Code Editor</li>
+          <li>The Earth Engine Data Catalog</li>
+          <li>The Code Editor interface and your first script</li>
+          <li>Data types and geospatial processing functions</li>
+          <li>Global composites with a few lines of code</li>
+          <li>Searching, visualizing and saving your work</li>
+        </ol>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">1. What is Google Earth Engine?</h2>
+
+        <div class="card">
+          <div class="highlight-box">
+            <span class="box-label">Definition</span>
+            <p style="margin:0"><span class="key-term" data-tooltip="A cloud-based platform for planetary-scale geospatial analysis, providing an API to process, analyze and visualize Earth observation data using Google's machines.">Google Earth Engine (GEE)</span> is a cloud-based platform for planetary-scale geospatial analysis.</p>
+          </div>
+          <ul>
+            <li><strong>No more downloading and analyzing individual tiles one at a time</strong> &mdash; the data and the computing power are both in the cloud.</li>
+            <li>Earth Engine provides an API to <strong>process, analyze and visualize</strong> the data using Google&rsquo;s machines.</li>
+            <li>Data storage and processing are all performed <strong>at Google</strong>.</li>
+            <li>&ldquo;Whatever USGS has, Earth Engine has&rdquo; &mdash; and much more.</li>
+            <li>All you need to use Earth Engine is an <strong>internet connection</strong>.</li>
+          </ul>
+          <p class="assignment-note">Google&rsquo;s mission: &ldquo;To organize the world&rsquo;s information and make it universally accessible and useful.&rdquo;</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">2. Signing up and accessing the Code Editor</h2>
+
+        <div class="card">
+          <ol>
+            <li>Register for an Earth Engine account: <a href="https://signup.earthengine.google.com/" target="_blank" rel="noopener">https://signup.earthengine.google.com/</a></li>
+            <li>Once registered, access the Code Editor at: <a href="https://code.earthengine.google.com" target="_blank" rel="noopener">https://code.earthengine.google.com</a></li>
+            <li>The Code Editor uses the <strong>JavaScript</strong> programming language.</li>
+            <li>For a JavaScript background: <a href="https://developers.google.com/earth-engine/tutorial_js_01" target="_blank" rel="noopener">https://developers.google.com/earth-engine/tutorial_js_01</a></li>
+          </ol>
+          <div class="warning-box">
+            <span class="box-label">Note</span>
+            <p style="margin:0">Earth Engine access is granted per account and can take a little time to activate. Sign up early &mdash; do not wait until the lab session.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">3. The Earth Engine Data Catalog</h2>
+
+        <div class="card">
+          <p>The Data Catalog is the collection of datasets available in Earth Engine: <a href="https://developers.google.com/earth-engine/datasets/" target="_blank" rel="noopener">https://developers.google.com/earth-engine/datasets/</a></p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Statistic</th><th>Value</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Public datasets</td><td>Thousands (as of 2020)</td></tr>
+                <tr><td>New images added</td><td>Thousands every day</td></tr>
+                <tr><td>Total stored data</td><td>Over 90 petabytes (PB) and expanding rapidly</td></tr>
+                <tr><td>Growth rate</td><td>Roughly 1 PB of new data every month</td></tr>
+                <tr><td>Historical span</td><td>Over 50 years of continuous global satellite records</td></tr>
+                <tr><td>Ingestion latency</td><td>One or two days between scene acquisition and catalog availability</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>By the numbers: <strong>33 years</strong> of satellite data, over <strong>5,000,000</strong> Landsat and Sentinel scenes analyzed, and <strong>3 quadrillion pixels</strong> (3,000,000,000,000,000).</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">4. The Code Editor interface and your first script</h2>
+
+        <div class="card">
+          <p>The Code Editor has three main areas: the <strong>search bar</strong> (top), the <strong>script panel</strong> (left) and the <strong>map</strong> (right).</p>
+          <h3>Your first script</h3>
+          <div class="highlight-box">
+            <span class="box-label">Code</span>
+            <p style="margin:0">print(&lsquo;Hello, I am [your name]&rsquo;);</p>
+          </div>
+          <p>Type the line above into the script panel and click <strong>Run</strong>. The output appears in the Console tab. Then use the <strong>Clear Script</strong> button to start fresh.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5. Data types and geospatial processing functions</h2>
+
+        <div class="card">
+          <p>Earth Engine has over <strong>1,000 data types and operators</strong> &mdash; and growing. The main ones:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Type</th><th>Examples of operations</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Image</strong></td><td>Band math, clip, convolution, neighborhood, selection&hellip;</td></tr>
+                <tr><td><strong>Image Collection</strong></td><td>Map, aggregate, filter, mosaic, sort&hellip;</td></tr>
+                <tr><td><strong>Feature</strong></td><td>Buffer, centroid, intersection, union, transform&hellip;</td></tr>
+                <tr><td><strong>Feature Collection</strong></td><td>Aggregate, filter, flatten, merge, sort&hellip;</td></tr>
+                <tr><td><strong>Filter</strong></td><td>By bounds, within distance, date, day-of-year, metadata&hellip;</td></tr>
+                <tr><td><strong>Reducer</strong></td><td>Mean, linearRegression, percentile, histogram&hellip;</td></tr>
+                <tr><td><strong>Join</strong></td><td>Simple, inner, outer, inverted&hellip;</td></tr>
+                <tr><td><strong>Kernel</strong></td><td>Square, circle, gaussian, sobel, kirsch&hellip;</td></tr>
+                <tr><td><strong>Machine Learning</strong></td><td>CART, random forests, bayes, SVM, kmeans, cobweb&hellip;</td></tr>
+                <tr><td><strong>Projection</strong></td><td>Transform, translate, scale&hellip;</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">6. Global composites with a few lines of code</h2>
+
+        <div class="card">
+          <p>One of the most powerful ideas in Earth Engine: a global mosaic from thousands of scenes in a few lines of code.</p>
+          <div class="highlight-box">
+            <span class="box-label">Code &mdash; Landsat global composite</span>
+            <p style="margin:0">var composite = ee.Algorithms.Landsat.simpleComposite({<br>
+            &nbsp;&nbsp;collection: ee.ImageCollection(&lsquo;LANDSAT/LC08/C01/T1&rsquo;),<br>
+            &nbsp;&nbsp;asFloat: true<br>
+            });<br>
+            Map.addLayer(composite, {bands: [&lsquo;B4&rsquo;, &lsquo;B3&rsquo;, &lsquo;B2&rsquo;], max: 0.3}, &lsquo;composite&rsquo;);</p>
+          </div>
+          <p>Reference script: <a href="https://code.earthengine.google.com/05d2e23206b329dfe696e5ba8e232c3f" target="_blank" rel="noopener">https://code.earthengine.google.com/05d2e23206b329dfe696e5ba8e232c3f</a></p>
+          <p class="assignment-note">Related reading: <a href="https://www.sciencedirect.com/science/article/pii/S0034425717302900" target="_blank" rel="noopener">Google Earth Engine: Planetary-scale geospatial analysis for everyone (Gorelick et al., 2017)</a></p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">7. Searching, visualizing and saving your work</h2>
+
+        <div class="card">
+          <h3>Search the Data Catalog</h3>
+          <ol>
+            <li>Type keywords (e.g. <strong>elevation</strong>) in the search window.</li>
+            <li>Select a dataset from the results, or view it in the Catalog page.</li>
+            <li>Click <strong>Import</strong> to add it to your script, or open the Code Editor to explore it.</li>
+          </ol>
+          <h3>Visualize</h3>
+          <ul>
+            <li>Change <strong>layer transparency</strong> with the layer slider.</li>
+            <li>Change the <strong>symbology color</strong> to suit your map.</li>
+          </ul>
+          <h3>Save your script</h3>
+          <ul>
+            <li>Click <strong>Save</strong> and give your script a meaningful name (e.g. <em>Lab1_elevation</em>).</li>
+            <li>Scripts are stored in your account &mdash; you can reopen them from the Scripts tab.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block" id="labwork">
+        <h2 class="section-title">Lab Work</h2>
+        <div class="assignment-box">
+          <p style="margin-top:0">Complete the following steps:</p>
+          <ol>
+            <li>Sign up for a Google Earth Engine account (if you have not already) and open the Code Editor.</li>
+            <li>Run your first script: print &ldquo;Hello, I am [your name]&rdquo;.</li>
+            <li>Search the Data Catalog for <strong>SRTM</strong> elevation data and add it to the map.</li>
+            <li>Change the layer transparency and the symbology color of the elevation layer.</li>
+            <li>Save your script with a meaningful name.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section-block" id="quiz">
+        <div class="card">
+          <h2 class="section-title">Quick Quiz</h2>
+          <p>Test yourself on this lab. Select an answer for each question, then click <strong>Check my answers</strong> to reveal the key and your score.</p>
+
+          <div class="quiz" data-quiz>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! GEE is a cloud-based platform for planetary-scale geospatial analysis."
+                 data-feedback-incorrect="GEE is a cloud-based platform for planetary-scale geospatial analysis."
+                 data-feedback-unanswered="GEE = cloud-based geospatial analysis.">
+              <p class="quiz-q">1. Google Earth Engine is best described as:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">A desktop GIS software like ArcGIS installed locally</button>
+                <button class="quiz-option" data-correct="true">A cloud platform for planetary-scale geospatial analysis</button>
+                <button class="quiz-option">A satellite launched by NASA for Earth observation</button>
+                <button class="quiz-option">A data collection app for field surveys in the field</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The Code Editor uses JavaScript."
+                 data-feedback-incorrect="The Code Editor uses the JavaScript programming language."
+                 data-feedback-unanswered="GEE Code Editor uses JavaScript.">
+              <p class="quiz-q">2. The Google Earth Engine Code Editor uses which programming language?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Python only</button>
+                <button class="quiz-option">R</button>
+                <button class="quiz-option" data-correct="true">JavaScript</button>
+                <button class="quiz-option">C++</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The catalog stores over 90 petabytes and grows by ~1 PB per month."
+                 data-feedback-incorrect="The catalog stores over 90 PB and grows by roughly 1 PB per month."
+                 data-feedback-unanswered="The catalog is 90+ PB.">
+              <p class="quiz-q">3. The Earth Engine Data Catalog stores approximately:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Over 90 gigabytes, growing by ~1 GB per month</button>
+                <button class="quiz-option">Over 90 terabytes, growing by ~1 TB per month</button>
+                <button class="quiz-option" data-correct="true">Over 90 petabytes, growing by ~1 PB per month</button>
+                <button class="quiz-option">Over 9 petabytes, growing by ~1 PB per month</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! There is a one or two-day latency between acquisition and ingestion."
+                 data-feedback-incorrect="There is a one or two-day latency between scene acquisition and catalog ingestion."
+                 data-feedback-unanswered="Latency is 1–2 days.">
+              <p class="quiz-q">4. How long does it typically take for a scene to appear in the catalog after acquisition?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">One or two hours</button>
+                <button class="quiz-option" data-correct="true">One or two days</button>
+                <button class="quiz-option">One or two weeks</button>
+                <button class="quiz-option">One or two months</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Search for SRTM to find elevation data."
+                 data-feedback-incorrect="Search for SRTM to find elevation data in the catalog."
+                 data-feedback-unanswered="SRTM = elevation.">
+              <p class="quiz-q">5. To add elevation data to the map, you would search the catalog for:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">NDVI</button>
+                <button class="quiz-option">Landsat</button>
+                <button class="quiz-option" data-correct="true">SRTM</button>
+                <button class="quiz-option">GRACE</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Data storage and processing are all performed at Google."
+                 data-feedback-incorrect="Data storage and processing are all performed at Google — you only need an internet connection."
+                 data-feedback-unanswered="Processing happens at Google.">
+              <p class="quiz-q">6. Where does Earth Engine store and process the data?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">On your local computer</button>
+                <button class="quiz-option" data-correct="true">At Google, in the cloud</button>
+                <button class="quiz-option">At USGS headquarters</button>
+                <button class="quiz-option">On a USB drive</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-actions">
+              <button class="btn btn-blue" data-check>Check my answers</button>
+              <button class="btn btn-ghost-dark" data-reset>Try again</button>
+            </div>
+
+            <div class="score-banner" data-score-banner hidden>
+              <span>Your score: <span data-score>0</span> / <span data-total>6</span></span>
+              <span class="score-note">The key is shown above &mdash; correct answers are highlighted in green.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Hydroinformatics</h4>
+          <p style="margin:0">Lecture and lab materials for Hydroinformatics: Data Management and Analysis, taught by Dr. Arjumand Zehra Zaidi.</p>
+        </div>
+        <div>
+          <h4>Course</h4>
+          <ul>
+            <li><a href="../index.html">All lectures</a></li>
+            <li><a href="#labwork">Lab work</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Instructor</h4>
+          <ul>
+            <li><a href="https://water.muet.edu.pk/faculty/dr-arjumand-zehra-zaidi" target="_blank" rel="noopener">Faculty profile</a></li>
+            <li><a href="https://arjzaidi.wordpress.com" target="_blank" rel="noopener">Teaching site</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; Dr. Arjumand Zehra Zaidi &middot; US-Pakistan Center for Advanced Studies in Water, Mehran University of Engineering &amp; Technology, Jamshoro
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/quiz.js" defer></script>
+</body>
+</html>

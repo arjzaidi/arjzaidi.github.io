@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 2: Working with Google Earth Engine 2 — Sentinel-2 | Hydroinformatics</title>
+  <meta name="description" content="Lab 2 &mdash; Working with Google Earth Engine: Sentinel-2 imagery, image collections, filtering, spectral indices (NDVI) and reducers. HID-661, Dr. Arjumand Zehra Zaidi, USPCAS-W, MUET Jamshoro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../../index.html">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>
+        <span class="brand-text">
+          <strong>Hydroinformatics</strong>
+          <small>USPCAS-W &middot; MUET Jamshoro</small>
+        </span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">All Lectures</a>
+        <a href="#labwork">Lab Work</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="hero-kicker">Lab 2 &middot; HID-661 &middot; Fall 2026</p>
+        <h1>Working with Google Earth Engine 2</h1>
+        <p class="hero-sub">Adding multi-image data: Sentinel-2 imagery &mdash; USPCAS-W, Mehran University of Engineering &amp; Technology, Jamshoro</p>
+        <div class="hero-meta">
+          <span class="chip">Hands-on lab</span>
+          <span class="chip">Interactive quiz included</span>
+          <span class="chip">Dr. Arjumand Zehra Zaidi</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="../../../assets/downloads/lab-02-working-with-google-earth-engine-2.pdf">Download PDF</a>
+          <a class="btn btn-ghost" href="../../../assets/downloads/lab-02-working-with-google-earth-engine-2.pptx">Download PPTX</a>
+        </div>
+      </div>
+      <div class="hero-wave"><svg viewBox="0 0 1440 46" preserveAspectRatio="none"><path fill="#f4f9fd" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,24 L1440,46 L0,46 Z"/></svg></div>
+    </section>
+
+    <div class="container">
+
+      <section class="card at-a-glance">
+        <h2 class="section-title">In this lab</h2>
+        <ol>
+          <li>The Sentinel-2 mission</li>
+          <li>Images vs. image collections</li>
+          <li>Importing the Sentinel-2 collection</li>
+          <li>Filtering by date, location and metadata</li>
+          <li>Selecting a single image</li>
+          <li>Spectral indices &mdash; NDVI</li>
+          <li>Reducers &mdash; mean, median, min, max</li>
+        </ol>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">1. The Sentinel-2 mission</h2>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Characteristic</th><th>Value</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Satellites</td><td>2 (Sentinel-2A and Sentinel-2B)</td></tr>
+                <tr><td>Instrument</td><td>MSI (MultiSpectral Instrument)</td></tr>
+                <tr><td>Spectral bands</td><td>13 bands, multi-spectral</td></tr>
+                <tr><td>Spatial resolution</td><td>Up to 10 m</td></tr>
+                <tr><td>Revisit time</td><td>Around 5 days from the two-satellite constellation (at the equator)</td></tr>
+                <tr><td>Swath width</td><td>290 km</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Two products in Earth Engine</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Product</th><th>Collection ID</th><th>Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Level-1C</strong></td><td>COPERNICUS/S2</td><td>Top-of-atmosphere (TOA) reflectance; 13 UINT16 bands scaled by 10000</td></tr>
+                <tr><td><strong>Level-2A</strong></td><td>COPERNICUS/S2_SR</td><td>Surface reflectance (SR); 12 UINT16 bands scaled by 10000 (no B10)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="assignment-note">In this lab we work with the <strong>surface reflectance</strong> product (COPERNICUS/S2_SR).</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">2. Images vs. image collections</h2>
+
+        <div class="card">
+          <p>In Lab 1, with DEM data, we dealt with a single <strong>Image</strong>. Now we move to an <strong>Image Collection</strong> &mdash; a collection of images that is multi-band and multi-temporal.</p>
+          <ul>
+            <li>An <strong>Image</strong> is one scene (e.g. one DEM tile).</li>
+            <li>An <strong>Image Collection</strong> is a stack of many images (e.g. all Sentinel-2 scenes ever acquired).</li>
+            <li>We <strong>filter</strong> the collection based on attributes &mdash; such as bands, dates, cloud cover, etc.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">3. Importing the Sentinel-2 collection</h2>
+
+        <div class="card">
+          <ol>
+            <li>Open a new code window to create a script.</li>
+            <li>Find Sentinel-2 in the <strong>Data Catalog</strong>.</li>
+            <li>Click on the <strong>surface reflectance</strong> dataset.</li>
+            <li>Import it using the import button, or copy the code and paste it in the code window:</li>
+          </ol>
+          <div class="highlight-box">
+            <span class="box-label">Code</span>
+            <p style="margin:0">var S2 = ee.ImageCollection(&ldquo;COPERNICUS/S2_SR&rdquo;);</p>
+          </div>
+          <p>The variable <code>S2</code> now contains the <strong>entire archive</strong> of images acquired since the mission began.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">4. Filtering the image collection</h2>
+
+        <div class="card">
+          <p>From the entire collection we limit the number of images according to some criteria &mdash; this is called <strong>filtering</strong>.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Filter</th><th>Function</th><th>What it does</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>By period</strong></td><td>imageCollection.filterDate()</td><td>Keeps images acquired in a date range</td></tr>
+                <tr><td><strong>By location</strong></td><td>imageCollection.filterBounds()</td><td>Keeps images covering a given geometry/region</td></tr>
+                <tr><td><strong>By metadata</strong></td><td>imageCollection.filterMetadata()</td><td>Keeps images matching a metadata property (e.g. cloud cover &lt; 10%)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="warning-box">
+            <span class="box-label">Think about it</span>
+            <p style="margin:0">Why is it important to filter by cloud cover when working with optical imagery like Sentinel-2?</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5. Selecting a single image</h2>
+
+        <div class="card">
+          <p>Is mapping the entire image collection possible? Theoretically yes, but adding a whole collection to the map may end up showing an <strong>error due to exceeding the computation time</strong>. So we usually select one image.</p>
+          <ul>
+            <li>Each image has a <strong>unique ID</strong> that can be used to access and display it.</li>
+            <li><strong>first()</strong> returns the first image from the collection.</li>
+            <li><strong>sort()</strong> returns images in ascending or descending order based on a property.</li>
+            <li>Combining <strong>sort and first</strong> returns the most recent image matching your filters:</li>
+          </ul>
+          <div class="highlight-box">
+            <span class="box-label">Code &mdash; most recent image</span>
+            <p style="margin:0">var mostRecent = S2_2020.sort(&lsquo;system:time_start&rsquo;, false).first();<br>
+            // false = descending order</p>
+          </div>
+          <h3>Loading a specific Sentinel-2 image</h3>
+          <p>Asset format: <code>COPERNICUS/S2_SR/20151128T002653_20151128T102149_T56MNN</code></p>
+          <ul>
+            <li>The first numeric part = <strong>sensing date and time</strong>.</li>
+            <li>The second numeric part = <strong>product generation date and time</strong>.</li>
+            <li>The final 6-character string = <strong>unique granule identifier</strong> indicating its UTM grid reference.</li>
+          </ul>
+          <p>Reference scripts: <a href="https://code.earthengine.google.com/baeed711e6960beb8cf691c8e81bb6ec" target="_blank" rel="noopener">script 1</a> &middot; <a href="https://code.earthengine.google.com/2970513a29120fb7b6347ae3a9b2b07a" target="_blank" rel="noopener">script 2</a> &middot; <a href="https://code.earthengine.google.com/4380b36d27ef37ed3b6060ad36567370" target="_blank" rel="noopener">script 3</a></p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">6. Spectral indices &mdash; NDVI</h2>
+
+        <div class="card">
+          <p>The <strong>Normalized Difference Vegetation Index (NDVI)</strong> measures vegetation greenness using the near-infrared (B8) and red (B4) bands:</p>
+          <div class="highlight-box">
+            <span class="box-label">Code &mdash; NDVI</span>
+            <p style="margin:0">var NDVI = image.normalizedDifference([&lsquo;B8&rsquo;, &lsquo;B4&rsquo;]);</p>
+          </div>
+          <p>You can also write the same index explicitly with <code>expression()</code>:</p>
+          <div class="highlight-box">
+            <span class="box-label">Code &mdash; NDVI with expression</span>
+            <p style="margin:0">var NDVI = image.expression(<br>
+            &nbsp;&nbsp;&ldquo;(NIR - RED) / (NIR + RED)&rdquo;,<br>
+            &nbsp;&nbsp;{<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;RED: image.select(&ldquo;B4&rdquo;),&nbsp;&nbsp;// RED<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;NIR: image.select(&ldquo;B8&rdquo;),&nbsp;&nbsp;// NIR<br>
+            &nbsp;&nbsp;}).rename(&lsquo;NDVI&rsquo;);<br>
+            Map.addLayer(NDVI, {min: -1, max: 1}, &ldquo;NDVI&rdquo;);</p>
+          </div>
+          <p class="assignment-note">NDVI ranges from &minus;1 to +1: values close to +1 indicate dense, healthy vegetation.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">7. Reducers &mdash; applying statistics</h2>
+
+        <div class="card">
+          <p>Reducers aggregate values across an image collection or within regions:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Statistic</th><th>Code</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Mean</td><td>ImageCollection.reduce(ee.Reducer.mean()) &nbsp;OR&nbsp; ImageCollection.mean()</td></tr>
+                <tr><td>Median</td><td>.median()</td></tr>
+                <tr><td>Minimum</td><td>.min()</td></tr>
+                <tr><td>Maximum</td><td>.max()</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>For example, a seasonal median composite of Sentinel-2 reduces dozens of cloudy scenes into one clean image.</p>
+        </div>
+      </section>
+
+      <section class="section-block" id="labwork">
+        <h2 class="section-title">Lab Work</h2>
+        <div class="assignment-box">
+          <p style="margin-top:0">Prepare a GEE code and follow these steps:</p>
+          <ol>
+            <li>Select Sentinel-2 images. Use <strong>all three filters</strong> (select the metadata filter of your choice).</li>
+            <li>Select only <strong>one</strong> Sentinel-2 image from its image collection.</li>
+            <li>Map individual bands <strong>B2, B3, B4 and B8</strong>.</li>
+            <li>Map the <strong>true color</strong> combination.</li>
+            <li>Map the <strong>B8, B4, B3</strong> combination.</li>
+            <li>Map the <strong>NDVI</strong> index and use a different color palette.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section-block" id="quiz">
+        <div class="card">
+          <h2 class="section-title">Quick Quiz</h2>
+          <p>Test yourself on this lab. Select an answer for each question, then click <strong>Check my answers</strong> to reveal the key and your score.</p>
+
+          <div class="quiz" data-quiz>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Sentinel-2 has 13 spectral bands with spatial resolution up to 10 m."
+                 data-feedback-incorrect="Sentinel-2 has 13 spectral bands and spatial resolution up to 10 m."
+                 data-feedback-unanswered="Sentinel-2: 13 bands, up to 10 m.">
+              <p class="quiz-q">1. Sentinel-2 provides:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">4 bands at 30 m resolution, like Landsat</button>
+                <button class="quiz-option" data-correct="true">13 multi-spectral bands up to 10 m resolution</button>
+                <button class="quiz-option">Radar data only, with no optical bands</button>
+                <button class="quiz-option">1 band at 1 km resolution, like MODIS</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! COPERNICUS/S2_SR is the surface reflectance product."
+                 data-feedback-incorrect="COPERNICUS/S2_SR is the surface reflectance product."
+                 data-feedback-unanswered="S2_SR = surface reflectance.">
+              <p class="quiz-q">2. The Sentinel-2 surface reflectance collection in Earth Engine is:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">COPERNICUS/S1_GRD</button>
+                <button class="quiz-option">LANDSAT/LC08/C01/T1</button>
+                <button class="quiz-option" data-correct="true">COPERNICUS/S2_SR</button>
+                <button class="quiz-option">NASA/GPM_L3</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! filterDate() filters by period, filterBounds() by location, filterMetadata() by metadata."
+                 data-feedback-incorrect="filterDate() filters by period, filterBounds() by location, and filterMetadata() by metadata."
+                 data-feedback-unanswered="filterDate = period; filterBounds = location; filterMetadata = metadata.">
+              <p class="quiz-q">3. To keep only images acquired in a specific date range, you use:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">filterBounds()</button>
+                <button class="quiz-option" data-correct="true">filterDate()</button>
+                <button class="quiz-option">filterMetadata()</button>
+                <button class="quiz-option">sort()</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! sort + first returns the most recent image matching your filters."
+                 data-feedback-incorrect="Combining sort and first returns the most recent image matching your filters."
+                 data-feedback-unanswered="sort + first = most recent image.">
+              <p class="quiz-q">4. To get the most recent image from a filtered collection, you combine:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">filterDate() and filterBounds()</button>
+                <button class="quiz-option" data-correct="true">sort() and first()</button>
+                <button class="quiz-option">mean() and median()</button>
+                <button class="quiz-option">clip() and mosaic()</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! NDVI uses the near-infrared (B8) and red (B4) bands."
+                 data-feedback-incorrect="NDVI uses the near-infrared (B8) and red (B4) bands."
+                 data-feedback-unanswered="NDVI = (NIR − RED) / (NIR + RED).">
+              <p class="quiz-q">5. NDVI is calculated from which Sentinel-2 bands?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">B2 and B3 (blue and green)</button>
+                <button class="quiz-option" data-correct="true">B8 and B4 (near-infrared and red)</button>
+                <button class="quiz-option">B1 and B10 (coastal aerosol and cirrus)</button>
+                <button class="quiz-option">B5 and B6 (vegetation red edge)</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! .mean() computes the mean of an image collection."
+                 data-feedback-incorrect="ImageCollection.mean() computes the mean of the collection."
+                 data-feedback-unanswered=".mean() = average of the collection.">
+              <p class="quiz-q">6. To compute the average of all images in a collection, you use:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">.first()</button>
+                <button class="quiz-option">.sort()</button>
+                <button class="quiz-option" data-correct="true">.mean()</button>
+                <button class="quiz-option">.clip()</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-actions">
+              <button class="btn btn-blue" data-check>Check my answers</button>
+              <button class="btn btn-ghost-dark" data-reset>Try again</button>
+            </div>
+
+            <div class="score-banner" data-score-banner hidden>
+              <span>Your score: <span data-score>0</span> / <span data-total>6</span></span>
+              <span class="score-note">The key is shown above &mdash; correct answers are highlighted in green.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Hydroinformatics</h4>
+          <p style="margin:0">Lecture and lab materials for Hydroinformatics: Data Management and Analysis, taught by Dr. Arjumand Zehra Zaidi.</p>
+        </div>
+        <div>
+          <h4>Course</h4>
+          <ul>
+            <li><a href="../index.html">All lectures</a></li>
+            <li><a href="#labwork">Lab work</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Instructor</h4>
+          <ul>
+            <li><a href="https://water.muet.edu.pk/faculty/dr-arjumand-zehra-zaidi" target="_blank" rel="noopener">Faculty profile</a></li>
+            <li><a href="https://arjzaidi.wordpress.com" target="_blank" rel="noopener">Teaching site</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; Dr. Arjumand Zehra Zaidi &middot; US-Pakistan Center for Advanced Studies in Water, Mehran University of Engineering &amp; Technology, Jamshoro
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/quiz.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 5: GIS Data Sources and Acquisition | Hydroinformatics</title>
+  <meta name="description" content="Lecture 5 &mdash; GIS Data Sources and Acquisition: primary and secondary data, GPS and field measurements, remote sensing, data protocols, and free GIS data sources. HID-661, Dr. Arjumand Zehra Zaidi, USPCAS-W, MUET Jamshoro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../../index.html">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>
+        <span class="brand-text">
+          <strong>Hydroinformatics</strong>
+          <small>USPCAS-W &middot; MUET Jamshoro</small>
+        </span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">All Lectures</a>
+        <a href="#reading">Reading</a>
+        <a href="#assignment">Assignment</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="hero-kicker">Lecture 5 &middot; HID-661 &middot; Fall 2026</p>
+        <h1>GIS Data Sources and Acquisition</h1>
+        <p class="hero-sub">Hydroinformatics: Data Management and Analysis &mdash; USPCAS-W, Mehran University of Engineering &amp; Technology, Jamshoro</p>
+        <div class="hero-meta">
+          <span class="chip">Text-based lecture</span>
+          <span class="chip">Interactive quiz included</span>
+          <span class="chip">Dr. Arjumand Zehra Zaidi</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="../../../assets/downloads/lecture-05-gis-data-sources-and-acquisition.pdf">Download PDF</a>
+          <a class="btn btn-ghost" href="../../../assets/downloads/lecture-05-gis-data-sources-and-acquisition.pptx">Download PPTX</a>
+        </div>
+      </div>
+      <div class="hero-wave"><svg viewBox="0 0 1440 46" preserveAspectRatio="none"><path fill="#f4f9fd" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,24 L1440,46 L0,46 Z"/></svg></div>
+    </section>
+
+    <div class="container">
+
+      <section class="card at-a-glance">
+        <h2 class="section-title">In this lecture</h2>
+        <ol>
+          <li>Data collection methods &mdash; primary vs. secondary data</li>
+          <li>Field measurements and GPS positioning</li>
+          <li>Remote sensing &mdash; how satellites differ</li>
+          <li>Data collection and use protocols</li>
+          <li>Free GIS data sources &mdash; vector and raster</li>
+          <li>Pakistan-specific data sources</li>
+        </ol>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">1. Data collection methods</h2>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Method</th><th>Meaning</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Primary data collection</strong></td><td>Collected from scratch &mdash; you collected it, or assigned someone to collect it</td></tr>
+                <tr><td><strong>Secondary data collection</strong></td><td>Existing data &mdash; already published or available; someone else collected it</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Most GIS projects combine both: secondary data (e.g. satellite imagery, census maps) provides the base layers, while primary data (e.g. field measurements, GPS points) adds the site-specific detail.</p>
+          <div class="warning-box">
+            <span class="box-label">Think about it</span>
+            <p style="margin:0">Which of the two methods is more expensive and time-consuming? Which one gives you more control over data quality?</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">2. Field measurements and GPS</h2>
+
+        <div class="card">
+          <p><strong>GPS (Global Positioning System)</strong> is a constellation of satellites that transmit signals to receivers on the ground. A receiver&rsquo;s <strong>position is estimated based on range measurements</strong> &mdash; the distance from the receiver to several satellites.</p>
+
+          <div class="highlight-box">
+            <span class="box-label">GPS range formula</span>
+            <p style="margin:0">Range = c &times; (t / 2) &nbsp;&nbsp;where&nbsp;&nbsp; c = 299,792,458 m/s (speed of light) and t = round-trip travel time of the signal.</p>
+          </div>
+
+          <h3>Worked example &mdash; computing a GPS range</h3>
+          <div class="example-box">
+            <span class="box-label">Worked example</span>
+            <p style="margin:0">A GPS receiver measures a round-trip signal travel time of <strong>0.02 seconds</strong> to a satellite. How far away is the satellite?</p>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">1. What is the range to the satellite?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>&asymp; 2,997,925 m (&asymp; 3,000 km).</strong> Range = 299,792,458 &times; (0.02 / 2) = 299,792,458 &times; 0.01 &asymp; 2,997,925 m. The signal travels to the satellite and back, so we halve the round-trip time.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">2. Why do we divide the travel time by 2?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Because t is the <strong>round-trip</strong> time &mdash; the signal goes from the satellite to the receiver and back. The one-way distance is half of that.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">3. How many satellites does a receiver typically need, and why?</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>At least <strong>4 satellites</strong>: three to fix the position in 3D space (x, y, z) and a fourth to correct for the receiver clock&rsquo;s offset from the satellite clocks.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">3. Remote sensing</h2>
+
+        <div class="card">
+          <div class="highlight-box">
+            <span class="box-label">Definition</span>
+            <p style="margin:0"><span class="key-term" data-tooltip="Measuring electromagnetic energy reflected or emitted from objects using airborne or satellite-based instruments.">Remote sensing</span> is measuring electromagnetic energy reflected or emitted from objects &mdash; using airborne or satellite-based instruments.</p>
+          </div>
+          <p>Satellites vary in many ways, and the choice of satellite depends on what you need to measure:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Characteristic</th><th>What it means</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Orbit</strong></td><td>Path of the satellite around the Earth (e.g. polar, geostationary)</td></tr>
+                <tr><td><strong>Altitude</strong></td><td>Height above the Earth&rsquo;s surface</td></tr>
+                <tr><td><strong>Resolution</strong></td><td>Smallest ground area visible in one pixel (spatial), plus spectral, temporal and radiometric resolution</td></tr>
+                <tr><td><strong>Revisit frequency</strong></td><td>How often the satellite passes over the same location</td></tr>
+                <tr><td><strong>Steering capability</strong></td><td>Ability to point the sensor off-nadir to revisit a target sooner</td></tr>
+                <tr><td><strong>Swath width</strong></td><td>Width of the ground strip imaged in one pass</td></tr>
+                <tr><td><strong>Image size</strong></td><td>Size of each scene delivered</td></tr>
+                <tr><td><strong>Stereo capability</strong></td><td>Ability to image the same area from two angles for elevation extraction</td></tr>
+                <tr><td><strong>Wavelengths collected</strong></td><td>Which parts of the electromagnetic spectrum the sensor records (visible, NIR, SWIR, thermal, radar&hellip;)</td></tr>
+                <tr><td><strong>Other sensors</strong></td><td>Additional instruments on the same platform</td></tr>
+                <tr><td><strong>Delivery time</strong></td><td>How quickly data reaches the user after acquisition</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="assignment-note">There is no single &ldquo;best&rdquo; satellite &mdash; you trade off resolution, revisit frequency, swath width and cost depending on your application.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">4. Data collection protocols</h2>
+
+        <div class="card">
+          <p>When you collect your own (primary) data, follow these protocols:</p>
+          <ul>
+            <li>Employ a <strong>reliable sampling method</strong> for representative data.</li>
+            <li><strong>Standardize procedures</strong> and employ quality control to enhance data reliability and consistency.</li>
+            <li><strong>Minimize bias</strong> in primary data collection.</li>
+            <li><strong>Obtain consent</strong> and safeguard participants&rsquo; confidentiality and rights.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5. Data use protocols</h2>
+
+        <div class="card">
+          <p>When you use existing (secondary) data, follow these protocols:</p>
+          <ul>
+            <li><strong>Credit secondary data sources</strong> through proper citation.</li>
+            <li>Ensure data is <strong>obtained and used ethically</strong>.</li>
+            <li>Adhere to pertinent <strong>laws and regulations</strong> &mdash; legal conformity, intellectual property rights and ethical standards.</li>
+            <li><strong>Assess the quality and reliability</strong> of data before utilization.</li>
+          </ul>
+          <div class="warning-box">
+            <span class="box-label">A big mistake!</span>
+            <p style="margin:0">Using a dataset without checking its resolution, date, projection or license &mdash; then drawing conclusions from it. Always verify metadata and cite your sources.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">6. Free GIS data sources</h2>
+
+        <div class="card">
+          <p>Many high-quality <strong>vector and raster</strong> datasets are freely available. Here are the sources introduced in this lecture:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Source</th><th>What you can get</th><th>Link</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Esri Open Data Hub</strong></td><td>Curated open datasets from thousands of organizations</td><td><a href="https://www.esri.com/en-us/arcgis/products/arcgis-open-data" target="_blank" rel="noopener">esri.com</a></td></tr>
+                <tr><td><strong>Landcover Explorer</strong></td><td>ESRI global land use / land cover (LULC) 2017&ndash;2025, 10 m</td><td><a href="https://livingatlas.arcgis.com/landcoverexplorer/" target="_blank" rel="noopener">livingatlas.arcgis.com</a></td></tr>
+                <tr><td><strong>Natural Earth Data</strong></td><td>Global vector and raster map data (boundaries, rivers, cities)</td><td><a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">naturalearthdata.com</a></td></tr>
+                <tr><td><strong>USGS Earth Explorer</strong></td><td>Landsat and other satellite imagery, elevation, land cover</td><td><a href="https://earthexplorer.usgs.gov/" target="_blank" rel="noopener">earthexplorer.usgs.gov</a></td></tr>
+                <tr><td><strong>OpenStreetMap (OSM)</strong></td><td>Volunteer-built street, road and building data</td><td><a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">openstreetmap.org</a></td></tr>
+                <tr><td><strong>GeoFabrik Downloads</strong></td><td>Country/region extracts of OSM data for download</td><td><a href="https://www.geofabrik.de/data/download.html" target="_blank" rel="noopener">geofabrik.de</a></td></tr>
+                <tr><td><strong>Sentinel Scientific Data Hub</strong></td><td>Sentinel satellite imagery (ESA)</td><td><a href="https://gisgeography.com/how-to-download-sentinel-satellite-data/" target="_blank" rel="noopener">guide</a></td></tr>
+                <tr><td><strong>NASA POWER</strong></td><td>Weather and climate data &mdash; temperature, solar radiation, precipitation</td><td><a href="https://power.larc.nasa.gov/data-access-viewer/" target="_blank" rel="noopener">power.larc.nasa.gov</a></td></tr>
+                <tr><td><strong>Diva-GIS</strong></td><td>Download data by country &mdash; administrative areas, climate, elevation</td><td><a href="https://www.diva-gis.org/gdata" target="_blank" rel="noopener">diva-gis.org</a></td></tr>
+                <tr><td><strong>FAO Soils Portal</strong></td><td>Harmonized World Soil Database v2.0 at 1 km resolution</td><td><a href="https://www.fao.org/soils-portal/data-hub/soil-maps-and-databases/harmonized-world-soil-database-v20/en/" target="_blank" rel="noopener">fao.org</a></td></tr>
+                <tr><td><strong>WaPOR (FAO)</strong></td><td>Water productivity open-access portal &mdash; evapotranspiration, biomass and water productivity</td><td><a href="https://wapor.fao.org" target="_blank" rel="noopener">wapor.fao.org</a></td></tr>
+                <tr><td><strong>Sindh Irrigation GIS Portal</strong></td><td>Irrigation infrastructure and water data for Sindh, Pakistan</td><td><a href="https://irrigation.sindh.gov.pk/gis" target="_blank" rel="noopener">irrigation.sindh.gov.pk</a></td></tr>
+                <tr><td><strong>PakDMS</strong></td><td>Pakistan Drought Management System (IWMI/PMD) &mdash; drought monitoring built on WaPOR data</td><td><a href="https://pakdms.iwmi.org" target="_blank" rel="noopener">pakdms.iwmi.org</a></td></tr>
+                <tr><td><strong>Land cover (Provinces of Pakistan, 10 m)</strong></td><td>Province-level land cover for Pakistan</td><td>Explore the Sindh Irrigation GIS Portal</td></tr>
+                <tr><td><strong>Data For Pakistan</strong></td><td>Pakistan-focused open datasets</td><td>See lecture slides</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Which source for which data? &mdash; a quick check</h3>
+          <div class="example-box">
+            <span class="box-label">Classroom activity</span>
+            <p style="margin:0">For each need below, name the source you would reach for first.</p>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">1. You need global administrative boundaries (countries, provinces) for a map.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>Natural Earth Data</strong> &mdash; clean global vector boundaries; <strong>Diva-GIS</strong> is a good alternative for country-level downloads.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">2. You need recent land cover for Pakistan at 10 m resolution.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>ESRI Landcover Explorer</strong> (LULC 2017&ndash;2025) &mdash; global 10 m land cover, including the Provinces of Pakistan product.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">3. You need daily temperature and solar radiation for an evapotranspiration study.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>NASA POWER</strong> &mdash; weather and climate data designed for agricultural and hydrological applications.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">4. You need global soil data at 1 km resolution.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>FAO Soils Portal</strong> &mdash; the Harmonized World Soil Database v2.0.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">5. You need street-level road data for a city in Pakistan.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>OpenStreetMap</strong> &mdash; download a country extract from <strong>GeoFabrik</strong> for offline use.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">6. You need free satellite imagery (e.g. Landsat or Sentinel scenes).</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>USGS Earth Explorer</strong> (Landsat) or the <strong>Sentinel Scientific Data Hub</strong> (Sentinel-1/2).</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">7. You need irrigation infrastructure data for Sindh.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>Sindh Irrigation GIS Portal</strong> &mdash; explore the site and fill out the survey form as instructed in class.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">8. You need evapotranspiration and water productivity data for an irrigation study.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>WaPOR (FAO)</strong> &mdash; the Water Productivity Open-access Portal, with evapotranspiration, biomass and water productivity layers.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">9. You need drought monitoring maps for Pakistan.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>PakDMS</strong> &mdash; the Pakistan Drought Management System (IWMI/PMD), which maps drought conditions using WaPOR data.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">Key takeaways</h2>
+        <div class="key-takeaways">
+          <ul>
+            <li><strong>Primary data</strong> is collected from scratch; <strong>secondary data</strong> already exists &mdash; most projects combine both.</li>
+            <li><strong>GPS</strong> estimates position from range measurements: Range = c &times; (t/2), using at least 4 satellites.</li>
+            <li><strong>Remote sensing</strong> measures electromagnetic energy reflected or emitted from objects; satellites differ in orbit, resolution, revisit, swath, wavelengths and more.</li>
+            <li>Follow <strong>collection protocols</strong> (sampling, standardization, bias, consent) and <strong>use protocols</strong> (citation, ethics, legality, quality checks).</li>
+            <li>Many <strong>free data sources</strong> exist: Esri Open Data Hub, Landcover Explorer, Natural Earth, USGS Earth Explorer, OSM/GeoFabrik, Sentinel, NASA POWER, Diva-GIS, FAO Soils, WaPOR.</li>
+            <li>For Pakistan: <strong>Sindh Irrigation GIS Portal</strong>, province-level land cover (10 m), Data For Pakistan and <strong>PakDMS</strong> (drought monitoring).</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block" id="reading">
+        <h2 class="section-title">Reading</h2>
+        <div class="card">
+          <ul class="resource-list">
+            <li><a href="https://www.esri.com/en-us/arcgis/products/arcgis-open-data" target="_blank" rel="noopener">Esri Open Data Hub</a></li>
+            <li><a href="https://livingatlas.arcgis.com/landcoverexplorer/" target="_blank" rel="noopener">ESRI Landcover Explorer &mdash; global LULC 2017&ndash;2025</a></li>
+            <li><a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth Data</a></li>
+            <li><a href="https://earthexplorer.usgs.gov/" target="_blank" rel="noopener">USGS Earth Explorer</a></li>
+            <li><a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap</a> &middot; <a href="https://www.geofabrik.de/data/download.html" target="_blank" rel="noopener">GeoFabrik downloads</a></li>
+            <li><a href="https://power.larc.nasa.gov/data-access-viewer/" target="_blank" rel="noopener">NASA POWER &mdash; weather and climate data</a></li>
+            <li><a href="https://www.diva-gis.org/gdata" target="_blank" rel="noopener">Diva-GIS &mdash; download data by country</a></li>
+            <li><a href="https://www.fao.org/soils-portal/data-hub/soil-maps-and-databases/harmonized-world-soil-database-v20/en/" target="_blank" rel="noopener">FAO Soils Portal &mdash; Harmonized World Soil Database v2.0</a></li>
+            <li><a href="https://wapor.fao.org" target="_blank" rel="noopener">WaPOR &mdash; FAO Water Productivity Open-access Portal</a></li>
+            <li><a href="https://pakdms.iwmi.org" target="_blank" rel="noopener">PakDMS &mdash; Pakistan Drought Management System</a></li>
+            <li><a href="https://irrigation.sindh.gov.pk/gis" target="_blank" rel="noopener">Sindh Irrigation GIS Portal</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block" id="assignment">
+        <h2 class="section-title">Assignment</h2>
+        <div class="assignment-box">
+          <p style="margin-top:0">Answer the following:</p>
+          <ol>
+            <li>Explore the <a href="https://irrigation.sindh.gov.pk/gis" target="_blank" rel="noopener">Sindh Irrigation GIS Portal</a> and fill out the survey form as instructed in class. List the datasets you found on the portal.</li>
+            <li>For a river basin study of your choice, list five free data sources you would use and state exactly what each one provides.</li>
+            <li>Explain the difference between primary and secondary data collection, with one water-resources example of each. When would you prefer primary data despite the extra cost?</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section-block" id="quiz">
+        <div class="card">
+          <h2 class="section-title">Quick Quiz</h2>
+          <p>Test yourself on this lecture. Select an answer for each question, then click <strong>Check my answers</strong> to reveal the key and your score.</p>
+
+          <div class="quiz" data-quiz>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Secondary data already exists — someone else collected it."
+                 data-feedback-incorrect="Secondary data already exists and was collected by someone else."
+                 data-feedback-unanswered="Secondary data = existing data.">
+              <p class="quiz-q">1. Data that someone else already collected and published is called:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Primary data</button>
+                <button class="quiz-option" data-correct="true">Secondary data</button>
+                <button class="quiz-option">Raw data</button>
+                <button class="quiz-option">Field data</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! GPS position is estimated from range measurements to satellites."
+                 data-feedback-incorrect="GPS estimates position based on range measurements — the distance to several satellites."
+                 data-feedback-unanswered="GPS uses range measurements.">
+              <p class="quiz-q">2. A GPS receiver estimates its position based on:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">The color of the satellite signal received</button>
+                <button class="quiz-option" data-correct="true">Range measurements to several satellites</button>
+                <button class="quiz-option">The satellite&rsquo;s battery level and health</button>
+                <button class="quiz-option">Weather conditions only, such as cloud cover</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Range = c × (t/2), where t is the round-trip time."
+                 data-feedback-incorrect="The GPS range formula is Range = c × (t/2)."
+                 data-feedback-unanswered="Range = c × (t/2).">
+              <p class="quiz-q">3. The GPS range formula is:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Range = c &times; t</button>
+                <button class="quiz-option" data-correct="true">Range = c &times; (t / 2)</button>
+                <button class="quiz-option">Range = c / t</button>
+                <button class="quiz-option">Range = t / c</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Remote sensing measures electromagnetic energy reflected or emitted from objects."
+                 data-feedback-incorrect="Remote sensing measures electromagnetic energy reflected or emitted from objects."
+                 data-feedback-unanswered="Remote sensing measures electromagnetic energy.">
+              <p class="quiz-q">4. Remote sensing is best described as:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Measuring distances with GPS receivers in the field</button>
+                <button class="quiz-option">Collecting soil samples in the field for laboratory analysis</button>
+                <button class="quiz-option" data-correct="true">Measuring electromagnetic energy reflected or emitted from objects</button>
+                <button class="quiz-option">Interviewing local communities about their environment</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Revisit frequency is how often the satellite passes over the same location."
+                 data-feedback-incorrect="Revisit frequency is how often the satellite passes over the same location."
+                 data-feedback-unanswered="Revisit frequency = how often the satellite revisits a location.">
+              <p class="quiz-q">5. In satellite remote sensing, &ldquo;revisit frequency&rdquo; means:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">The width of the ground strip imaged by the sensor</button>
+                <button class="quiz-option" data-correct="true">How often the satellite passes over the same location</button>
+                <button class="quiz-option">The number of wavelengths collected by the sensor</button>
+                <button class="quiz-option">The size of each image delivered to the user</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! A reliable sampling method is a data collection protocol."
+                 data-feedback-incorrect="Employing a reliable sampling method is a data collection protocol."
+                 data-feedback-unanswered="Reliable sampling is a collection protocol.">
+              <p class="quiz-q">6. Which of the following is a data <strong>collection</strong> protocol?</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="true">Employ a reliable sampling method for representative data</button>
+                <button class="quiz-option">Credit secondary data sources through proper citation</button>
+                <button class="quiz-option">Adhere to pertinent laws and regulations at all times</button>
+                <button class="quiz-option">Assess the quality of data before utilization</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Crediting secondary sources through citation is a data use protocol."
+                 data-feedback-incorrect="Crediting secondary data sources through proper citation is a data use protocol."
+                 data-feedback-unanswered="Citation is a use protocol.">
+              <p class="quiz-q">7. Which of the following is a data <strong>use</strong> protocol?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Minimize bias in primary data collection</button>
+                <button class="quiz-option">Standardize procedures and employ quality control</button>
+                <button class="quiz-option" data-correct="true">Credit secondary data sources through proper citation</button>
+                <button class="quiz-option">Obtain consent from participants before collecting data</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! NASA POWER provides weather and climate data."
+                 data-feedback-incorrect="NASA POWER provides weather and climate data — temperature, solar radiation, precipitation."
+                 data-feedback-unanswered="NASA POWER = weather data.">
+              <p class="quiz-q">8. For weather and climate data (temperature, solar radiation), you would use:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Natural Earth Data</button>
+                <button class="quiz-option">Diva-GIS</button>
+                <button class="quiz-option" data-correct="true">NASA POWER</button>
+                <button class="quiz-option">OpenStreetMap</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The FAO Soils Portal hosts the Harmonized World Soil Database v2.0 at 1 km resolution."
+                 data-feedback-incorrect="The FAO Soils Portal hosts the Harmonized World Soil Database v2.0 at 1 km resolution."
+                 data-feedback-unanswered="FAO Soils Portal = soil data.">
+              <p class="quiz-q">9. For global soil data at 1 km resolution, you would use:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">USGS Earth Explorer (Landsat imagery)</button>
+                <button class="quiz-option" data-correct="true">FAO Soils Portal (Harmonized World Soil Database)</button>
+                <button class="quiz-option">GeoFabrik (OSM country extracts for download)</button>
+                <button class="quiz-option">Sentinel Scientific Data Hub (ESA imagery)</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! OpenStreetMap provides volunteer-built street and road data."
+                 data-feedback-incorrect="OpenStreetMap provides volunteer-built street and road data."
+                 data-feedback-unanswered="OSM = street-level data.">
+              <p class="quiz-q">10. For street-level data (roads, buildings), you would use:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">FAO Soils Portal</button>
+                <button class="quiz-option">NASA POWER</button>
+                <button class="quiz-option" data-correct="true">OpenStreetMap</button>
+                <button class="quiz-option">Landcover Explorer</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-actions">
+              <button class="btn btn-blue" data-check>Check my answers</button>
+              <button class="btn btn-ghost-dark" data-reset>Try again</button>
+            </div>
+
+            <div class="score-banner" data-score-banner hidden>
+              <span>Your score: <span data-score>0</span> / <span data-total>10</span></span>
+              <span class="score-note">The key is shown above &mdash; correct answers are highlighted in green.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Hydroinformatics</h4>
+          <p style="margin:0">Lecture materials for Hydroinformatics: Data Management and Analysis, taught by Dr. Arjumand Zehra Zaidi.</p>
+        </div>
+        <div>
+          <h4>Course</h4>
+          <ul>
+            <li><a href="../index.html">All lectures</a></li>
+            <li><a href="#reading">Reading material</a></li>
+            <li><a href="#assignment">Assignment</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Instructor</h4>
+          <ul>
+            <li><a href="https://water.muet.edu.pk/faculty/dr-arjumand-zehra-zaidi" target="_blank" rel="noopener">Faculty profile</a></li>
+            <li><a href="https://arjzaidi.wordpress.com" target="_blank" rel="noopener">Teaching site</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; Dr. Arjumand Zehra Zaidi &middot; US-Pakistan Center for Advanced Studies in Water, Mehran University of Engineering &amp; Technology, Jamshoro
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/quiz.js" defer></script>
+</body>
+</html>
