@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 6: Satellite Data Application in Disaster Monitoring | Hazard Planning &amp; Risk Management</title>
+  <meta name="description" content="Lecture 6 &mdash; Satellite Data Application in Disaster Monitoring: remote sensing and GIS for floods, cyclones, GLOFs, landslides, earthquakes, fog, oil spills and wildfires. Hazard Planning and Risk Management. Dr. Arjumand Zehra Zaidi, USPCAS-W, MUET Jamshoro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../../index.html">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>
+        <span class="brand-text">
+          <strong>Hazard Planning &amp; Risk Management</strong>
+          <small>USPCAS-W &middot; MUET Jamshoro</small>
+        </span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">All Lectures</a>
+        <a href="#reading">Reading</a>
+        <a href="#assignment">Assignment</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container back-nav">
+      <a class="back-link" href="../index.html">&larr; Back to Hazard Planning &amp; Risk Management</a>
+    </div>
+    <section class="hero">
+      <div class="container">
+        <p class="hero-kicker">Lecture 6 &middot; Fall 2026</p>
+        <h1>Satellite Data Application in Disaster Monitoring</h1>
+        <p class="hero-sub">Hazard Planning and Risk Management &mdash; USPCAS-W, Mehran University of Engineering &amp; Technology, Jamshoro</p>
+        <div class="hero-meta">
+          <span class="chip">Text-based lecture</span>
+          <span class="chip">Interactive quiz included</span>
+          <span class="chip">Dr. Arjumand Zehra Zaidi</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="../../../assets/downloads/lecture-06-satellite-data-application-in-disaster-monitoring.pdf">Download PDF</a>
+          <a class="btn btn-ghost" href="../../../assets/downloads/lecture-06-satellite-data-application-in-disaster-monitoring.pptx">Download PPTX</a>
+        </div>
+      </div>
+      <div class="hero-wave"><svg viewBox="0 0 1440 46" preserveAspectRatio="none"><path fill="#f4f9fd" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,24 L1440,46 L0,46 Z"/></svg></div>
+    </section>
+
+    <div class="container">
+
+      <section class="card at-a-glance">
+        <h2 class="section-title">In this lecture</h2>
+        <ol>
+          <li>Satellite data for natural hazards &mdash; optical and radar sensors</li>
+          <li>Flood monitoring &mdash; Pakistan Floods 2010, 2012 and 2025, and Valencia 2024</li>
+          <li>Flood modeling and damage assessment with satellite data and GIS</li>
+          <li>Cyclone monitoring &mdash; Cyclone 02A, Thatta (1999)</li>
+          <li>Air quality &mdash; aerosol optical depth</li>
+          <li>Snow cover and glacier monitoring</li>
+          <li>Glacial lake outburst floods &mdash; Thame (2024) and Rasuwa (2026), Nepal</li>
+          <li>Landslides, earthquakes, fog and oil spills</li>
+          <li>Wildfires &mdash; Los Angeles (2025)</li>
+          <li>From satellite evidence to decisions</li>
+        </ol>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">1. Satellite data for natural hazards</h2>
+
+        <div class="card">
+          <p>Satellite data and geospatial techniques support hazard planning and risk management across the disaster management cycle. Sensors fall into two broad families:</p>
+          <ul>
+            <li><strong>Optical sensors</strong> &mdash; record reflected sunlight; limited by clouds and darkness.</li>
+            <li><strong>Radar (SAR) sensors</strong> &mdash; active microwave sensors that operate day and night and penetrate cloud cover.</li>
+          </ul>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Satellite / product</th><th>Type</th><th>Key characteristics</th><th>Disaster applications</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>LANDSAT</strong></td>
+                  <td>Optical (multispectral)</td>
+                  <td>The longest-running exercise in collecting multispectral data &mdash; Landsat 1 launched in 1972.</td>
+                  <td>Studying land-surface change.</td>
+                </tr>
+                <tr>
+                  <td><strong>Sentinel-1 SAR</strong></td>
+                  <td>Radar (SAR)</td>
+                  <td>Radar observations operate day and night and penetrate cloud cover.</td>
+                  <td>Flood-extent mapping; earthquake-related ground-deformation analysis.</td>
+                </tr>
+                <tr>
+                  <td><strong>Sentinel-2 MSI</strong></td>
+                  <td>Optical (multispectral)</td>
+                  <td>13 spectral bands at 10&ndash;60 m resolution.</td>
+                  <td>Mapping of water, vegetation, snow and land-cover change; glacial-lake monitoring; burn-scar assessment.</td>
+                </tr>
+                <tr>
+                  <td><strong>RADARSAT</strong></td>
+                  <td>Radar (SAR)</td>
+                  <td>Efficient and effective satellite sensor.</td>
+                  <td>Assessing flood damages and oil seeps.</td>
+                </tr>
+                <tr>
+                  <td><strong>MODIS Terra &amp; Aqua</strong></td>
+                  <td>Optical (multispectral)</td>
+                  <td>Daily coverage.</td>
+                  <td>Rapid disaster mapping.</td>
+                </tr>
+                <tr>
+                  <td><strong>VIIRS active-fire data</strong></td>
+                  <td>Optical (thermal)</td>
+                  <td>Near-real-time thermal hotspot detections at 375 m resolution.</td>
+                  <td>Complement MODIS; support wildfire monitoring.</td>
+                </tr>
+                <tr>
+                  <td><strong>GPM IMERG</strong></td>
+                  <td>Precipitation estimates</td>
+                  <td>Multi-satellite precipitation estimates at half-hourly intervals.</td>
+                  <td>Assessment of extreme rainfall, flood-triggering conditions, and drought.</td>
+                </tr>
+                <tr>
+                  <td><strong>OPERA Dynamic Surface Water Extent</strong></td>
+                  <td>Radar-derived</td>
+                  <td>Sentinel-1-derived water maps at 30 m resolution.</td>
+                  <td>Monitoring changing surface-water extent; flood assessment requires comparison with normal or pre-event water conditions.</td>
+                </tr>
+                <tr>
+                  <td><strong>Copernicus Global Flood Monitoring</strong></td>
+                  <td>Radar-derived</td>
+                  <td>Automatically processes Sentinel-1 radar observations.</td>
+                  <td>Worldwide satellite-based flood monitoring.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">2. Flood monitoring &mdash; Pakistan case studies</h2>
+
+        <div class="card">
+          <h3>Pakistan Flood 2010</h3>
+          <p>Satellite imagery captured the scale of the 2010 floods &mdash; the worst in Pakistan&rsquo;s history. Examples include the inundation of <strong>Qambar Shahdadkot</strong> and the comparison of the <strong>Guddu Barrage</strong> before and after the event:</p>
+          <ul>
+            <li>Pre-flood: June 02, 2010</li>
+            <li>Post-flood: August 12, 2010</li>
+          </ul>
+
+          <h3>Rapid flood mapping by SUPARCO</h3>
+          <p>During the 2010 floods, SUPARCO produced a series of <strong>flood/rain extent maps</strong> (31 July &ndash; 21 September 2010) covering the Indus system from Warsak, Tarbela and Mangla dams to the barrages of Chashma, Guddu, Sukkur and Kotri &mdash; showing the <strong>direction of flood water</strong> as it moved downstream.</p>
+
+          <h3>Sindh Dewatering Program</h3>
+          <p>Daily flood extent maps were produced by utilizing data from remote sensing satellites to support the dewatering program in Sindh.</p>
+
+          <h3>Flood 2012</h3>
+          <p>A MODIS image of September 13, 2012 showed the flood extent during the 2012 monsoon floods.</p>
+
+          <h3>Pakistan Floods 2025</h3>
+          <p>VIIRS false-color images showed flooding along major rivers. Compare September 9, 2025 with the same date in 2023.</p>
+          <div class="warning-box">
+            <span class="box-label">GIS task</span>
+            <p style="margin:0">Overlay inundation with settlements and cropland. Image link: NASA Earth Observatory (2025).</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">3. Flood modeling and damage assessment</h2>
+
+        <div class="card">
+          <h3>Flood modeling using satellite data and GIS tools</h3>
+          <p>Satellite-derived flood extents feed hydraulic models to simulate flood behavior and support planning.</p>
+
+          <h3>Damage assessment using satellite data and GIS tools</h3>
+          <p>Damage assessment is performed by overlaying the <strong>flooding extent on elements at risk</strong> &mdash; buildings, roads, cropland and other exposed assets.</p>
+
+          <h3>Valencia Flash Floods &mdash; 2024</h3>
+          <p>Landsat 8 observed inundation on 30 October 2024. Urban land, farms, and coastal wetlands were affected.</p>
+          <div class="warning-box">
+            <span class="box-label">GIS task</span>
+            <p style="margin:0">Compare flood extent with drainage and transport routes. Image link: NASA Earth Observatory (2024).</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">4. Cyclone monitoring</h2>
+
+        <div class="card">
+          <p>Satellite imagery documented the impact of <strong>Cyclone TC 02A</strong>, which hit Thatta District on <strong>May 20, 1999</strong>:</p>
+          <ul>
+            <li>Prior-cyclone satellite image of February 1999 showed the Tidal Link area.</li>
+            <li>The 1998 breach and subsequent breaches were visible in the imagery.</li>
+            <li>Post-cyclone satellite image of November 1999 showed <strong>deteriorated mangrove forests</strong> in the Tidal Link area, Thatta District, Sindh.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5. Air quality &mdash; aerosol optical depth</h2>
+
+        <div class="card">
+          <p><span class="key-term" data-tooltip="A measure of how much light airborne particles (aerosols) prevent from passing through a column of atmosphere.">Aerosol Optical Depth (AOD)</span> maps for 2006&ndash;2007 show the distribution of atmospheric aerosols &mdash; useful for air-quality monitoring and health-risk assessment.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">6. Snow cover and glacier monitoring</h2>
+
+        <div class="card">
+          <ul>
+            <li><strong>Snow cover mapping</strong> &mdash; annual snow-cover maps for May 2004&ndash;2008 track seasonal and inter-annual variation in glacial snow cover.</li>
+            <li><strong>Gangotri Glacier retreat</strong> &mdash; ASTER imagery provided estimates of the retreat of the Gangotri Glacier in India (courtesy of Jesse Allen, Earth Observatory, USA).</li>
+            <li><strong>Annual variation in glacial snow cover</strong> &mdash; time series of snow cover support water-resource and GLOF-risk assessment.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">7. Glacial lake outburst floods (GLOFs)</h2>
+
+        <div class="card">
+          <h3>Thame GLOF, Nepal &mdash; 2024</h3>
+          <p>On <strong>16 August</strong>, a rock avalanche triggered two lake outbursts. Satellite images, drone surveys, and fieldwork reconstructed the event.</p>
+          <div class="highlight-box">
+            <span class="box-label">Lesson</span>
+            <p style="margin:0"><strong>Small lakes can produce large, cascading hazards.</strong></p>
+          </div>
+
+          <h3>Thame: mapping downstream risk</h3>
+          <ul>
+            <li>Map the lakes, unstable slopes and connected river channels.</li>
+            <li>Overlay settlements, bridges and hydropower facilities.</li>
+            <li>Use field checks and modelling to assess evacuation options.</li>
+          </ul>
+          <p>Image link: ICIMOD: Thame study (2025).</p>
+
+          <h3>Rasuwa Flood, Nepal &mdash; 2026</h3>
+          <p>A major flood struck the Nepal&ndash;China border on <strong>26 August</strong>.</p>
+          <ul>
+            <li>Assess upstream changes and exposed infrastructure downstream.</li>
+            <li>Cause assessment is preliminary &mdash; <strong>do not assume a confirmed GLOF</strong>.</li>
+          </ul>
+          <p>Source: ICIMOD event updates (2026).</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">8. Landslides, earthquakes, fog and oil spills</h2>
+
+        <div class="card">
+          <h3>Landslides in Muzaffarabad, AJK</h3>
+          <p>Satellite imagery supports landslide mapping and monitoring in earthquake-affected mountainous terrain.</p>
+
+          <h3>T&uuml;rkiye&ndash;Syria Earthquakes &mdash; 2023</h3>
+          <ul>
+            <li><strong>Sentinel-1 radar</strong> measured earthquake-related ground displacement.</li>
+            <li>High-resolution optical images supported damage assessment.</li>
+          </ul>
+          <div class="warning-box">
+            <span class="box-label">GIS task</span>
+            <p style="margin:0">Map affected buildings and usable access routes. Image link: European Space Agency (2023).</p>
+          </div>
+
+          <h3>Winter fog over Pakistan</h3>
+          <p>A MODIS image captured the winter fog that blankets the Indus plains, disrupting transport and affecting health.</p>
+
+          <h3>Oil spill &mdash; RADARSAT data (microwave RS)</h3>
+          <p>The satellite image of <strong>August 19, 2003</strong> showed a <strong>36.85 sq km oil spill area</strong> &mdash; an example of microwave remote sensing for oil-spill detection.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">9. Wildfires &mdash; Los Angeles 2025</h2>
+
+        <div class="card">
+          <p>Satellite observations tracked the January fires and their impacts:</p>
+          <ul>
+            <li><strong>Sentinel-1 change maps</strong> flagged potentially damaged structures.</li>
+          </ul>
+          <div class="warning-box">
+            <span class="box-label">GIS task</span>
+            <p style="margin:0">Prioritize field inspection of buildings and access routes. Image link: NASA Applied Sciences (2025).</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">10. From satellite evidence to decisions</h2>
+
+        <div class="card">
+          <ul>
+            <li><strong>Remote sensing</strong> shows where conditions have changed.</li>
+            <li><strong>GIS</strong> identifies the people and infrastructure exposed.</li>
+            <li><strong>Field evidence, uncertainty, and vulnerability</strong> guide action.</li>
+          </ul>
+          <div class="warning-box">
+            <span class="box-label">Class discussion</span>
+            <p style="margin:0">Which map supports which decision?</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">Key takeaways</h2>
+        <div class="key-takeaways">
+          <ul>
+            <li>Optical sensors (LANDSAT, Sentinel-2, MODIS, VIIRS) and <strong>radar sensors</strong> (Sentinel-1, RADARSAT) complement each other &mdash; radar operates day and night and <strong>penetrates cloud cover</strong>.</li>
+            <li>During the Pakistan 2010 floods, <strong>SUPARCO produced daily flood-extent maps</strong> from satellite data, supporting the Sindh Dewatering Program.</li>
+            <li><strong>Damage assessment</strong> overlays the flooding extent on elements at risk &mdash; buildings, roads and cropland.</li>
+            <li>Snow-cover and glacier monitoring support <strong>GLOF risk assessment</strong> &mdash; small lakes can produce large, cascading hazards.</li>
+            <li><strong>Sentinel-1 radar</strong> measured ground displacement in the T&uuml;rkiye&ndash;Syria 2023 earthquakes; RADARSAT detected a 36.85 sq km oil spill in 2003.</li>
+            <li>Remote sensing shows <strong>where conditions have changed</strong>; GIS identifies <strong>who and what is exposed</strong>; field evidence and vulnerability guide action.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block" id="reading">
+        <h2 class="section-title">Reading assignment</h2>
+        <div class="card">
+          <ul class="resource-list">
+            <li><a href="https://earthobservatory.nasa.gov/" target="_blank" rel="noopener">NASA Earth Observatory &mdash; satellite imagery of disaster events</a></li>
+            <li><a href="https://sentinel.esa.int/" target="_blank" rel="noopener">ESA Sentinel missions &mdash; Sentinel-1 and Sentinel-2</a></li>
+            <li><a href="https://www.icimod.org/" target="_blank" rel="noopener">ICIMOD &mdash; GLOF and cryosphere monitoring in the Hindu Kush Himalaya</a></li>
+            <li><a href="https://www.suparco.gov.pk/" target="_blank" rel="noopener">SUPARCO &mdash; Pakistan Space and Upper Atmosphere Research Commission</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block" id="assignment">
+        <h2 class="section-title">Homework</h2>
+        <div class="assignment-box">
+          <p style="margin-top:0">Complete <strong>one</strong> of the GIS tasks presented in this lecture:</p>
+          <ol>
+            <li><strong>Pakistan Floods 2025</strong> &mdash; overlay inundation with settlements and cropland.</li>
+            <li><strong>Valencia Flash Floods 2024</strong> &mdash; compare flood extent with drainage and transport routes.</li>
+            <li><strong>Thame GLOF 2024</strong> &mdash; map the lakes, unstable slopes and connected river channels; overlay settlements, bridges and hydropower facilities; use field checks and modelling to assess evacuation options.</li>
+            <li><strong>T&uuml;rkiye&ndash;Syria Earthquakes 2023</strong> &mdash; map affected buildings and usable access routes.</li>
+            <li><strong>Los Angeles Wildfires 2025</strong> &mdash; prioritize field inspection of buildings and access routes.</li>
+          </ol>
+          <p style="margin-bottom:0">Then discuss: <strong>which map supports which decision?</strong></p>
+        </div>
+      </section>
+
+      <section class="section-block" id="quiz">
+        <div class="card">
+          <h2 class="section-title">Quick Quiz</h2>
+          <p>Test yourself on this lecture. Select an answer for each question, then click <strong>Check my answers</strong> to reveal the key and your score.</p>
+
+          <div class="quiz" data-quiz>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! LANDSAT is the longest-running exercise in collecting multispectral data, with Landsat 1 launched in 1972."
+                 data-feedback-incorrect="LANDSAT is the longest-running multispectral data collection exercise, with Landsat 1 launched in 1972."
+                 data-feedback-unanswered="LANDSAT has collected multispectral data since 1972.">
+              <p class="quiz-q">1. Which satellite program is the longest-running exercise in collecting multispectral data?</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="true">LANDSAT (Landsat 1 launched in 1972)</button>
+                <button class="quiz-option">Sentinel-1</button>
+                <button class="quiz-option">MODIS Terra and Aqua</button>
+                <button class="quiz-option">RADARSAT</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! SAR (radar) sensors operate day and night and penetrate cloud cover."
+                 data-feedback-incorrect="Radar (SAR) sensors operate day and night and penetrate cloud cover."
+                 data-feedback-unanswered="SAR radar works day/night through clouds.">
+              <p class="quiz-q">2. Which type of sensor operates day and night and penetrates cloud cover?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Optical multispectral sensors</button>
+                <button class="quiz-option" data-correct="true">Radar (SAR) sensors such as Sentinel-1 and RADARSAT</button>
+                <button class="quiz-option">Thermal infrared sensors only</button>
+                <button class="quiz-option">Passive microwave radiometers only</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Sentinel-2 MSI has 13 spectral bands at 10-60 m resolution."
+                 data-feedback-incorrect="Sentinel-2 MSI has 13 spectral bands at 10-60 m resolution."
+                 data-feedback-unanswered="Sentinel-2 MSI = 13 bands.">
+              <p class="quiz-q">3. How many spectral bands does Sentinel-2 MSI provide?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">4</button>
+                <button class="quiz-option">7</button>
+                <button class="quiz-option" data-correct="true">13</button>
+                <button class="quiz-option">36</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! MODIS Terra and Aqua provide daily coverage for rapid disaster mapping."
+                 data-feedback-incorrect="MODIS Terra and Aqua provide daily coverage, useful for rapid disaster mapping."
+                 data-feedback-unanswered="MODIS has daily coverage.">
+              <p class="quiz-q">4. Which satellite system provides daily coverage and can be used for rapid disaster mapping?</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="true">MODIS Terra and Aqua</button>
+                <button class="quiz-option">LANDSAT</button>
+                <button class="quiz-option">Sentinel-2 MSI</button>
+                <button class="quiz-option">RADARSAT</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! VIIRS active-fire data provide near-real-time thermal hotspot detections at 375 m resolution."
+                 data-feedback-incorrect="VIIRS active-fire data are thermal hotspot detections at 375 m resolution."
+                 data-feedback-unanswered="VIIRS hotspots = 375 m.">
+              <p class="quiz-q">5. VIIRS active-fire data provide near-real-time thermal hotspot detections at what resolution?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">30 m</button>
+                <button class="quiz-option">250 m</button>
+                <button class="quiz-option" data-correct="true">375 m</button>
+                <button class="quiz-option">1 km</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! GPM IMERG provides multi-satellite precipitation estimates at half-hourly intervals."
+                 data-feedback-incorrect="GPM IMERG provides precipitation estimates at half-hourly intervals."
+                 data-feedback-unanswered="GPM IMERG = half-hourly precipitation.">
+              <p class="quiz-q">6. GPM IMERG provides multi-satellite precipitation estimates at what interval?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Daily</button>
+                <button class="quiz-option" data-correct="true">Half-hourly</button>
+                <button class="quiz-option">Weekly</button>
+                <button class="quiz-option">Monthly</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! During the 2010 floods, SUPARCO produced daily flood extent maps from remote sensing satellites."
+                 data-feedback-incorrect="SUPARCO produced daily flood extent maps from remote sensing satellites during the 2010 floods."
+                 data-feedback-unanswered="SUPARCO made daily flood extent maps in 2010.">
+              <p class="quiz-q">7. What did SUPARCO produce daily during the Pakistan Floods 2010?</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="true">Flood extent maps from remote sensing satellites</button>
+                <button class="quiz-option">Earthquake ground-deformation maps</button>
+                <button class="quiz-option">Aerosol optical depth maps</button>
+                <button class="quiz-option">Snow cover maps</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The lesson from Thame is that small lakes can produce large, cascading hazards."
+                 data-feedback-incorrect="The Thame lesson: small lakes can produce large, cascading hazards."
+                 data-feedback-unanswered="Small lakes can cause large cascading hazards.">
+              <p class="quiz-q">8. What is the key lesson from the Thame GLOF, Nepal (2024)?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Only large lakes pose a GLOF risk</button>
+                <button class="quiz-option" data-correct="true">Small lakes can produce large, cascading hazards</button>
+                <button class="quiz-option">GLOFs only occur after earthquakes</button>
+                <button class="quiz-option">Satellite data cannot detect GLOF precursors</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Sentinel-1 radar measured earthquake-related ground displacement in the Türkiye-Syria 2023 earthquakes."
+                 data-feedback-incorrect="Sentinel-1 radar measured ground displacement in the Türkiye-Syria 2023 earthquakes."
+                 data-feedback-unanswered="Sentinel-1 radar measured the displacement.">
+              <p class="quiz-q">9. Which sensor measured earthquake-related ground displacement in the T&uuml;rkiye&ndash;Syria Earthquakes (2023)?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">MODIS</button>
+                <button class="quiz-option">LANDSAT 8</button>
+                <button class="quiz-option" data-correct="true">Sentinel-1 radar</button>
+                <button class="quiz-option">VIIRS</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! RADARSAT (microwave RS) detected a 36.85 sq km oil spill area on August 19, 2003."
+                 data-feedback-incorrect="RADARSAT detected a 36.85 sq km oil spill area in August 2003."
+                 data-feedback-unanswered="RADARSAT detected the 2003 oil spill.">
+              <p class="quiz-q">10. What did RADARSAT (microwave remote sensing) detect on August 19, 2003?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">A glacial lake outburst flood</button>
+                <button class="quiz-option" data-correct="true">A 36.85 sq km oil spill area</button>
+                <button class="quiz-option">Winter fog over Pakistan</button>
+                <button class="quiz-option">Landslide debris in Muzaffarabad</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-actions">
+              <button class="btn btn-blue" data-check>Check my answers</button>
+              <button class="btn btn-ghost-dark" data-reset>Try again</button>
+            </div>
+
+            <div class="score-banner" data-score-banner hidden>
+              <span>Your score: <span data-score>0</span> / <span data-total>10</span></span>
+              <span class="score-note">The key is shown above &mdash; correct answers are highlighted in green.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Hazard Planning &amp; Risk Management</h4>
+          <p style="margin:0">Lecture materials for Hazard Planning and Risk Management, taught by Dr. Arjumand Zehra Zaidi.</p>
+        </div>
+        <div>
+          <h4>Course</h4>
+          <ul>
+            <li><a href="../index.html">All lectures</a></li>
+            <li><a href="#reading">Reading material</a></li>
+            <li><a href="#assignment">Assignment</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Instructor</h4>
+          <ul>
+            <li><a href="https://water.muet.edu.pk/faculty/dr-arjumand-zehra-zaidi" target="_blank" rel="noopener">Faculty profile</a></li>
+            <li><a href="https://arjzaidi.wordpress.com" target="_blank" rel="noopener">Teaching site</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; Dr. Arjumand Zehra Zaidi &middot; US-Pakistan Center for Advanced Studies in Water, Mehran University of Engineering &amp; Technology, Jamshoro
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/quiz.js" defer></script>
+</body>
+</html>
