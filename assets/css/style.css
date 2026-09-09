@@ -195,6 +195,26 @@ h1, h2, h3 {
 }
 .btn-blue:hover { background: var(--navy); }
 
+/* Back-to-previous-page button */
+.back-nav { padding-top: 16px; }
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.back-link:hover { text-decoration: none; transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+
 /* Wave divider under hero */
 .hero-wave {
   position: absolute;
