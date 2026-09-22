@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guest Lecture 6: Artificial Intelligence — An Introduction to AI, ML and DL | Hydroinformatics</title>
+  <meta name="description" content="Guest Lecture 6 &mdash; Artificial Intelligence: An Introduction to AI, Machine Learning and Deep Learning, by Ms. Rubab (IWRM). Supervised, unsupervised and reinforcement learning; ANN, CNN, RNN and LSTM. HID-661, USPCAS-W, MUET Jamshoro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../../index.html">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>
+        <span class="brand-text">
+          <strong>Hydroinformatics</strong>
+          <small>USPCAS-W &middot; MUET Jamshoro</small>
+        </span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">All Lectures</a>
+        <a href="#reading">Reading</a>
+        <a href="#assignment">Assignment</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container back-nav">
+      <a class="back-link" href="../index.html">&larr; Back to Hydroinformatics</a>
+    </div>
+    <section class="hero">
+      <div class="container">
+        <p class="hero-kicker">Guest Lecture 6 &middot; HID-661 &middot; Fall 2026</p>
+        <h1>Artificial Intelligence: An Introduction to AI, Machine Learning and Deep Learning</h1>
+        <p class="hero-sub">Hydroinformatics: Data Management and Analysis &mdash; USPCAS-W, Mehran University of Engineering &amp; Technology, Jamshoro</p>
+        <div class="hero-meta">
+          <span class="chip">Guest lecture by Ms. Rubab (IWRM)</span>
+          <span class="chip">Text-based lecture</span>
+          <span class="chip">Interactive quiz included</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="../../../assets/downloads/lecture-06-artificial-intelligence.pdf">Download PDF</a>
+          <a class="btn btn-ghost" href="../../../assets/downloads/lecture-06-artificial-intelligence.pptx">Download PPTX</a>
+        </div>
+      </div>
+      <div class="hero-wave"><svg viewBox="0 0 1440 46" preserveAspectRatio="none"><path fill="#f4f9fd" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,24 L1440,46 L0,46 Z"/></svg></div>
+    </section>
+
+    <div class="container">
+
+      <section class="card at-a-glance">
+        <h2 class="section-title">In this lecture</h2>
+        <p>This is a <strong>guest lecture by Ms. Rubab (IWRM)</strong>, USPCAS-W, Mehran University of Engineering &amp; Technology, Jamshoro. It introduces the foundations of artificial intelligence and its two most important subfields for water data analysis.</p>
+        <ol>
+          <li>Artificial Intelligence &mdash; what it is and everyday examples</li>
+          <li>Machine Learning &mdash; learning from data without explicit programming</li>
+          <li>Deep Learning &mdash; neural networks with many layers</li>
+          <li>AI vs. ML vs. DL &mdash; the &ldquo;brain&rdquo; analogy</li>
+          <li>Types of Machine Learning &mdash; supervised, unsupervised and reinforcement</li>
+          <li>Common ML algorithms &mdash; regression, classification, clustering, dimensionality reduction</li>
+          <li>Types of Deep Learning &mdash; ANN, CNN, RNN and LSTM</li>
+        </ol>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">1. Artificial Intelligence</h2>
+
+        <div class="card">
+          <div class="highlight-box">
+            <span class="box-label">Definition</span>
+            <p style="margin:0"><span class="key-term" data-tooltip="Creating computer systems that can perform tasks requiring human-like abilities such as learning, reasoning, perception, and decision-making.">Artificial Intelligence (AI)</span> is the field of creating computer systems that can perform tasks requiring human-like abilities such as learning, reasoning, perception, and decision-making.</p>
+          </div>
+          <p>You already use AI every day, often without noticing it:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Everyday example</th><th>How AI works behind the scenes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Google Maps</strong></td><td>AI combines live traffic data with route prediction to suggest the best route.</td></tr>
+                <tr><td><strong>Face unlock</strong></td><td>The camera captures your face, AI performs face recognition, and the phone unlocks.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">2. Machine Learning</h2>
+
+        <div class="card">
+          <div class="highlight-box">
+            <span class="box-label">Definition</span>
+            <p style="margin:0"><span class="key-term" data-tooltip="A type of AI that allows computers to learn from data and make predictions or decisions without being directly programmed for every task.">Machine Learning (ML)</span> is a type of AI that allows computers to learn from data and make predictions or decisions without being directly programmed for every task.</p>
+          </div>
+          <p>Instead of writing explicit rules for every situation, the computer finds the patterns itself:</p>
+          <ul>
+            <li>Recommending shows based on what you watch.</li>
+            <li>Online shopping sites showing you products you might like.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">3. Deep Learning</h2>
+
+        <div class="card">
+          <div class="highlight-box">
+            <span class="box-label">Definition</span>
+            <p style="margin:0"><span class="key-term" data-tooltip="A type of Machine Learning that uses neural networks with multiple layers to learn complex patterns from large amounts of data.">Deep Learning (DL)</span> is a type of Machine Learning that uses neural networks with multiple layers to learn complex patterns from large amounts of data.</p>
+          </div>
+          <p>Deep learning shines when the data is large and the patterns are complex &mdash; for example, an image goes into a deep learning model and comes out as a recognized face.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">4. AI vs. ML vs. DL</h2>
+
+        <div class="card">
+          <p>A simple way to keep the three apart is the <strong>&ldquo;brain&rdquo; analogy</strong>:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Concept</th><th>Analogy</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>AI</strong></td><td>The whole brain &mdash; the entire field of creating intelligent systems.</td></tr>
+                <tr><td><strong>Machine Learning</strong></td><td>Teaching the brain to learn from experience.</td></tr>
+                <tr><td><strong>Deep Learning</strong></td><td>Teaching the brain by showing it lots and lots of examples.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>In other words: <strong>Deep Learning is a subset of Machine Learning, and Machine Learning is a subset of Artificial Intelligence.</strong></p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5. Types of Machine Learning</h2>
+
+        <div class="card">
+          <p>Machine learning is commonly divided into three types, depending on how the model learns:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Type</th><th>How it learns</th><th>Typical tasks</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Supervised Learning</strong></td><td>Learns from labeled data</td><td>Regression, classification</td></tr>
+                <tr><td><strong>Unsupervised Learning</strong></td><td>Finds hidden patterns or groups in data</td><td>Clustering, dimensionality reduction</td></tr>
+                <tr><td><strong>Reinforcement Learning</strong></td><td>Learns through trial and error to maximize reward</td><td>Decision-making agents</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5.1 Supervised Learning</h2>
+
+        <div class="card">
+          <p>In <strong>supervised learning</strong>, the model learns from <strong>labeled data</strong> &mdash; examples that already have the correct answer attached.</p>
+          <div class="example-box">
+            <span class="box-label">Water example</span>
+            <p style="margin:0">Predicting river stage from temperature, rainfall, soil moisture and evaporation.</p>
+          </div>
+          <p>Supervised learning covers two kinds of tasks:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Task</th><th>What it predicts</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Regression</strong></td><td>A continuous numerical value</td><td>Predicting river stage = 5.8 m</td></tr>
+                <tr><td><strong>Classification</strong></td><td>A category or class</td><td>Flood risk = Low, Medium or High</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5.2 Supervised Learning: common algorithms</h2>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Algorithm</th><th>What it does</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Linear Regression</strong></td><td>Predicts numerical values</td></tr>
+                <tr><td><strong>Logistic Regression</strong></td><td>Predicts categories</td></tr>
+                <tr><td><strong>Decision Tree</strong></td><td>Makes decisions using a tree structure</td></tr>
+                <tr><td><strong>Random Forest</strong></td><td>Uses many decision trees together</td></tr>
+                <tr><td><strong>KNN (K-Nearest Neighbors)</strong></td><td>Predicts using similar data points</td></tr>
+                <tr><td><strong>SVM (Support Vector Machine)</strong></td><td>Separates data into classes</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5.3 Unsupervised Learning</h2>
+
+        <div class="card">
+          <p>In <strong>unsupervised learning</strong>, the model finds <strong>hidden patterns or groups</strong> in data &mdash; there are no predefined labels to learn from.</p>
+          <div class="example-box">
+            <span class="box-label">Water example</span>
+            <p style="margin:0">Grouping areas based on similar rainfall or temperature patterns.</p>
+          </div>
+          <p>Unsupervised learning covers two kinds of tasks:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Task</th><th>What it does</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Clustering</strong></td><td>Groups similar data points together without predefined labels</td><td>Grouping areas with similar rainfall patterns</td></tr>
+                <tr><td><strong>Dimensionality Reduction</strong></td><td>Reduces the number of variables while keeping the most important information</td><td>Reducing 20 climate variables to 3 important ones</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5.4 Unsupervised Learning: common algorithms</h2>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Algorithm</th><th>What it does</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>K-Means Clustering</strong></td><td>Groups similar data</td></tr>
+                <tr><td><strong>Hierarchical Clustering</strong></td><td>Creates groups in a hierarchy</td></tr>
+                <tr><td><strong>DBSCAN</strong></td><td>Finds natural groups and unusual points</td></tr>
+                <tr><td><strong>PCA (Principal Component Analysis)</strong></td><td>Reduces many variables into fewer important variables</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="example-box">
+            <span class="box-label">Water example</span>
+            <p style="margin:0">Rainfall + temperature + soil moisture &rarr; ML &rarr; similar climate groups.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5.5 Reinforcement Learning</h2>
+
+        <div class="card">
+          <div class="highlight-box">
+            <span class="box-label">Definition</span>
+            <p style="margin:0"><span class="key-term" data-tooltip="A branch of machine learning in which an AI agent learns to make optimal decisions through trial and error to maximize cumulative reward.">Reinforcement learning</span> is a branch of machine learning in which an AI agent learns to make optimal decisions through trial and error to maximize cumulative reward.</p>
+          </div>
+          <p>The agent is rewarded for good actions and penalized for bad ones:</p>
+          <ul>
+            <li>Correctly stops at a red light &rarr; reward.</li>
+            <li>Makes a wrong move &rarr; penalty.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5.6 Reinforcement Learning: common algorithms</h2>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Algorithm</th><th>What it does</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Q-Learning</strong></td><td>Learns the best action through rewards</td></tr>
+                <tr><td><strong>SARSA</strong></td><td>Learns from actions and their rewards</td></tr>
+                <tr><td><strong>DQN (Deep Q-Network)</strong></td><td>Uses deep learning for decision-making</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="example-box">
+            <span class="box-label">Example</span>
+            <p style="margin:0">Robot &rarr; action &rarr; reward / penalty &rarr; learns the best action.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">6. Types of Deep Learning</h2>
+
+        <div class="card">
+          <p>Deep learning architectures are specialized for different kinds of data:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Architecture</th><th>What it learns</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>ANN &mdash; Artificial Neural Network</strong></td><td>Learns patterns from data to make predictions</td><td>Predicting house prices from area, number of rooms and location</td></tr>
+                <tr><td><strong>CNN &mdash; Convolutional Neural Network</strong></td><td>Learns from images and recognizes objects or patterns</td><td>Identifying whether an image contains a cat or a dog</td></tr>
+                <tr><td><strong>RNN &mdash; Recurrent Neural Network</strong></td><td>Learns from data that comes in sequence</td><td>Predicting tomorrow&rsquo;s temperature using previous days&rsquo; temperatures</td></tr>
+                <tr><td><strong>LSTM &mdash; Long Short-Term Memory</strong></td><td>Learns from sequences while remembering important past information</td><td>Predicting river stage using previous river stages, rainfall, temperature and soil moisture</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">Which model for which problem?</h2>
+
+        <div class="card">
+          <div class="example-box">
+            <span class="box-label">Classroom activity</span>
+            <p style="margin:0">For each water problem below, name the ML or DL approach you would reach for first.</p>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">1. You want to predict river stage (a continuous value) from temperature, rainfall, soil moisture and evaporation.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>Supervised learning &mdash; regression</strong> (e.g. linear regression or a neural network), because the target is a continuous numerical value.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">2. You want to label flood risk as Low, Medium or High from historical records.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>Supervised learning &mdash; classification</strong> (e.g. logistic regression, decision tree, random forest, KNN or SVM), because the target is a category.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">3. You want to group areas with similar rainfall and temperature patterns, with no predefined labels.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>Unsupervised learning &mdash; clustering</strong> (e.g. K-Means, hierarchical clustering or DBSCAN).</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">4. You have 20 climate variables and want to keep only the 3 most important ones.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>Dimensionality reduction</strong> &mdash; e.g. <strong>PCA</strong> (Principal Component Analysis).</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">5. You want to predict tomorrow&rsquo;s temperature from the previous days&rsquo; temperatures.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>RNN</strong> &mdash; recurrent neural networks learn from sequential data.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">6. You want to predict river stage using previous river stages, rainfall, temperature and soil moisture, remembering important past information.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer><strong>LSTM</strong> &mdash; Long Short-Term Memory networks learn from sequences while remembering important past information.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">Key takeaways</h2>
+        <div class="key-takeaways">
+          <ul>
+            <li><strong>AI</strong> is the field of creating computer systems that perform tasks requiring human-like abilities &mdash; learning, reasoning, perception and decision-making.</li>
+            <li><strong>Machine Learning</strong> is a type of AI that learns from data without being programmed for every task; <strong>Deep Learning</strong> is a type of ML that uses multi-layer neural networks on large datasets.</li>
+            <li>Remember the analogy: <strong>AI = whole brain, ML = teaching the brain from experience, DL = teaching the brain with lots of examples</strong>.</li>
+            <li>Three types of ML: <strong>supervised</strong> (labeled data &mdash; regression, classification), <strong>unsupervised</strong> (hidden patterns &mdash; clustering, dimensionality reduction) and <strong>reinforcement</strong> (trial and error with rewards and penalties).</li>
+            <li>Four DL architectures: <strong>ANN</strong> (general predictions), <strong>CNN</strong> (images), <strong>RNN</strong> (sequences) and <strong>LSTM</strong> (sequences with memory).</li>
+            <li>Water applications run through the whole stack: river stage prediction (regression), flood risk (classification), climate grouping (clustering) and streamflow forecasting (LSTM).</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block" id="reading">
+        <h2 class="section-title">Reading</h2>
+        <div class="card">
+          <ul class="resource-list">
+            <li><a href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/" target="_blank" rel="noopener">Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow &mdash; Aur&eacute;lien G&eacute;ron (O&rsquo;Reilly)</a> &mdash; the reference text for the machine learning part of this course.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block" id="assignment">
+        <h2 class="section-title">Homework</h2>
+        <div class="assignment-box">
+          <p style="margin-top:0">Answer the following:</p>
+          <ol>
+            <li>Explain, in your own words, the difference between Artificial Intelligence, Machine Learning and Deep Learning, using the &ldquo;brain&rdquo; analogy.</li>
+            <li>For each of the following tasks, state whether you would use supervised, unsupervised or reinforcement learning, and name one suitable algorithm: (a) predicting river stage from rainfall and temperature; (b) grouping catchments with similar hydrological behavior; (c) training an agent to operate a reservoir gate to minimize flood risk.</li>
+            <li>Give one water-related example each for regression, classification, clustering and dimensionality reduction.</li>
+            <li>Explain why an LSTM would be a better choice than a plain ANN for predicting river stage from a time series of previous stages, rainfall, temperature and soil moisture.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section-block" id="quiz">
+        <div class="card">
+          <h2 class="section-title">Quick Quiz</h2>
+          <p>Test yourself on this lecture. Select an answer for each question, then click <strong>Check my answers</strong> to reveal the key and your score.</p>
+
+          <div class="quiz" data-quiz>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! AI creates computer systems that perform tasks requiring human-like abilities."
+                 data-feedback-incorrect="AI is the field of creating computer systems that perform tasks requiring human-like abilities such as learning, reasoning, perception and decision-making."
+                 data-feedback-unanswered="AI = human-like abilities in computer systems.">
+              <p class="quiz-q">1. Artificial Intelligence is best described as:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">A database system for storing large amounts of water data</button>
+                <button class="quiz-option" data-correct="true">Creating computer systems that perform tasks requiring human-like abilities</button>
+                <button class="quiz-option">A programming language used for hydrological modeling</button>
+                <button class="quiz-option">A type of satellite used for remote sensing</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! ML allows computers to learn from data and make predictions without being directly programmed for every task."
+                 data-feedback-incorrect="ML is a type of AI that learns from data and makes predictions without being directly programmed for every task."
+                 data-feedback-unanswered="ML = learning from data.">
+              <p class="quiz-q">2. Machine Learning is a type of AI that:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Requires every rule to be programmed explicitly by a developer</button>
+                <button class="quiz-option">Only works with labeled image data</button>
+                <button class="quiz-option" data-correct="true">Allows computers to learn from data and make predictions without being directly programmed for every task</button>
+                <button class="quiz-option">Replaces all statistical methods in hydrology</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Deep Learning uses neural networks with multiple layers to learn complex patterns from large amounts of data."
+                 data-feedback-incorrect="Deep Learning is a type of ML that uses neural networks with multiple layers on large amounts of data."
+                 data-feedback-unanswered="DL = multi-layer neural networks.">
+              <p class="quiz-q">3. Deep Learning is a type of Machine Learning that:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Uses a single decision tree to classify data</button>
+                <button class="quiz-option" data-correct="true">Uses neural networks with multiple layers to learn complex patterns from large amounts of data</button>
+                <button class="quiz-option">Groups data points using distance measures only</button>
+                <button class="quiz-option">Learns only from labeled satellite images</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! DL is a subset of ML, and ML is a subset of AI."
+                 data-feedback-incorrect="The correct order is: Deep Learning is a subset of Machine Learning, which is a subset of Artificial Intelligence."
+                 data-feedback-unanswered="DL ⊂ ML ⊂ AI.">
+              <p class="quiz-q">4. Which statement correctly describes the relationship between AI, ML and DL?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">AI is a subset of ML, and ML is a subset of DL</button>
+                <button class="quiz-option">ML, DL and AI are three completely separate fields</button>
+                <button class="quiz-option" data-correct="true">DL is a subset of ML, and ML is a subset of AI</button>
+                <button class="quiz-option">DL and ML are subsets of AI, but they never overlap</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! In supervised learning the model learns from labeled data."
+                 data-feedback-incorrect="Supervised learning means the model learns from labeled data."
+                 data-feedback-unanswered="Supervised = labeled data.">
+              <p class="quiz-q">5. In supervised learning, the model:</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="true">Learns from labeled data</button>
+                <button class="quiz-option">Finds hidden groups in unlabeled data</button>
+                <button class="quiz-option">Learns through trial and error with rewards and penalties</button>
+                <button class="quiz-option">Reduces the number of variables in the dataset</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Predicting a continuous value like river stage = 5.8 m is regression."
+                 data-feedback-incorrect="Predicting a continuous numerical value is regression; predicting a category is classification."
+                 data-feedback-unanswered="Continuous value = regression.">
+              <p class="quiz-q">6. Predicting river stage as a continuous value (e.g. 5.8 m) is an example of:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Classification</button>
+                <button class="quiz-option" data-correct="true">Regression</button>
+                <button class="quiz-option">Clustering</button>
+                <button class="quiz-option">Dimensionality reduction</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Grouping areas with similar rainfall patterns without predefined labels is clustering, an unsupervised task."
+                 data-feedback-incorrect="Grouping similar data points without predefined labels is clustering, an unsupervised learning task."
+                 data-feedback-unanswered="Grouping without labels = clustering.">
+              <p class="quiz-q">7. Grouping areas with similar rainfall patterns, without predefined labels, is an example of:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Supervised classification</button>
+                <button class="quiz-option">Regression</button>
+                <button class="quiz-option" data-correct="true">Clustering</button>
+                <button class="quiz-option">Reinforcement learning</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! PCA reduces many variables into fewer important variables."
+                 data-feedback-incorrect="PCA (Principal Component Analysis) reduces many variables into fewer important variables."
+                 data-feedback-unanswered="PCA = dimensionality reduction.">
+              <p class="quiz-q">8. Reducing 20 climate variables to 3 important ones is best done with:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">K-Means Clustering</button>
+                <button class="quiz-option">Decision Tree</button>
+                <button class="quiz-option">KNN (K-Nearest Neighbors)</button>
+                <button class="quiz-option" data-correct="true">PCA (Principal Component Analysis)</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Reinforcement learning uses trial and error to maximize cumulative reward."
+                 data-feedback-incorrect="Reinforcement learning is trial and error to maximize cumulative reward, with rewards for good actions and penalties for bad ones."
+                 data-feedback-unanswered="Reinforcement = trial and error + rewards.">
+              <p class="quiz-q">9. An AI agent that learns to make optimal decisions through trial and error, maximizing cumulative reward, uses:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Supervised learning</button>
+                <button class="quiz-option">Unsupervised learning</button>
+                <button class="quiz-option" data-correct="true">Reinforcement learning</button>
+                <button class="quiz-option">Dimensionality reduction</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! CNN (Convolutional Neural Network) learns from images and recognizes objects or patterns."
+                 data-feedback-incorrect="CNNs are designed for images; RNNs and LSTMs handle sequences."
+                 data-feedback-unanswered="CNN = image recognition.">
+              <p class="quiz-q">10. Which deep learning architecture is best suited to recognizing objects in images (e.g. identifying whether an image contains a cat or a dog)?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">RNN (Recurrent Neural Network)</button>
+                <button class="quiz-option" data-correct="true">CNN (Convolutional Neural Network)</button>
+                <button class="quiz-option">LSTM (Long Short-Term Memory)</button>
+                <button class="quiz-option">Q-Learning</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-actions">
+              <button class="btn btn-blue" data-check>Check my answers</button>
+              <button class="btn btn-ghost-dark" data-reset>Try again</button>
+            </div>
+
+            <div class="score-banner" data-score-banner hidden>
+              <span>Your score: <span data-score>0</span> / <span data-total>10</span></span>
+              <span class="score-note">The key is shown above &mdash; correct answers are highlighted in green.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Hydroinformatics</h4>
+          <p style="margin:0">Lecture materials for Hydroinformatics: Data Management and Analysis, taught by Dr. Arjumand Zehra Zaidi. Guest lecture by Ms. Rubab (IWRM).</p>
+        </div>
+        <div>
+          <h4>Course</h4>
+          <ul>
+            <li><a href="../index.html">All lectures</a></li>
+            <li><a href="#reading">Reading material</a></li>
+            <li><a href="#assignment">Assignment</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Instructor</h4>
+          <ul>
+            <li><a href="https://water.muet.edu.pk/faculty/dr-arjumand-zehra-zaidi" target="_blank" rel="noopener">Faculty profile</a></li>
+            <li><a href="https://arjzaidi.wordpress.com" target="_blank" rel="noopener">Teaching site</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; Dr. Arjumand Zehra Zaidi &middot; US-Pakistan Center for Advanced Studies in Water, Mehran University of Engineering &amp; Technology, Jamshoro
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/quiz.js" defer></script>
+</body>
+</html>
