@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 8: Runoff Models | Hydroinformatics</title>
+  <meta name="description" content="Lecture 8 &mdash; Runoff Models: peak runoff models (Rational Method) and continuous runoff models, the NRCS Curve Number method, hydrologic soil groups, antecedent moisture conditions and the time-area method. HID-661, Dr. Arjumand Zehra Zaidi, USPCAS-W, MUET Jamshoro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../../index.html">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>
+        <span class="brand-text">
+          <strong>Hydroinformatics</strong>
+          <small>USPCAS-W &middot; MUET Jamshoro</small>
+        </span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">All Lectures</a>
+        <a href="#reading">Reading</a>
+        <a href="#assignment">Assignment</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container back-nav">
+      <a class="back-link" href="../index.html">&larr; Back to Hydroinformatics</a>
+    </div>
+    <section class="hero">
+      <div class="container">
+        <p class="hero-kicker">Lecture 8 &middot; HID-661 &middot; Fall 2026</p>
+        <h1>Runoff Models</h1>
+        <p class="hero-sub">Hydroinformatics: Data Management and Analysis &mdash; USPCAS-W, Mehran University of Engineering &amp; Technology, Jamshoro</p>
+        <div class="hero-meta">
+          <span class="chip">Watershed modeling</span>
+          <span class="chip">Formulas &amp; worked example</span>
+          <span class="chip">Interactive quiz included</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="../../../assets/downloads/lecture-08-runoff-models.pdf">Download PDF</a>
+          <a class="btn btn-ghost" href="../../../assets/downloads/lecture-08-runoff-models.pptx">Download PPTX</a>
+        </div>
+      </div>
+      <div class="hero-wave"><svg viewBox="0 0 1440 46" preserveAspectRatio="none"><path fill="#f4f9fd" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,24 L1440,46 L0,46 Z"/></svg></div>
+    </section>
+
+    <div class="container">
+
+      <section class="card at-a-glance">
+        <h2 class="section-title">In this lecture</h2>
+        <ol>
+          <li>Two families of runoff models &mdash; peak runoff models and continuous runoff models</li>
+          <li>The Rational Method &mdash; assumptions, the peak-discharge formula and the runoff coefficient</li>
+          <li>The weighted runoff coefficient for a non-homogeneous area</li>
+          <li>The NRCS Curve Number method &mdash; the rainfall&ndash;runoff equation, S and initial abstraction</li>
+          <li>Hydrologic soil groups, antecedent moisture conditions, and the composite curve number</li>
+          <li>Continuous runoff models &mdash; the time-area method and isochrones, and unit hydrograph techniques</li>
+          <li>Flood hydrographs and the 2013 Sindh floods</li>
+        </ol>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">1. Two families of runoff models</h2>
+
+        <div class="card">
+          <p>Runoff models estimate the streamflow a watershed will produce. They fall into two broad families, depending on what they predict:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Family</th><th>What it provides</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Peak runoff models</strong></td><td>Provide only estimates of <strong>peak discharge</strong> from the watershed.</td></tr>
+                <tr><td><strong>Continuous runoff models</strong></td><td>Provide <strong>storm hydrographs</strong> for a given rainfall hyetograph &mdash; an estimate of runoff versus time.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="highlight-box">
+            <span class="box-label">Remember</span>
+            <p style="margin:0">A peak runoff model answers &ldquo;how high will the flood peak be?&rdquo; A continuous runoff model answers &ldquo;what will the whole hydrograph look like, and when?&rdquo;</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">2. Peak runoff models &mdash; the Rational Method</h2>
+
+        <div class="card">
+          <p>The <span class="key-term" data-tooltip="A deterministic, lumped peak-discharge model, also known as the Lloyd-Davies method, dating from around 1850.">Rational Method</span> is a deterministic, lumped model &mdash; also called the Lloyd-Davies method (circa 1850). It estimates the peak discharge from a small catchment.</p>
+
+          <h3>Assumptions</h3>
+          <ul>
+            <li>The catchment is <strong>small</strong> (less than about 200 acres).</li>
+            <li>The catchment is <strong>concentrated</strong> &mdash; that is, rainfall duration is longer than or at least equal to the time of concentration of the watershed.</li>
+            <li>Rainfall <strong>intensity is uniform</strong> over the area of study.</li>
+            <li>The runoff coefficient is a catch-all coefficient that incorporates all losses of the catchment.</li>
+          </ul>
+
+          <h3>The Rational Method formula</h3>
+          <div class="highlight-box">
+            <span class="box-label">Formula</span>
+            <p style="margin:0">Q<sub>p</sub> = C &middot; I<sub>i</sub> &middot; A</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Symbol</th><th>Meaning</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Q<sub>p</sub></strong></td><td>Peak discharge (cfs).</td></tr>
+                <tr><td><strong>C</strong></td><td>Runoff coefficient &mdash; a function of soil type, land use/cover and watershed slope. It is the ratio of the total runoff rate to the precipitation, and is dimensionless.</td></tr>
+                <tr><td><strong>I<sub>i</sub></strong></td><td>Average rainfall intensity (in/hr) for a storm duration equal to the time of concentration, T<sub>c</sub>.</td></tr>
+                <tr><td><strong>A</strong></td><td>Area (acre).</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="assignment-note">The rainfall intensity for a given duration and return period is read from intensity&ndash;duration&ndash;frequency (IDF) curves. Runoff coefficients can be looked up in the standard references (e.g. Bedient Table 6-5, McCuen).</p>
+
+          <h3>Runoff coefficient &mdash; key details of the reference table</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Parameter</th><th>Covered values</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Land use / cover</strong></td><td>Agricultural, residential, commercial, industrial, or open/natural covers such as grasslands and forests.</td></tr>
+                <tr><td><strong>Hydrologic soil groups (A, B, C, D)</strong></td><td>Soils classified by infiltration and transmission rates &mdash; from high-infiltration sands and gravels (Group A) to low-infiltration clays (Group D).</td></tr>
+                <tr><td><strong>Slope ranges</strong></td><td>General gradient classes (flat, rolling, steep) that affect the velocity and volume of surface runoff.</td></tr>
+                <tr><td><strong>Application</strong></td><td>The table values are empirical runoff coefficients (C) used in peak-discharge equations.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Runoff coefficient for a non-homogeneous area</h3>
+          <p>When a drainage basin has different runoff potentials, it is subdivided and a <strong>weighted runoff coefficient</strong> is computed based on the area of each land use:</p>
+          <div class="highlight-box">
+            <span class="box-label">Formula</span>
+            <p style="margin:0">C<sub>w</sub> = &Sigma;<sub>j=1</sub><sup>n</sup> (C<sub>j</sub> &middot; A<sub>j</sub>) / &Sigma;<sub>j=1</sub><sup>n</sup> A<sub>j</sub></p>
+          </div>
+          <p>C reflects the effect of land use, soil and slope on runoff potential, assuming the watershed is homogeneous. If the drainage basin has different runoff potentials, it is subdivided and each part is weighted by its area.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">3. The NRCS Curve Number method</h2>
+
+        <div class="card">
+          <p>The <span class="key-term" data-tooltip="Developed by the USDA Soil Conservation Service (now the Natural Resources Conservation Service) to estimate runoff depth from a 24-hour storm.">NRCS Curve Number method</span> was developed by the USA Soil Conservation Service (now the Natural Resources Conservation Service, NRCS) of the USDA to predict peak discharge due to a 24-hour storm event.</p>
+          <ul>
+            <li>It uses <strong>empirically derived relationships</strong> that combine precipitation, land cover, hydrologic soil group and watershed characteristics to estimate <strong>runoff depth</strong>.</li>
+            <li>When combined with a unit hydrograph method, it can also be used to estimate peak discharge and runoff hydrographs.</li>
+            <li>It is a more sophisticated approach than the Rational Method, and can be used for drainage areas up to about 2,000 acres.</li>
+          </ul>
+
+          <h3>The curve number</h3>
+          <p>The <strong>curve number (CN)</strong> is a coefficient that reduces the total precipitation to runoff potential, after &ldquo;losses&rdquo;:</p>
+          <ul>
+            <li>Evaporation, absorption and transpiration</li>
+            <li>Surface storage</li>
+          </ul>
+          <ul>
+            <li>The <strong>higher the CN value, the higher the runoff potential</strong>.</li>
+            <li>It is essential to use the CN value that best mimics the ground-cover type and hydrologic condition.</li>
+            <li>A CN of <strong>100</strong> is used for permanent water surfaces such as lakes and ponds.</li>
+          </ul>
+
+          <h3>The NRCS rainfall&ndash;runoff equation</h3>
+          <div class="highlight-box">
+            <span class="box-label">Equation 1</span>
+            <p style="margin:0">Q = (P &minus; I<sub>a</sub>)&sup2; / [ (P &minus; I<sub>a</sub>) &plus; S ]</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Symbol</th><th>Meaning</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Q</strong></td><td>Accumulated direct runoff (inches or mm).</td></tr>
+                <tr><td><strong>P</strong></td><td>Accumulated rainfall &mdash; the potential maximum runoff (inches or mm).</td></tr>
+                <tr><td><strong>I<sub>a</sub></strong></td><td>Initial abstraction &mdash; surface storage, interception, evaporation and infiltration prior to any runoff occurring (inches or mm).</td></tr>
+                <tr><td><strong>S</strong></td><td>Potential maximum soil-moisture retention after runoff begins (inches or mm).</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="warning-box">
+            <span class="box-label">Important</span>
+            <p style="margin:0">For P &le; I<sub>a</sub>, Q = 0. If (P &minus; I<sub>a</sub>) is negative, there is no runoff.</p>
+          </div>
+
+          <h3>Potential maximum retention (S)</h3>
+          <p>S is calculated from the curve number:</p>
+          <div class="highlight-box">
+            <span class="box-label">Equation 2</span>
+            <p style="margin:0">S = (z / CN) &minus; z &nbsp;&nbsp; where z = 10 for English units, or 254 for metric units, and CN = runoff curve number (0&ndash;100).</p>
+          </div>
+          <p>Generally the initial abstraction is estimated as:</p>
+          <div class="highlight-box">
+            <span class="box-label">Equation 3</span>
+            <p style="margin:0">I<sub>a</sub> = 0.2 S</p>
+          </div>
+          <p>Substituting Equation 3 into Equation 1 gives the commonly used form:</p>
+          <div class="highlight-box">
+            <span class="box-label">Equation 4</span>
+            <p style="margin:0">Q = (P &minus; 0.2 S)&sup2; / (P &plus; 0.8 S)</p>
+          </div>
+          <p class="assignment-note">Equation 2 was developed mainly for small watersheds from recorded storm data that included total daily rainfall but not its distribution over time. The method is therefore appropriate for estimating direct runoff from 24-hour or one-day storm rainfall.</p>
+
+          <h3>Curve number &mdash; what controls it</h3>
+          <p>The principal physical watershed characteristics affecting the relationship between rainfall and runoff are:</p>
+          <ul>
+            <li>Land use and land treatment</li>
+            <li>Soil types</li>
+            <li>Land slope</li>
+          </ul>
+          <p>The NRCS method uses a combination of soil conditions and land uses (ground cover) to assign a runoff factor to an area (CN). Soils have differing rates of infiltration, so the NRCS divides them into four <strong>hydrologic soil groups</strong>.</p>
+
+          <h3>Hydrologic soil groups</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Group</th><th>Infiltration &amp; runoff</th><th>Typical soils</th><th>Infiltration rate (wet)</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>A</strong></td><td>High infiltration (low runoff)</td><td>Sand, loamy sand, or sandy loam</td><td>&gt; 0.3 in/hr</td></tr>
+                <tr><td><strong>B</strong></td><td>Moderate infiltration (moderate runoff)</td><td>Silt loam or loam</td><td>0.15 &ndash; 0.3 in/hr</td></tr>
+                <tr><td><strong>C</strong></td><td>Low infiltration (moderate to high runoff)</td><td>Sandy clay loam</td><td>0.05 &ndash; 0.15 in/hr</td></tr>
+                <tr><td><strong>D</strong></td><td>Very low infiltration (high runoff)</td><td>Clay loam, silty clay loam, sandy clay, silty clay, or clay</td><td>0 &ndash; 0.05 in/hr</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <ul>
+            <li><strong>Effects of urbanization:</strong> consider the effect of urbanization on the natural hydrologic soil group. For compacted soil, make appropriate changes to the selected soil group.</li>
+          </ul>
+
+          <h3>Antecedent moisture conditions (AMC)</h3>
+          <p><span class="key-term" data-tooltip="The relative moisture of the pervious surfaces before the rainfall event — also called the antecedent runoff condition (ARC).">Antecedent moisture</span> is the preceding relative moisture of the pervious surfaces prior to the rainfall event:</p>
+          <ul>
+            <li><strong>Low</strong> when there has been little preceding rainfall.</li>
+            <li><strong>High</strong> when there has been considerable preceding rainfall.</li>
+          </ul>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Class</th><th>Condition</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>AMC I</strong></td><td>Dry</td></tr>
+                <tr><td><strong>AMC II</strong></td><td>Average &mdash; recommended for most hydrologic analysis</td></tr>
+                <tr><td><strong>AMC III</strong></td><td>Wet &mdash; may be used for areas with high water-table conditions</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Composite curve number</h3>
+          <p>When a drainage area has more than one land use, the area is treated as a single uniform land use represented by the <strong>composite curve number</strong>, calculated by the weighted method:</p>
+          <div class="highlight-box">
+            <span class="box-label">Formula</span>
+            <p style="margin:0">CN<sub>composite</sub> = &Sigma; (CN<sub>j</sub> &middot; A<sub>j</sub>) / &Sigma; A<sub>j</sub></p>
+          </div>
+
+          <h3>Worked example</h3>
+          <div class="example-box">
+            <span class="box-label">Problem</span>
+            <p style="margin:0">A 100-acre catchment has a curve number CN = 75. A storm delivers P = 4.0 inches of rain under average moisture conditions (AMC II). Estimate the direct runoff Q using the NRCS Curve Number method.</p>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">Step 1 &mdash; Compute the potential maximum retention S.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>S = (1000 / CN) &minus; 10 = (1000 / 75) &minus; 10 = 13.33 &minus; 10 = <strong>3.33 inches</strong>.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">Step 2 &mdash; Compute the initial abstraction I<sub>a</sub>.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>I<sub>a</sub> = 0.2 S = 0.2 &times; 3.33 = <strong>0.67 inches</strong>. Since P = 4.0 in &gt; I<sub>a</sub>, runoff occurs.</div>
+          </div>
+          <div class="reveal-item" data-reveal>
+            <p class="reveal-question">Step 3 &mdash; Compute the direct runoff Q.</p>
+            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
+            <div class="reveal-answer" data-reveal-answer>Q = (P &minus; 0.2S)&sup2; / (P &plus; 0.8S) = (4.0 &minus; 0.67)&sup2; / (4.0 &plus; 0.8&times;3.33) = (3.33)&sup2; / (4.0 &plus; 2.67) = 11.11 / 6.67 = <strong>&asymp; 1.67 inches</strong> of direct runoff.</div>
+          </div>
+          <p class="assignment-note">Only about 1.67 of the 4.0 inches becomes direct runoff &mdash; the rest is abstracted by interception, surface storage, evaporation and infiltration. Repeating the calculation with a higher CN (say 90) would give a much larger Q for the same rainfall.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">4. Continuous runoff models</h2>
+
+        <div class="card">
+          <p>Continuous runoff models produce a full hydrograph rather than a single peak value. The lecture covers the time-area method and unit hydrograph techniques.</p>
+
+          <h3>The time-area method</h3>
+          <ul>
+            <li>Developed to address <strong>non-uniform rainfall over large areas</strong>.</li>
+            <li>Converts rainfall excess into a hydrograph using the concept of a <strong>time-area histogram</strong>.</li>
+            <li>Assumes the outflow hydrograph results from <strong>pure translation</strong> of direct runoff to the outlet at uniform velocity, <strong>ignoring any storage effects</strong> in the watershed.</li>
+            <li>The watershed is divided into subareas with distinct runoff translation times to the outlet.</li>
+            <li>Subareas are delineated with <span class="key-term" data-tooltip="A line on a map or diagram connecting places from which it takes the same time to travel to a certain point — here, equal travel time to the outlet.">isochrones</span> of equal translation time, numbered upstream from the outlet.</li>
+          </ul>
+
+          <h3>Unit hydrograph techniques</h3>
+          <ul>
+            <li>A <strong>unit hydrograph</strong> is the direct-runoff hydrograph produced by one unit of rainfall excess (for example, 1 inch or 1 cm) falling uniformly over the catchment in a specified duration.</li>
+            <li>Once the unit hydrograph is known, it can be scaled and combined to build the storm hydrograph for a rainfall of different depth or duration.</li>
+            <li>Together with the NRCS Curve Number method, unit hydrograph techniques allow the estimation of both peak discharge and the runoff hydrograph.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">5. Flood hydrographs &mdash; the 2013 Sindh floods</h2>
+
+        <div class="card">
+          <p>Reading a flood hydrograph comes down to three things &mdash; <strong>peak, timing and volume</strong> &mdash; all of which matter for design and for issuing warnings.</p>
+          <div class="diagram">Discharge
+   ^
+   |            ,-.
+   |          ,'   `.
+   |        ,'       `---..__
+   |      ,'
+   |____,'_______________________> Time
+        rising   peak   recession
+        limb</div>
+          <div class="example-box">
+            <span class="box-label">Case study</span>
+            <p style="margin:0">The <strong>2013 floods in Sindh</strong> illustrate how a large volume of rainfall translated into a broad, damaging flood wave across the lower Indus plain &mdash; a reminder that peak timing and volume depend on both watershed and storm conditions.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">Key takeaways</h2>
+        <div class="key-takeaways">
+          <ul>
+            <li>Runoff models fall into two families: <strong>peak runoff models</strong> (peak discharge only) and <strong>continuous runoff models</strong> (a full runoff versus time hydrograph).</li>
+            <li>The <strong>Rational Method</strong> Q<sub>p</sub> = C&middot;I<sub>i</sub>&middot;A is a lumped peak-discharge model for small, concentrated catchments &mdash; it estimates peak flow, not event volume.</li>
+            <li>The runoff coefficient <strong>C</strong> captures soil, land use/cover and slope; a non-homogeneous area needs a <strong>weighted C</strong> by area.</li>
+            <li>The <strong>NRCS Curve Number</strong> method estimates event runoff depth from Q = (P &minus; 0.2S)&sup2; / (P + 0.8S), with S = (z / CN) &minus; z.</li>
+            <li>The <strong>higher the CN, the higher the runoff potential</strong>; CN depends on land use, soil (hydrologic soil group A&ndash;D), slope and antecedent moisture (AMC I/II/III).</li>
+            <li>Multiple land uses are combined into a <strong>composite CN</strong>; the same weighting idea applies to the Rational method&rsquo;s runoff coefficient.</li>
+            <li><strong>Continuous models</strong> &mdash; the time-area method (isochrones, pure translation, no storage) and unit hydrograph techniques &mdash; turn rainfall excess into a hydrograph.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block" id="reading">
+        <h2 class="section-title">Reading</h2>
+        <div class="card">
+          <ul class="resource-list">
+            <li><a href="http://www.ctre.iastate.edu/pubs/stormwater/documents/2C-5NRCSTR-55Methodology.pdf" target="_blank" rel="noopener">NRCS TR-55 Methodology &mdash; Urban Hydrology for Small Watersheds (Iowa State CTRE)</a> &mdash; the Curve Number rainfall&ndash;runoff method and soil groups.</li>
+            <li><a href="http://njscdea.ncdea.org/CurveNumbers.pdf" target="_blank" rel="noopener">Curve Numbers &mdash; NJSCDEA</a> &mdash; curve number tables and worked examples.</li>
+            <li><a href="https://www.hec.usace.army.mil/software/hec-hms/" target="_blank" rel="noopener">HEC-HMS &mdash; Hydrologic Modeling System (US Army Corps of Engineers)</a> &mdash; tools for continuous rainfall&ndash;runoff modeling.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block" id="assignment">
+        <h2 class="section-title">Homework</h2>
+        <div class="assignment-box">
+          <p style="margin-top:0">Answer the following:</p>
+          <ol>
+            <li>Distinguish between peak runoff models and continuous runoff models, and give one situation in which each would be appropriate.</li>
+            <li>State the four assumptions of the Rational Method and explain why the method should not be used for a large catchment or where event volume is required.</li>
+            <li>Explain what the runoff coefficient C represents, and show how a weighted runoff coefficient is computed for a catchment with two land uses.</li>
+            <li>A catchment has CN = 80 and receives P = 5.0 inches under AMC II. Compute S, I<sub>a</sub> and the direct runoff Q using the NRCS equations.</li>
+            <li>Explain how the hydrologic soil groups (A&ndash;D) and the antecedent moisture conditions (AMC I, II, III) change the runoff estimated for the same storm.</li>
+            <li>Describe the time-area method and explain the role of isochrones and the assumption of pure translation without storage.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section-block" id="quiz">
+        <div class="card">
+          <h2 class="section-title">Quick Quiz</h2>
+          <p>Test yourself on this lecture. Select an answer for each question, then click <strong>Check my answers</strong> to reveal the key and your score.</p>
+
+          <div class="quiz" data-quiz>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Peak runoff models estimate only the peak discharge from the watershed."
+                 data-feedback-incorrect="Peak runoff models give only the peak discharge; continuous runoff models give the runoff-versus-time hydrograph."
+                 data-feedback-unanswered="Peak runoff models = peak discharge only.">
+              <p class="quiz-q">1. A peak runoff model provides an estimate of:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">The full runoff hydrograph versus time</button>
+                <button class="quiz-option" data-correct="true">The peak discharge from the watershed only</button>
+                <button class="quiz-option">The groundwater recharge only</button>
+                <button class="quiz-option">The annual rainfall average</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Continuous runoff models provide storm hydrographs for a given rainfall hyetograph."
+                 data-feedback-incorrect="Continuous runoff models provide an estimate of runoff versus time (a storm hydrograph) for a given rainfall hyetograph."
+                 data-feedback-unanswered="Continuous models = runoff vs time hydrograph.">
+              <p class="quiz-q">2. Continuous runoff models provide:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Only the peak discharge value</button>
+                <button class="quiz-option" data-correct="true">A runoff versus time series (storm hydrograph) for a given rainfall hyetograph</button>
+                <button class="quiz-option">The catchment boundary from a DEM</button>
+                <button class="quiz-option">The soil infiltration rate only</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The Rational Method is Qp = C·Ii·A."
+                 data-feedback-incorrect="The Rational Method formula is Qp = C·Ii·A, where Ii is the rainfall intensity and A is the area."
+                 data-feedback-unanswered="Qp = C·Ii·A.">
+              <p class="quiz-q">3. The Rational Method formula is:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Q<sub>p</sub> = C + I<sub>i</sub> + A</button>
+                <button class="quiz-option" data-correct="true">Q<sub>p</sub> = C &middot; I<sub>i</sub> &middot; A</button>
+                <button class="quiz-option">Q<sub>p</sub> = (P &minus; 0.2S)&sup2; / (P + 0.8S)</button>
+                <button class="quiz-option">Q<sub>p</sub> = CN &times; A</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The Rational Method assumes a small catchment (less than about 200 acres)."
+                 data-feedback-incorrect="The Rational Method assumes the catchment is small — less than about 200 acres."
+                 data-feedback-unanswered="Rational Method: small catchment.">
+              <p class="quiz-q">4. The Rational Method assumes the catchment is:</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="true">Small (less than about 200 acres)</button>
+                <button class="quiz-option">Larger than 2,000 acres</button>
+                <button class="quiz-option">A major river basin such as the Indus Basin</button>
+                <button class="quiz-option">Always a permanent water surface</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The weight is the area of each land use, so Cw = Σ(Cj·Aj)/ΣAj."
+                 data-feedback-incorrect="The weighted runoff coefficient weights each C by its area: Cw = Σ(Cj·Aj)/ΣAj."
+                 data-feedback-unanswered="Weighted C uses area as the weight.">
+              <p class="quiz-q">5. For a non-homogeneous catchment, the weighted runoff coefficient is computed by:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Taking the simple average of the individual C values</button>
+                <button class="quiz-option" data-correct="true">Weighting each C by the area of that land use: C<sub>w</sub> = &Sigma;(C<sub>j</sub>&middot;A<sub>j</sub>) / &Sigma;A<sub>j</sub></button>
+                <button class="quiz-option">Multiplying all C values together</button>
+                <button class="quiz-option">Using only the largest C in the catchment</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The higher the CN, the higher the runoff potential."
+                 data-feedback-incorrect="A higher curve number means a higher runoff potential."
+                 data-feedback-unanswered="Higher CN = higher runoff potential.">
+              <p class="quiz-q">6. A higher curve number (CN) means:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Lower runoff potential and more infiltration</button>
+                <button class="quiz-option" data-correct="true">Higher runoff potential</button>
+                <button class="quiz-option">No change in runoff potential</button>
+                <button class="quiz-option">The catchment has no soil losses at all</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! S = (1000/CN) − 10 = 1000/75 − 10 = 3.33 inches."
+                 data-feedback-incorrect="For CN = 75, S = (1000/75) − 10 = 3.33 inches."
+                 data-feedback-unanswered="S = (1000/CN) − 10.">
+              <p class="quiz-q">7. For CN = 75 (English units), the potential maximum retention S is:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">75 inches</button>
+                <button class="quiz-option">13.3 inches</button>
+                <button class="quiz-option" data-correct="true">3.33 inches</button>
+                <button class="quiz-option">0.75 inches</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Group A soils have high infiltration and low runoff potential; Group D soils are the opposite."
+                 data-feedback-incorrect="Group A = high infiltration / low runoff; Group D = very low infiltration / high runoff."
+                 data-feedback-unanswered="A = high infiltration; D = low infiltration.">
+              <p class="quiz-q">8. Which hydrologic soil group has the <strong>highest</strong> infiltration rate?</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="true">Group A</button>
+                <button class="quiz-option">Group B</button>
+                <button class="quiz-option">Group C</button>
+                <button class="quiz-option">Group D</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! AMC II (average moisture condition) is recommended for most hydrologic analysis."
+                 data-feedback-incorrect="AMC II — the average condition — is recommended for most hydrologic analysis."
+                 data-feedback-unanswered="Use AMC II (average) for most analysis.">
+              <p class="quiz-q">9. Which antecedent moisture condition is recommended for most hydrologic analysis?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">AMC I (dry)</button>
+                <button class="quiz-option" data-correct="true">AMC II (average)</button>
+                <button class="quiz-option">AMC III (wet)</button>
+                <button class="quiz-option">None &mdash; moisture is not considered</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! For P ≤ Ia, no runoff occurs and Q = 0."
+                 data-feedback-incorrect="When the accumulated rainfall P is less than or equal to the initial abstraction Ia, there is no runoff (Q = 0)."
+                 data-feedback-unanswered="P ≤ Ia → Q = 0.">
+              <p class="quiz-q">10. In the NRCS method, what happens when the accumulated rainfall P is less than or equal to the initial abstraction I<sub>a</sub>?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Runoff equals the full rainfall depth</button>
+                <button class="quiz-option" data-correct="true">No runoff occurs &mdash; Q = 0</button>
+                <button class="quiz-option">The curve number becomes 100</button>
+                <button class="quiz-option">The soil group changes from A to D</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-actions">
+              <button class="btn btn-blue" data-check>Check my answers</button>
+              <button class="btn btn-ghost-dark" data-reset>Try again</button>
+            </div>
+
+            <div class="score-banner" data-score-banner hidden>
+              <span>Your score: <span data-score>0</span> / <span data-total>10</span></span>
+              <span class="score-note">The key is shown above &mdash; correct answers are highlighted in green.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Hydroinformatics</h4>
+          <p style="margin:0">Lecture materials for Hydroinformatics: Data Management and Analysis, taught by Dr. Arjumand Zehra Zaidi.</p>
+        </div>
+        <div>
+          <h4>Course</h4>
+          <ul>
+            <li><a href="../index.html">All lectures</a></li>
+            <li><a href="#reading">Reading material</a></li>
+            <li><a href="#assignment">Assignment</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Instructor</h4>
+          <ul>
+            <li><a href="https://water.muet.edu.pk/faculty/dr-arjumand-zehra-zaidi" target="_blank" rel="noopener">Faculty profile</a></li>
+            <li><a href="https://arjzaidi.wordpress.com" target="_blank" rel="noopener">Teaching site</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; Dr. Arjumand Zehra Zaidi &middot; US-Pakistan Center for Advanced Studies in Water, Mehran University of Engineering &amp; Technology, Jamshoro
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/quiz.js" defer></script>
+</body>
+</html>
