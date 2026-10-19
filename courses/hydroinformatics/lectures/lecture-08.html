@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lecture 8: Runoff Models | Hydroinformatics</title>
-  <meta name="description" content="Lecture 8 &mdash; Runoff Models: peak runoff models (Rational Method) and continuous runoff models, the NRCS Curve Number method, hydrologic soil groups, antecedent moisture conditions and the time-area method. HID-661, Dr. Arjumand Zehra Zaidi, USPCAS-W, MUET Jamshoro.">
+  <meta name="description" content="Lecture 8 &mdash; Runoff Models: the rainfall&ndash;runoff relationship and effective rainfall, infiltration and runoff generation, hydrograph analysis, rainfall&ndash;runoff modeling, peak runoff models (Rational Method) and continuous runoff models, the NRCS Curve Number method, hydrologic soil groups, antecedent moisture conditions and the time-area method. HID-661, Dr. Arjumand Zehra Zaidi, USPCAS-W, MUET Jamshoro.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -57,9 +57,11 @@
       <section class="card at-a-glance">
         <h2 class="section-title">In this lecture</h2>
         <ol>
+          <li>From rainfall to runoff &mdash; effective rainfall, infiltration and runoff generation</li>
+          <li>Hydrograph analysis &mdash; rising limb, peak and recession, and what controls hydrograph shape</li>
+          <li>Rainfall&ndash;runoff modeling &mdash; inputs, method choice, calibration, validation and trust</li>
           <li>Two families of runoff models &mdash; peak runoff models and continuous runoff models</li>
           <li>The Rational Method &mdash; assumptions, the peak-discharge formula and the runoff coefficient</li>
-          <li>The weighted runoff coefficient for a non-homogeneous area</li>
           <li>The NRCS Curve Number method &mdash; the rainfall&ndash;runoff equation, S and initial abstraction</li>
           <li>Hydrologic soil groups, antecedent moisture conditions, and the composite curve number</li>
           <li>Continuous runoff models &mdash; the time-area method and isochrones, and unit hydrograph techniques</li>
@@ -68,7 +70,186 @@
       </section>
 
       <section class="section-block">
-        <h2 class="section-title">1. Two families of runoff models</h2>
+        <h2 class="section-title">1. From rainfall to runoff</h2>
+
+        <div class="card">
+          <p>Runoff models start from a simple question: how much of the rain that falls on a catchment actually reaches the outlet, and when? This section sets up the rainfall&ndash;runoff relationship that the models in the rest of the lecture quantify.</p>
+
+          <h3>From gross rainfall to effective rainfall</h3>
+          <div class="highlight-box">
+            <span class="box-label">Definition</span>
+            <p style="margin:0"><span class="key-term" data-tooltip="The portion of rainfall that produces a perceptible streamflow response at the catchment outlet, after losses and storage are accounted for.">Effective rainfall</span> is the portion of rainfall that produces a perceptible streamflow response. It equals the gross precipitation measured by a gauge, minus the losses.</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Term</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Gross precipitation</strong></td><td>Rain measured by a gauge.</td></tr>
+                <tr><td><strong>Interception &amp; infiltration</strong></td><td>Losses and storage before runoff occurs.</td></tr>
+                <tr><td><strong>Effective rainfall</strong></td><td>The portion contributing to streamflow.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="diagram">Effective precipitation  =  gross precipitation  &minus;  losses</div>
+          <p>Not all rainfall becomes surface runoff; some infiltrates, some is stored, and some contributes to subsurface flow.</p>
+
+          <h3>Infiltration and runoff generation</h3>
+          <ul>
+            <li>Dry soil may initially have a high <span class="key-term" data-tooltip="The maximum rate at which soil can absorb water. It is high when the soil is dry and declines as the soil becomes wetter.">infiltration capacity</span>.</li>
+            <li>If rainfall intensity is below infiltration capacity, little or no overland flow occurs &mdash; although interflow may still develop.</li>
+            <li>With continuing rainfall, the soil becomes wetter and infiltration capacity can decline.</li>
+            <li>When rainfall exceeds the capacity of the soil to absorb water, the excess water contributes to runoff.</li>
+          </ul>
+
+          <h3>The catchment as a rainfall&ndash;runoff system</h3>
+          <p>A catchment can be treated as a <strong>system that transforms rainfall input into streamflow output</strong>:</p>
+          <ul>
+            <li><strong>Inputs</strong> include rainfall amount, intensity, duration and spatial distribution.</li>
+            <li>The <strong>catchment controls</strong> the transformation through soils, land cover, slope, drainage and storage.</li>
+            <li>The observed <strong>output</strong> is discharge at the catchment outlet.</li>
+          </ul>
+          <div class="diagram">Rainfall input  &rarr;  Catchment processes  &rarr;  Runoff transformation  &rarr;  Discharge output</div>
+          <ul>
+            <li>Losses and storage control <strong>how much</strong> rainfall becomes effective rainfall.</li>
+            <li>Catchment routing controls <strong>when</strong> that water reaches the outlet.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">2. Hydrograph analysis</h2>
+
+        <div class="card">
+          <div class="highlight-box">
+            <span class="box-label">Definition</span>
+            <p style="margin:0">A <span class="key-term" data-tooltip="A graph of discharge plotted against time at a channel location, showing how a catchment responds to a rainfall event.">hydrograph</span> is discharge plotted against time at a channel location. Its three parts are the <strong>rising limb</strong>, the <strong>peak</strong> and the <strong>recession</strong>.</p>
+          </div>
+          <div class="diagram">Discharge
+   ^
+   |            ,-.
+   |          ,'   `.
+   |        ,'       `---..__
+   |      ,'
+   |____,'_______________________> Time
+        rising   peak   recession
+        limb</div>
+
+          <h3>Reading a hydrograph</h3>
+          <ul>
+            <li>The hydrologic response of rainfall at the outlet of an area is recorded as a hydrograph: discharge (cubic feet per second) in a channel versus time.</li>
+            <li>The <strong>area under the curve</strong> yields the <strong>volume of runoff</strong>.</li>
+            <li>Streamflow = Direct Runoff + Base flow.</li>
+            <li>Direct runoff (DRO) = rainfall excess = rainfall &minus; losses.</li>
+            <li>Losses include interception, infiltration and depression storage &mdash; sometimes called basin recharge.</li>
+          </ul>
+
+          <h3>What controls hydrograph shape?</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Storm / climate</th><th>Catchment</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Rainfall intensity</td><td>Catchment size and shape</td></tr>
+                <tr><td>Rainfall duration</td><td>Slope and elevation</td></tr>
+                <tr><td>Rainfall spatial distribution</td><td>Soil and land cover</td></tr>
+                <tr><td>Rainfall temporal distribution</td><td>Drainage density, roughness and storage</td></tr>
+                <tr><td>&nbsp;</td><td>Antecedent moisture</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>How catchment characteristics change the response</h3>
+          <ul>
+            <li><strong>Steeper slopes</strong> generally produce faster runoff and a sharper hydrograph response.</li>
+            <li><strong>Impervious or highly developed surfaces</strong> can reduce infiltration and increase rapid runoff.</li>
+            <li><strong>Larger catchments</strong> generally produce greater runoff volume for the same rainfall depth, but their response is often broader and slower.</li>
+            <li><strong>Vegetation, soil properties, channel length, drainage density, and natural/channel storage</strong> also modify the response.</li>
+            <li><strong>Snowmelt</strong> at high elevation can produce broader, lower-peaked flood responses than intense rainfall.</li>
+          </ul>
+
+          <div class="example-box">
+            <span class="box-label">Same monthly rainfall, different risk</span>
+            <p style="margin:0">Two months can record the same total rainfall but carry very different runoff risk. What decision changes when the hydrograph changes?</p>
+          </div>
+
+          <div class="example-box">
+            <span class="box-label">Case study &mdash; the 2013 Sindh floods</span>
+            <p style="margin:0">The <strong>2013 floods in Sindh</strong> illustrate how a large volume of rainfall translated into a broad, damaging flood wave across the lower Indus plain &mdash; a reminder that peak timing and volume depend on both watershed and storm conditions.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">3. Rainfall&ndash;runoff modeling</h2>
+
+        <div class="card">
+          <div class="highlight-box">
+            <span class="box-label">Objective</span>
+            <p style="margin:0"><span class="key-term" data-tooltip="A model that estimates the runoff or streamflow response produced by a rainfall event or rainfall time series.">Rainfall&ndash;runoff modeling</span> estimates the runoff or streamflow response produced by a rainfall event or rainfall time series.</p>
+          </div>
+          <ul>
+            <li><strong>Inputs</strong> may include rainfall, soil properties, land cover, topography and antecedent conditions.</li>
+            <li><strong>Observed discharge</strong> is used for calibration and evaluation where measurements are available.</li>
+            <li><strong>Model choice</strong> depends on the purpose, data availability, catchment scale, and required level of detail.</li>
+          </ul>
+
+          <h3>Rainfall data &mdash; gauge and satellite are complements</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Source</th><th>Strengths</th><th>Limitations</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Rain gauge</strong></td><td>Direct point measurement; long local records where maintained.</td><td>Sparse coverage; missing values; wind/exposure errors.</td></tr>
+                <tr><td><strong>Satellite</strong></td><td>Spatially complete, near-real-time products.</td><td>Bias in mountains and intense localized storms; validate locally.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Choosing a rainfall&ndash;runoff method</h3>
+          <p>The method should match the decision, the watershed scale, and the available data:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Method</th><th>What it estimates</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Rational Method</strong></td><td>Estimates peak discharge for suitable small catchments &mdash; not event volume.</td></tr>
+                <tr><td><strong>Curve Number Method</strong></td><td>Estimates event runoff depth from rainfall, soil and land-cover conditions.</td></tr>
+                <tr><td><strong>Hydrological &amp; hydraulic (H&amp;H) modeling</strong></td><td>Can simulate runoff timing and routing when suitable data are available.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="assignment-note">Use local evidence and check assumptions before accepting results.</p>
+
+          <h3>Regression or machine learning as a hydrologic analysis tool</h3>
+          <ul>
+            <li>Regression can relate runoff or streamflow to explanatory variables when a suitable data record is available.</li>
+            <li>Regression works best for long time periods.</li>
+            <li>Possible predictors include rainfall characteristics, basin descriptors, or other hydrometeorological variables.</li>
+            <li>Regression is an <strong>empirical</strong> relationship; it should be evaluated using appropriate goodness-of-fit and validation measures.</li>
+          </ul>
+
+          <h3>Can we trust the model results?</h3>
+          <div class="warning-box">
+            <span class="box-label">A good-looking result is not enough</span>
+            <p style="margin:0">Without evidence, a plausible hydrograph can still be wrong. Model results should be checked, not assumed.</p>
+          </div>
+          <ul>
+            <li>Check rainfall depth, timing and spatial coverage.</li>
+            <li>Compare simulated and observed flood peaks, timing and volume.</li>
+            <li>Test reasonable ranges of uncertain parameters.</li>
+            <li>Validate with another event or independent field evidence.</li>
+            <li>Report uncertainty rather than relying on one number.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">4. Two families of runoff models</h2>
 
         <div class="card">
           <p>Runoff models estimate the streamflow a watershed will produce. They fall into two broad families, depending on what they predict:</p>
@@ -91,7 +272,7 @@
       </section>
 
       <section class="section-block">
-        <h2 class="section-title">2. Peak runoff models &mdash; the Rational Method</h2>
+        <h2 class="section-title">5. Peak runoff models &mdash; the Rational Method</h2>
 
         <div class="card">
           <p>The <span class="key-term" data-tooltip="A deterministic, lumped peak-discharge model, also known as the Lloyd-Davies method, dating from around 1850.">Rational Method</span> is a deterministic, lumped model &mdash; also called the Lloyd-Davies method (circa 1850). It estimates the peak discharge from a small catchment.</p>
@@ -150,7 +331,7 @@
       </section>
 
       <section class="section-block">
-        <h2 class="section-title">3. The NRCS Curve Number method</h2>
+        <h2 class="section-title">6. The NRCS Curve Number method</h2>
 
         <div class="card">
           <p>The <span class="key-term" data-tooltip="Developed by the USDA Soil Conservation Service (now the Natural Resources Conservation Service) to estimate runoff depth from a 24-hour storm.">NRCS Curve Number method</span> was developed by the USA Soil Conservation Service (now the Natural Resources Conservation Service, NRCS) of the USDA to predict peak discharge due to a 24-hour storm event.</p>
@@ -292,7 +473,7 @@
       </section>
 
       <section class="section-block">
-        <h2 class="section-title">4. Continuous runoff models</h2>
+        <h2 class="section-title">7. Continuous runoff models</h2>
 
         <div class="card">
           <p>Continuous runoff models produce a full hydrograph rather than a single peak value. The lecture covers the time-area method and unit hydrograph techniques.</p>
@@ -316,30 +497,13 @@
       </section>
 
       <section class="section-block">
-        <h2 class="section-title">5. Flood hydrographs &mdash; the 2013 Sindh floods</h2>
-
-        <div class="card">
-          <p>Reading a flood hydrograph comes down to three things &mdash; <strong>peak, timing and volume</strong> &mdash; all of which matter for design and for issuing warnings.</p>
-          <div class="diagram">Discharge
-   ^
-   |            ,-.
-   |          ,'   `.
-   |        ,'       `---..__
-   |      ,'
-   |____,'_______________________> Time
-        rising   peak   recession
-        limb</div>
-          <div class="example-box">
-            <span class="box-label">Case study</span>
-            <p style="margin:0">The <strong>2013 floods in Sindh</strong> illustrate how a large volume of rainfall translated into a broad, damaging flood wave across the lower Indus plain &mdash; a reminder that peak timing and volume depend on both watershed and storm conditions.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-block">
         <h2 class="section-title">Key takeaways</h2>
         <div class="key-takeaways">
           <ul>
+            <li>Only part of the rainfall becomes runoff: <strong>effective rainfall</strong> = gross rainfall &minus; losses, and runoff is generated when rainfall exceeds the soil&rsquo;s infiltration capacity.</li>
+            <li>A catchment transforms rainfall input into streamflow output &mdash; losses and storage control <strong>how much</strong> becomes runoff, and routing controls <strong>when</strong> it arrives.</li>
+            <li>The <strong>hydrograph</strong> (rising limb, peak, recession) records the catchment response; the area under the curve is the runoff volume, and its shape reflects both storm and catchment characteristics.</li>
+            <li>Rainfall&ndash;runoff modeling requires appropriate data, clear assumptions, calibration and validation &mdash; a plausible hydrograph is not proof of a correct model.</li>
             <li>Runoff models fall into two families: <strong>peak runoff models</strong> (peak discharge only) and <strong>continuous runoff models</strong> (a full runoff versus time hydrograph).</li>
             <li>The <strong>Rational Method</strong> Q<sub>p</sub> = C&middot;I<sub>i</sub>&middot;A is a lumped peak-discharge model for small, concentrated catchments &mdash; it estimates peak flow, not event volume.</li>
             <li>The runoff coefficient <strong>C</strong> captures soil, land use/cover and slope; a non-homogeneous area needs a <strong>weighted C</strong> by area.</li>
@@ -367,6 +531,11 @@
         <div class="assignment-box">
           <p style="margin-top:0">Answer the following:</p>
           <ol>
+            <li>Explain how gross rainfall becomes effective rainfall, and name the main losses that separate the two.</li>
+            <li>Explain how infiltration capacity controls whether rainfall becomes overland flow.</li>
+            <li>Sketch and label a flood hydrograph (rising limb, peak, recession), and explain what determines the peak timing, the peak discharge and the runoff volume.</li>
+            <li>Why can two watersheds that receive the same rainfall produce different runoff? Give at least four catchment characteristics that cause the difference.</li>
+            <li>Name the four inputs needed to build a rainfall&ndash;runoff model, and explain how you would judge whether the model can be trusted.</li>
             <li>Distinguish between peak runoff models and continuous runoff models, and give one situation in which each would be appropriate.</li>
             <li>State the four assumptions of the Rational Method and explain why the method should not be used for a large catchment or where event volume is required.</li>
             <li>Explain what the runoff coefficient C represents, and show how a weighted runoff coefficient is computed for a catchment with two land uses.</li>
@@ -385,10 +554,94 @@
           <div class="quiz" data-quiz>
 
             <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Effective precipitation = gross precipitation − losses."
+                 data-feedback-incorrect="Effective precipitation is the part of rainfall that produces streamflow, i.e. gross precipitation minus losses."
+                 data-feedback-unanswered="Effective rainfall = gross rainfall − losses.">
+              <p class="quiz-q">1. Effective rainfall is best described as:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">All the rain measured by a gauge during a storm</button>
+                <button class="quiz-option" data-correct="true">The portion of rainfall that produces a perceptible streamflow response</button>
+                <button class="quiz-option">Rainfall that falls directly on the stream channel</button>
+                <button class="quiz-option">Rainfall that infiltrates the soil and never reaches the stream</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! When rainfall exceeds the capacity of the soil to absorb water, the excess contributes to runoff."
+                 data-feedback-incorrect="Runoff is generated when rainfall exceeds the soil's capacity to absorb water."
+                 data-feedback-unanswered="Runoff occurs when rainfall exceeds infiltration capacity.">
+              <p class="quiz-q">2. When does excess water begin to contribute to runoff?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">As soon as any rain starts to fall on dry soil</button>
+                <button class="quiz-option">Only when the soil is completely saturated to the surface for many days</button>
+                <button class="quiz-option" data-correct="true">When rainfall exceeds the capacity of the soil to absorb water</button>
+                <button class="quiz-option">Only when the catchment has no vegetation at all</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Streamflow is the sum of direct runoff and baseflow."
+                 data-feedback-incorrect="Streamflow = direct runoff + baseflow."
+                 data-feedback-unanswered="Streamflow = direct runoff + baseflow.">
+              <p class="quiz-q">3. On a hydrograph, streamflow is made up of:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Rainfall plus infiltration</button>
+                <button class="quiz-option" data-correct="true">Direct runoff plus baseflow</button>
+                <button class="quiz-option">Peak discharge plus time of concentration</button>
+                <button class="quiz-option">Interception plus evaporation</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! The area under the hydrograph curve gives the volume of runoff."
+                 data-feedback-incorrect="The area under the hydrograph curve equals the volume of runoff."
+                 data-feedback-unanswered="Area under the curve = runoff volume.">
+              <p class="quiz-q">4. On a hydrograph, the area under the curve represents:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">The peak discharge</button>
+                <button class="quiz-option">The time of concentration</button>
+                <button class="quiz-option" data-correct="true">The volume of runoff</button>
+                <button class="quiz-option">The catchment area</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Steeper slopes generally produce faster runoff and a sharper hydrograph response."
+                 data-feedback-incorrect="Steeper slopes give faster runoff and a sharper, flashier hydrograph."
+                 data-feedback-unanswered="Steeper slope = faster, sharper response.">
+              <p class="quiz-q">5. Compared with a gently sloping catchment, a steep catchment generally produces:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">A broader and slower hydrograph response</button>
+                <button class="quiz-option" data-correct="true">Faster runoff and a sharper hydrograph response</button>
+                <button class="quiz-option">No change to the hydrograph shape</button>
+                <button class="quiz-option">A lower peak and a longer recession always</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Both the storm (input) and the catchment state (antecedent moisture) control the runoff response."
+                 data-feedback-incorrect="Runoff is an event response produced by both the storm and the watershed state."
+                 data-feedback-unanswered="Storm + catchment state both control the response.">
+              <p class="quiz-q">6. Two watersheds receive the same rainfall but produce different runoff. The most likely reason is:</p>
+              <div class="quiz-options">
+                <button class="quiz-option">The Strahler order of the streams must differ</button>
+                <button class="quiz-option" data-correct="true">Differences in soil, slope, vegetation, shape and antecedent moisture</button>
+                <button class="quiz-option">The water-balance equation does not apply to them</button>
+                <button class="quiz-option">Rainfall always produces identical runoff in every catchment</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
                  data-feedback-correct="Correct! Peak runoff models estimate only the peak discharge from the watershed."
                  data-feedback-incorrect="Peak runoff models give only the peak discharge; continuous runoff models give the runoff-versus-time hydrograph."
                  data-feedback-unanswered="Peak runoff models = peak discharge only.">
-              <p class="quiz-q">1. A peak runoff model provides an estimate of:</p>
+              <p class="quiz-q">7. A peak runoff model provides an estimate of:</p>
               <div class="quiz-options">
                 <button class="quiz-option">The full runoff hydrograph versus time</button>
                 <button class="quiz-option" data-correct="true">The peak discharge from the watershed only</button>
@@ -402,7 +655,7 @@
                  data-feedback-correct="Correct! Continuous runoff models provide storm hydrographs for a given rainfall hyetograph."
                  data-feedback-incorrect="Continuous runoff models provide an estimate of runoff versus time (a storm hydrograph) for a given rainfall hyetograph."
                  data-feedback-unanswered="Continuous models = runoff vs time hydrograph.">
-              <p class="quiz-q">2. Continuous runoff models provide:</p>
+              <p class="quiz-q">8. Continuous runoff models provide:</p>
               <div class="quiz-options">
                 <button class="quiz-option">Only the peak discharge value</button>
                 <button class="quiz-option" data-correct="true">A runoff versus time series (storm hydrograph) for a given rainfall hyetograph</button>
@@ -416,7 +669,7 @@
                  data-feedback-correct="Correct! The Rational Method is Qp = C·Ii·A."
                  data-feedback-incorrect="The Rational Method formula is Qp = C·Ii·A, where Ii is the rainfall intensity and A is the area."
                  data-feedback-unanswered="Qp = C·Ii·A.">
-              <p class="quiz-q">3. The Rational Method formula is:</p>
+              <p class="quiz-q">9. The Rational Method formula is:</p>
               <div class="quiz-options">
                 <button class="quiz-option">Q<sub>p</sub> = C + I<sub>i</sub> + A</button>
                 <button class="quiz-option" data-correct="true">Q<sub>p</sub> = C &middot; I<sub>i</sub> &middot; A</button>
@@ -430,7 +683,7 @@
                  data-feedback-correct="Correct! The Rational Method assumes a small catchment (less than about 200 acres)."
                  data-feedback-incorrect="The Rational Method assumes the catchment is small — less than about 200 acres."
                  data-feedback-unanswered="Rational Method: small catchment.">
-              <p class="quiz-q">4. The Rational Method assumes the catchment is:</p>
+              <p class="quiz-q">10. The Rational Method assumes the catchment is:</p>
               <div class="quiz-options">
                 <button class="quiz-option" data-correct="true">Small (less than about 200 acres)</button>
                 <button class="quiz-option">Larger than 2,000 acres</button>
@@ -444,7 +697,7 @@
                  data-feedback-correct="Correct! The weight is the area of each land use, so Cw = Σ(Cj·Aj)/ΣAj."
                  data-feedback-incorrect="The weighted runoff coefficient weights each C by its area: Cw = Σ(Cj·Aj)/ΣAj."
                  data-feedback-unanswered="Weighted C uses area as the weight.">
-              <p class="quiz-q">5. For a non-homogeneous catchment, the weighted runoff coefficient is computed by:</p>
+              <p class="quiz-q">11. For a non-homogeneous catchment, the weighted runoff coefficient is computed by:</p>
               <div class="quiz-options">
                 <button class="quiz-option">Taking the simple average of the individual C values</button>
                 <button class="quiz-option" data-correct="true">Weighting each C by the area of that land use: C<sub>w</sub> = &Sigma;(C<sub>j</sub>&middot;A<sub>j</sub>) / &Sigma;A<sub>j</sub></button>
@@ -458,7 +711,7 @@
                  data-feedback-correct="Correct! The higher the CN, the higher the runoff potential."
                  data-feedback-incorrect="A higher curve number means a higher runoff potential."
                  data-feedback-unanswered="Higher CN = higher runoff potential.">
-              <p class="quiz-q">6. A higher curve number (CN) means:</p>
+              <p class="quiz-q">12. A higher curve number (CN) means:</p>
               <div class="quiz-options">
                 <button class="quiz-option">Lower runoff potential and more infiltration</button>
                 <button class="quiz-option" data-correct="true">Higher runoff potential</button>
@@ -472,7 +725,7 @@
                  data-feedback-correct="Correct! S = (1000/CN) − 10 = 1000/75 − 10 = 3.33 inches."
                  data-feedback-incorrect="For CN = 75, S = (1000/75) − 10 = 3.33 inches."
                  data-feedback-unanswered="S = (1000/CN) − 10.">
-              <p class="quiz-q">7. For CN = 75 (English units), the potential maximum retention S is:</p>
+              <p class="quiz-q">13. For CN = 75 (English units), the potential maximum retention S is:</p>
               <div class="quiz-options">
                 <button class="quiz-option">75 inches</button>
                 <button class="quiz-option">13.3 inches</button>
@@ -486,7 +739,7 @@
                  data-feedback-correct="Correct! Group A soils have high infiltration and low runoff potential; Group D soils are the opposite."
                  data-feedback-incorrect="Group A = high infiltration / low runoff; Group D = very low infiltration / high runoff."
                  data-feedback-unanswered="A = high infiltration; D = low infiltration.">
-              <p class="quiz-q">8. Which hydrologic soil group has the <strong>highest</strong> infiltration rate?</p>
+              <p class="quiz-q">14. Which hydrologic soil group has the <strong>highest</strong> infiltration rate?</p>
               <div class="quiz-options">
                 <button class="quiz-option" data-correct="true">Group A</button>
                 <button class="quiz-option">Group B</button>
@@ -500,7 +753,7 @@
                  data-feedback-correct="Correct! AMC II (average moisture condition) is recommended for most hydrologic analysis."
                  data-feedback-incorrect="AMC II — the average condition — is recommended for most hydrologic analysis."
                  data-feedback-unanswered="Use AMC II (average) for most analysis.">
-              <p class="quiz-q">9. Which antecedent moisture condition is recommended for most hydrologic analysis?</p>
+              <p class="quiz-q">15. Which antecedent moisture condition is recommended for most hydrologic analysis?</p>
               <div class="quiz-options">
                 <button class="quiz-option">AMC I (dry)</button>
                 <button class="quiz-option" data-correct="true">AMC II (average)</button>
@@ -514,7 +767,7 @@
                  data-feedback-correct="Correct! For P ≤ Ia, no runoff occurs and Q = 0."
                  data-feedback-incorrect="When the accumulated rainfall P is less than or equal to the initial abstraction Ia, there is no runoff (Q = 0)."
                  data-feedback-unanswered="P ≤ Ia → Q = 0.">
-              <p class="quiz-q">10. In the NRCS method, what happens when the accumulated rainfall P is less than or equal to the initial abstraction I<sub>a</sub>?</p>
+              <p class="quiz-q">16. In the NRCS method, what happens when the accumulated rainfall P is less than or equal to the initial abstraction I<sub>a</sub>?</p>
               <div class="quiz-options">
                 <button class="quiz-option">Runoff equals the full rainfall depth</button>
                 <button class="quiz-option" data-correct="true">No runoff occurs &mdash; Q = 0</button>
@@ -530,7 +783,7 @@
             </div>
 
             <div class="score-banner" data-score-banner hidden>
-              <span>Your score: <span data-score>0</span> / <span data-total>10</span></span>
+              <span>Your score: <span data-score>0</span> / <span data-total>16</span></span>
               <span class="score-note">The key is shown above &mdash; correct answers are highlighted in green.</span>
             </div>
           </div>

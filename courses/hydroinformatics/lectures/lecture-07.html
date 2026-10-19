@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lecture 7: Hydrological Modeling | Hydroinformatics</title>
-  <meta name="description" content="Lecture 7 &mdash; Hydrological Modeling: rainfall analysis and effective rainfall, watershed concepts and DEM delineation, drainage networks and basin characteristics, the water budget, hydrograph analysis and rainfall&ndash;runoff modeling. HID-661, Dr. Arjumand Zehra Zaidi, USPCAS-W, MUET Jamshoro.">
+  <meta name="description" content="Lecture 7 &mdash; Hydrological Modeling: rainfall analysis, watershed concepts and DEM delineation, drainage networks and basin characteristics, and the basin water budget. HID-661, Dr. Arjumand Zehra Zaidi, USPCAS-W, MUET Jamshoro.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -57,13 +57,10 @@
       <section class="card at-a-glance">
         <h2 class="section-title">In this lecture</h2>
         <ol>
-          <li>Rainfall analysis &mdash; mean rainfall, variability in time and space, and the step from gross to effective rainfall</li>
-          <li>Infiltration and runoff generation &mdash; how rainfall does (or does not) become overland flow</li>
+          <li>Rainfall analysis &mdash; mean rainfall and variability in time and space</li>
           <li>Watershed concepts &mdash; the basic spatial unit, topographic divides and delineation from a DEM</li>
           <li>Drainage networks, key basin characteristics and Strahler stream order</li>
-          <li>The basin water budget and the rainfall&ndash;runoff response of a catchment</li>
-          <li>Hydrograph analysis &mdash; rising limb, peak and recession, and what controls hydrograph shape</li>
-          <li>Rainfall&ndash;runoff modeling &mdash; inputs, method choice, calibration, validation and trust</li>
+          <li>The basin water budget &mdash; inflows, outflows and storage</li>
         </ol>
       </section>
 
@@ -94,33 +91,7 @@
             <li>Rainfall analysis provides the input information for rainfall&ndash;runoff analysis.</li>
           </ul>
 
-          <h3>From gross rainfall to effective rainfall</h3>
-          <div class="highlight-box">
-            <span class="box-label">Definition</span>
-            <p style="margin:0"><span class="key-term" data-tooltip="The portion of rainfall that produces a perceptible streamflow response at the catchment outlet, after losses and storage are accounted for.">Effective rainfall</span> is the portion of rainfall that produces a perceptible streamflow response. It equals the gross precipitation measured by a gauge, minus the losses.</p>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr><th>Term</th><th>Description</th></tr>
-              </thead>
-              <tbody>
-                <tr><td><strong>Gross precipitation</strong></td><td>Rain measured by a gauge.</td></tr>
-                <tr><td><strong>Interception &amp; infiltration</strong></td><td>Losses and storage before runoff occurs.</td></tr>
-                <tr><td><strong>Effective rainfall</strong></td><td>The portion contributing to streamflow.</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="diagram">Effective precipitation  =  gross precipitation  &minus;  losses</div>
-          <p>Not all rainfall becomes surface runoff; some infiltrates, some is stored, and some contributes to subsurface flow.</p>
-
-          <h3>Infiltration and runoff generation</h3>
-          <ul>
-            <li>Dry soil may initially have a high <span class="key-term" data-tooltip="The maximum rate at which soil can absorb water. It is high when the soil is dry and declines as the soil becomes wetter.">infiltration capacity</span>.</li>
-            <li>If rainfall intensity is below infiltration capacity, little or no overland flow occurs &mdash; although interflow may still develop.</li>
-            <li>With continuing rainfall, the soil becomes wetter and infiltration capacity can decline.</li>
-            <li>When rainfall exceeds the capacity of the soil to absorb water, the excess water contributes to runoff.</li>
-          </ul>
+          <p>Not all rainfall becomes surface runoff; some infiltrates, some is stored, and some contributes to subsurface flow. How rainfall becomes runoff &mdash; effective rainfall, infiltration and runoff generation &mdash; is covered in the next lecture on runoff models.</p>
         </div>
       </section>
 
@@ -219,7 +190,7 @@
       </section>
 
       <section class="section-block">
-        <h2 class="section-title">3. Water budget &amp; rainfall&ndash;runoff</h2>
+        <h2 class="section-title">3. Water budget</h2>
 
         <div class="card">
           <h3>How water moves through a watershed</h3>
@@ -254,182 +225,7 @@
             <span class="box-label">Hydrologic mass balance</span>
             <p style="margin:0">Inflow = Outflow &plusmn; change in storage &nbsp;&nbsp;&rarr;&nbsp;&nbsp; &Sigma; Inflows &minus; &Sigma; Outflows = &Delta; Storage</p>
           </div>
-
-          <h3>Rainfall&ndash;runoff response</h3>
-          <p>A catchment can be treated as a <strong>system that transforms rainfall input into streamflow output</strong>:</p>
-          <ul>
-            <li><strong>Inputs</strong> include rainfall amount, intensity, duration and spatial distribution.</li>
-            <li>The <strong>catchment controls</strong> the transformation through soils, land cover, slope, drainage and storage.</li>
-            <li>The observed <strong>output</strong> is discharge at the catchment outlet.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="section-block">
-        <h2 class="section-title">4. Hydrograph analysis</h2>
-
-        <div class="card">
-          <div class="highlight-box">
-            <span class="box-label">Definition</span>
-            <p style="margin:0">A <span class="key-term" data-tooltip="A graph of discharge plotted against time at a channel location, showing how a catchment responds to a rainfall event.">hydrograph</span> is discharge plotted against time at a channel location. Its three parts are the <strong>rising limb</strong>, the <strong>peak</strong> and the <strong>recession</strong>.</p>
-          </div>
-          <div class="diagram">Discharge
-   ^
-   |            ,-.
-   |          ,'   `.
-   |        ,'       `---..__
-   |      ,'
-   |____,'_______________________> Time
-        rising   peak   recession
-        limb</div>
-
-          <h3>Hydrograph analysis</h3>
-          <ul>
-            <li>The hydrologic response of rainfall at the outlet of an area is recorded as a hydrograph: discharge (cubic feet per second) in a channel versus time.</li>
-            <li>The <strong>area under the curve</strong> yields the <strong>volume of runoff</strong>.</li>
-            <li>Streamflow = Direct Runoff + Base flow.</li>
-            <li>Direct runoff (DRO) = rainfall excess = rainfall &minus; losses.</li>
-            <li>Losses include interception, infiltration and depression storage &mdash; sometimes called basin recharge.</li>
-          </ul>
-
-          <h3>What controls hydrograph shape?</h3>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr><th>Storm / climate</th><th>Catchment</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Rainfall intensity</td><td>Catchment size and shape</td></tr>
-                <tr><td>Rainfall duration</td><td>Slope and elevation</td></tr>
-                <tr><td>Rainfall spatial distribution</td><td>Soil and land cover</td></tr>
-                <tr><td>Rainfall temporal distribution</td><td>Drainage density, roughness and storage</td></tr>
-                <tr><td>&nbsp;</td><td>Antecedent moisture</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h3>How catchment characteristics change the response</h3>
-          <ul>
-            <li><strong>Steeper slopes</strong> generally produce faster runoff and a sharper hydrograph response.</li>
-            <li><strong>Impervious or highly developed surfaces</strong> can reduce infiltration and increase rapid runoff.</li>
-            <li><strong>Larger catchments</strong> generally produce greater runoff volume for the same rainfall depth, but their response is often broader and slower.</li>
-            <li><strong>Vegetation, soil properties, channel length, drainage density, and natural/channel storage</strong> also modify the response.</li>
-            <li><strong>Snowmelt</strong> at high elevation can produce broader, lower-peaked flood responses than intense rainfall.</li>
-          </ul>
-
-          <div class="example-box">
-            <span class="box-label">Same monthly rainfall, different risk</span>
-            <p style="margin:0">Two months can record the same total rainfall but carry very different runoff risk. What decision changes when the hydrograph changes?</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-block">
-        <h2 class="section-title">5. Rainfall&ndash;runoff modeling</h2>
-
-        <div class="card">
-          <div class="highlight-box">
-            <span class="box-label">Objective</span>
-            <p style="margin:0"><span class="key-term" data-tooltip="A model that estimates the runoff or streamflow response produced by a rainfall event or rainfall time series.">Rainfall&ndash;runoff modeling</span> estimates the runoff or streamflow response produced by a rainfall event or rainfall time series.</p>
-          </div>
-          <ul>
-            <li><strong>Inputs</strong> may include rainfall, soil properties, land cover, topography and antecedent conditions.</li>
-            <li><strong>Observed discharge</strong> is used for calibration and evaluation where measurements are available.</li>
-            <li><strong>Model choice</strong> depends on the purpose, data availability, catchment scale, and required level of detail.</li>
-          </ul>
-
-          <h3>A simple conceptual model</h3>
-          <div class="diagram">Rainfall input  &rarr;  Catchment processes  &rarr;  Runoff transformation  &rarr;  Discharge output</div>
-          <ul>
-            <li>Losses and storage control <strong>how much</strong> rainfall becomes effective rainfall.</li>
-            <li>Catchment routing controls <strong>when</strong> that water reaches the outlet.</li>
-          </ul>
-
-          <h3>Rainfall data &mdash; gauge and satellite are complements</h3>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr><th>Source</th><th>Strengths</th><th>Limitations</th></tr>
-              </thead>
-              <tbody>
-                <tr><td><strong>Rain gauge</strong></td><td>Direct point measurement; long local records where maintained.</td><td>Sparse coverage; missing values; wind/exposure errors.</td></tr>
-                <tr><td><strong>Satellite</strong></td><td>Spatially complete, near-real-time products.</td><td>Bias in mountains and intense localized storms; validate locally.</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h3>Choosing a rainfall&ndash;runoff method</h3>
-          <p>The method should match the decision, the watershed scale, and the available data:</p>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr><th>Method</th><th>What it estimates</th></tr>
-              </thead>
-              <tbody>
-                <tr><td><strong>Rational Method</strong></td><td>Estimates peak discharge for suitable small catchments &mdash; not event volume.</td></tr>
-                <tr><td><strong>Curve Number Method</strong></td><td>Estimates event runoff depth from rainfall, soil and land-cover conditions.</td></tr>
-                <tr><td><strong>Hydrological &amp; hydraulic (H&amp;H) modeling</strong></td><td>Can simulate runoff timing and routing when suitable data are available.</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="assignment-note">Use local evidence and check assumptions before accepting results.</p>
-
-          <h3>Regression or machine learning as a hydrologic analysis tool</h3>
-          <ul>
-            <li>Regression can relate runoff or streamflow to explanatory variables when a suitable data record is available.</li>
-            <li>Regression works best for long time periods.</li>
-            <li>Possible predictors include rainfall characteristics, basin descriptors, or other hydrometeorological variables.</li>
-            <li>Regression is an <strong>empirical</strong> relationship; it should be evaluated using appropriate goodness-of-fit and validation measures.</li>
-          </ul>
-
-          <h3>Can we trust the model results?</h3>
-          <div class="warning-box">
-            <span class="box-label">A good-looking result is not enough</span>
-            <p style="margin:0">Without evidence, a plausible hydrograph can still be wrong. Model results should be checked, not assumed.</p>
-          </div>
-          <ul>
-            <li>Check rainfall depth, timing and spatial coverage.</li>
-            <li>Compare simulated and observed flood peaks, timing and volume.</li>
-            <li>Test reasonable ranges of uncertain parameters.</li>
-            <li>Validate with another event or independent field evidence.</li>
-            <li>Report uncertainty rather than relying on one number.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="section-block">
-        <h2 class="section-title">In-class activity</h2>
-
-        <div class="card">
-          <div class="example-box">
-            <span class="box-label">Work with a rainfall event and a hydrograph</span>
-            <p style="margin:0">Use the sketch of a flood hydrograph and the catchment it drains. Work through the questions below before revealing the answers.</p>
-          </div>
-          <div class="reveal-item" data-reveal>
-            <p class="reveal-question">1. Label the <strong>rising limb</strong>, the <strong>peak</strong> and the <strong>recession limb</strong>.</p>
-            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
-            <div class="reveal-answer" data-reveal-answer>The <strong>rising limb</strong> is the steeply increasing part as the storm begins; the <strong>peak</strong> is the maximum discharge; the <strong>recession</strong> is the slowly falling limb as the catchment drains after the rain stops.</div>
-          </div>
-          <div class="reveal-item" data-reveal>
-            <p class="reveal-question">2. Estimate which part of the hydrograph represents <strong>direct runoff</strong>.</p>
-            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
-            <div class="reveal-answer" data-reveal-answer>The portion above the baseflow separation line &mdash; the rapid response driven by rainfall excess. Baseflow is the slower, sustained contribution from groundwater that continues after the direct runoff has passed.</div>
-          </div>
-          <div class="reveal-item" data-reveal>
-            <p class="reveal-question">3. Which catchment characteristics could explain a <strong>sharp versus broad</strong> response?</p>
-            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
-            <div class="reveal-answer" data-reveal-answer>Steep slopes, impervious or urbanised surfaces, high drainage density, small size and wet antecedent conditions favour a <strong>sharp, flashy</strong> response. Gentle slopes, permeable soils, dense vegetation, large size, and significant channel/natural storage favour a <strong>broad, subdued</strong> response.</div>
-          </div>
-          <div class="reveal-item" data-reveal>
-            <p class="reveal-question">4. Sketch how the hydrograph might change if <strong>rainfall intensity doubled</strong>.</p>
-            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
-            <div class="reveal-answer" data-reveal-answer>A higher peak that arrives <strong>earlier</strong> and a steeper rising limb &mdash; more water is delivered faster than the soil can absorb. The storm may also produce a larger runoff volume, because a greater share of rainfall exceeds the infiltration capacity.</div>
-          </div>
-          <div class="reveal-item" data-reveal>
-            <p class="reveal-question">5. What additional data would you need to <strong>build a rainfall&ndash;runoff model</strong>?</p>
-            <button class="reveal-btn" type="button" data-reveal-btn>Show answer</button>
-            <div class="reveal-answer" data-reveal-answer>Reliable rainfall (gauge and/or satellite), observed streamflow for calibration and validation, a delineated watershed boundary and area, soil properties and hydrologic soil group, land cover, topography (slope and drainage), and antecedent moisture conditions.</div>
-          </div>
+          <p>The water-balance equation is the bookkeeping framework for every hydrologic study: rainfall, runoff and evapotranspiration are the main fluxes, and storage change closes the balance.</p>
         </div>
       </section>
 
@@ -437,13 +233,11 @@
         <h2 class="section-title">Key takeaways</h2>
         <div class="key-takeaways">
           <ul>
-            <li>Rainfall is the primary atmospheric input, but only part of it becomes <strong>effective rainfall</strong> and runoff &mdash; the rest is lost to interception, infiltration and storage.</li>
+            <li>Rainfall is the primary atmospheric input, but only part of it becomes runoff &mdash; the rest is lost to interception, infiltration and storage.</li>
             <li>The <strong>watershed</strong> provides the spatial framework for hydrologic analysis; topography controls drainage direction and watershed boundaries.</li>
             <li>A DEM-derived boundary is a starting point &mdash; always check the DEM, set the outlet at the true decision site, and verify channels in the field.</li>
             <li>Basin characteristics (area, shape, slope, drainage density, relief, time of concentration) and <strong>Strahler stream order</strong> describe how a catchment is organised.</li>
             <li>The basin <strong>water balance</strong> &Sigma; Inflows &minus; &Sigma; Outflows = &Delta; Storage connects rainfall, runoff and storage.</li>
-            <li>The <strong>hydrograph shape</strong> reflects both storm characteristics and catchment characteristics.</li>
-            <li>Rainfall&ndash;runoff modeling represents the transformation from rainfall input to discharge output; good modeling requires appropriate data, clear assumptions, calibration and validation.</li>
           </ul>
         </div>
       </section>
@@ -452,7 +246,6 @@
         <h2 class="section-title">Reading</h2>
         <div class="card">
           <ul class="resource-list">
-            <li><a href="https://www.hec.usace.army.mil/software/hec-hms/" target="_blank" rel="noopener">HEC-HMS &mdash; Hydrologic Modeling System (US Army Corps of Engineers)</a> &mdash; the modeling software referenced for rainfall&ndash;runoff and flood hydrograph simulation.</li>
             <li><a href="https://www.nrcs.usda.gov/resources/guides-and-instructions/engineering-field-handbook" target="_blank" rel="noopener">NRCS Engineering Field Handbook (USDA)</a> &mdash; field procedures for watershed delineation and hydrologic analysis.</li>
             <li><a href="https://gpm.nasa.gov/data/imerg" target="_blank" rel="noopener">NASA GPM IMERG &mdash; Global Precipitation Measurement</a> &mdash; near-real-time global precipitation data.</li>
             <li><a href="https://www.chc.ucsb.edu/data/chirps" target="_blank" rel="noopener">CHIRPS &mdash; Climate Hazards Group Infrared Precipitation with Stations</a> &mdash; long-record gridded rainfall for regions with sparse gauges.</li>
@@ -465,12 +258,10 @@
         <div class="assignment-box">
           <p style="margin-top:0">Answer the following:</p>
           <ol>
-            <li>Explain how gross rainfall becomes effective rainfall, and name the main losses that separate the two.</li>
+            <li>Describe how rainfall varies in time and space, and explain why a single gauge may not represent an entire catchment.</li>
             <li>List the steps to delineate a watershed from a DEM, and state what a DEM can and cannot tell you and what must be checked in the field.</li>
-            <li>Using the water-balance equation, explain how a catchment could receive a large storm yet produce a small runoff response.</li>
-            <li>Sketch and label a flood hydrograph (rising limb, peak, recession), and explain what determines the peak timing, the peak discharge and the runoff volume.</li>
-            <li>Why can two watersheds that receive the same rainfall produce different runoff? Give at least four catchment characteristics that cause the difference.</li>
-            <li>Name the four inputs needed to build a rainfall&ndash;runoff model, and explain how you would judge whether the model can be trusted.</li>
+            <li>Describe the Strahler stream-ordering system and explain how basin characteristics such as drainage density, relief and time of concentration describe a catchment.</li>
+            <li>Write the basin water-balance equation and list its main inflow, outflow and storage terms.</li>
           </ol>
         </div>
       </section>
@@ -483,29 +274,15 @@
           <div class="quiz" data-quiz>
 
             <div class="quiz-question" data-question
-                 data-feedback-correct="Correct! Effective precipitation = gross precipitation − losses."
-                 data-feedback-incorrect="Effective precipitation is the part of rainfall that produces streamflow, i.e. gross precipitation minus losses."
-                 data-feedback-unanswered="Effective rainfall = gross rainfall − losses.">
-              <p class="quiz-q">1. Effective rainfall is best described as:</p>
+                 data-feedback-correct="Correct! Mean annual rainfall is the average annual total over a long record — roughly 30–40 years."
+                 data-feedback-incorrect="Mean annual rainfall averages annual totals over a long record (about 30–40 years)."
+                 data-feedback-unanswered="Mean annual rainfall = long-term average of annual totals.">
+              <p class="quiz-q">1. Mean annual rainfall is best calculated by:</p>
               <div class="quiz-options">
-                <button class="quiz-option">All the rain measured by a gauge during a storm</button>
-                <button class="quiz-option" data-correct="true">The portion of rainfall that produces a perceptible streamflow response</button>
-                <button class="quiz-option">Rainfall that falls directly on the stream channel</button>
-                <button class="quiz-option">Rainfall that infiltrates the soil and never reaches the stream</button>
-              </div>
-              <div class="quiz-feedback"></div>
-            </div>
-
-            <div class="quiz-question" data-question
-                 data-feedback-correct="Correct! When rainfall exceeds the capacity of the soil to absorb water, the excess contributes to runoff."
-                 data-feedback-incorrect="Runoff is generated when rainfall exceeds the soil's capacity to absorb water."
-                 data-feedback-unanswered="Runoff occurs when rainfall exceeds infiltration capacity.">
-              <p class="quiz-q">2. When does excess water begin to contribute to runoff?</p>
-              <div class="quiz-options">
-                <button class="quiz-option">As soon as any rain starts to fall on dry soil</button>
-                <button class="quiz-option">Only when the soil is completely saturated to the surface for many days</button>
-                <button class="quiz-option" data-correct="true">When rainfall exceeds the capacity of the soil to absorb water</button>
-                <button class="quiz-option">Only when the catchment has no vegetation at all</button>
+                <button class="quiz-option">Using one gauge reading from a single year</button>
+                <button class="quiz-option" data-correct="true">Averaging annual rainfall totals over a long record, roughly 30&ndash;40 years</button>
+                <button class="quiz-option">Summing the two wettest months of the year</button>
+                <button class="quiz-option">Taking the maximum daily rainfall ever recorded</button>
               </div>
               <div class="quiz-feedback"></div>
             </div>
@@ -514,7 +291,7 @@
                  data-feedback-correct="Correct! A watershed is the area that contributes flow to a specified point or outlet."
                  data-feedback-incorrect="A watershed is the area that contributes flow to a specified point or outlet."
                  data-feedback-unanswered="Watershed = area draining to a specified outlet.">
-              <p class="quiz-q">3. A watershed is defined as:</p>
+              <p class="quiz-q">2. A watershed is defined as:</p>
               <div class="quiz-options">
                 <button class="quiz-option">The stream channel network only, excluding the land surface</button>
                 <button class="quiz-option" data-correct="true">The area that contributes flow to a specified point or outlet</button>
@@ -528,12 +305,26 @@
                  data-feedback-correct="Correct! When two streams of the same order join, the downstream segment increases by one order."
                  data-feedback-incorrect="In the Strahler system, two streams of the same order joining create a segment one order higher."
                  data-feedback-unanswered="Same order + same order = one order higher.">
-              <p class="quiz-q">4. In the Strahler stream-ordering system, when two streams of the <strong>same</strong> order join, the downstream segment:</p>
+              <p class="quiz-q">3. In the Strahler stream-ordering system, when two streams of the <strong>same</strong> order join, the downstream segment:</p>
               <div class="quiz-options">
                 <button class="quiz-option">Retains the same order</button>
                 <button class="quiz-option" data-correct="true">Increases by one order</button>
                 <button class="quiz-option">Drops back to first order</button>
                 <button class="quiz-option">Becomes a drainage divide</button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question" data-question
+                 data-feedback-correct="Correct! Time of concentration is the travel time from the hydraulically most distant point to the outlet."
+                 data-feedback-incorrect="Time of concentration is the travel time from the hydraulically most distant point to the outlet."
+                 data-feedback-unanswered="Time of concentration = travel time from the most distant point to the outlet.">
+              <p class="quiz-q">4. Which basin characteristic is the travel time from the hydraulically most distant point to the outlet?</p>
+              <div class="quiz-options">
+                <button class="quiz-option">Drainage density</button>
+                <button class="quiz-option">Stream frequency</button>
+                <button class="quiz-option" data-correct="true">Time of concentration</button>
+                <button class="quiz-option">Basin relief</button>
               </div>
               <div class="quiz-feedback"></div>
             </div>
@@ -553,66 +344,10 @@
             </div>
 
             <div class="quiz-question" data-question
-                 data-feedback-correct="Correct! Streamflow is the sum of direct runoff and baseflow."
-                 data-feedback-incorrect="Streamflow = direct runoff + baseflow."
-                 data-feedback-unanswered="Streamflow = direct runoff + baseflow.">
-              <p class="quiz-q">6. On a hydrograph, streamflow is made up of:</p>
-              <div class="quiz-options">
-                <button class="quiz-option">Rainfall plus infiltration</button>
-                <button class="quiz-option" data-correct="true">Direct runoff plus baseflow</button>
-                <button class="quiz-option">Peak discharge plus time of concentration</button>
-                <button class="quiz-option">Interception plus evaporation</button>
-              </div>
-              <div class="quiz-feedback"></div>
-            </div>
-
-            <div class="quiz-question" data-question
-                 data-feedback-correct="Correct! The area under the hydrograph curve gives the volume of runoff."
-                 data-feedback-incorrect="The area under the hydrograph curve equals the volume of runoff."
-                 data-feedback-unanswered="Area under the curve = runoff volume.">
-              <p class="quiz-q">7. On a hydrograph, the area under the curve represents:</p>
-              <div class="quiz-options">
-                <button class="quiz-option">The peak discharge</button>
-                <button class="quiz-option">The time of concentration</button>
-                <button class="quiz-option" data-correct="true">The volume of runoff</button>
-                <button class="quiz-option">The catchment area</button>
-              </div>
-              <div class="quiz-feedback"></div>
-            </div>
-
-            <div class="quiz-question" data-question
-                 data-feedback-correct="Correct! Steeper slopes generally produce faster runoff and a sharper hydrograph response."
-                 data-feedback-incorrect="Steeper slopes give faster runoff and a sharper, flashier hydrograph."
-                 data-feedback-unanswered="Steeper slope = faster, sharper response.">
-              <p class="quiz-q">8. Compared with a gently sloping catchment, a steep catchment generally produces:</p>
-              <div class="quiz-options">
-                <button class="quiz-option">A broader and slower hydrograph response</button>
-                <button class="quiz-option" data-correct="true">Faster runoff and a sharper hydrograph response</button>
-                <button class="quiz-option">No change to the hydrograph shape</button>
-                <button class="quiz-option">A lower peak and a longer recession always</button>
-              </div>
-              <div class="quiz-feedback"></div>
-            </div>
-
-            <div class="quiz-question" data-question
-                 data-feedback-correct="Correct! Both the storm (input) and the catchment state (antecedent moisture) control the runoff response."
-                 data-feedback-incorrect="Runoff is an event response produced by both the storm and the watershed state."
-                 data-feedback-unanswered="Storm + catchment state both control the response.">
-              <p class="quiz-q">9. Two watersheds receive the same rainfall but produce different runoff. The most likely reason is:</p>
-              <div class="quiz-options">
-                <button class="quiz-option">The Strahler order of the streams must differ</button>
-                <button class="quiz-option" data-correct="true">Differences in soil, slope, vegetation, shape and antecedent moisture</button>
-                <button class="quiz-option">The water-balance equation does not apply to them</button>
-                <button class="quiz-option">Rainfall always produces identical runoff in every catchment</button>
-              </div>
-              <div class="quiz-feedback"></div>
-            </div>
-
-            <div class="quiz-question" data-question
                  data-feedback-correct="Correct! A DEM-derived boundary should be checked in the field because of DEM errors, outlet position and channel continuity."
                  data-feedback-incorrect="DEM errors, the outlet position and channel continuity mean a computer-generated boundary must be verified in the field."
                  data-feedback-unanswered="Check the DEM, the outlet and channel continuity in the field.">
-              <p class="quiz-q">10. Why should a DEM-derived watershed boundary be checked in the field?</p>
+              <p class="quiz-q">6. Why should a DEM-derived watershed boundary be checked in the field?</p>
               <div class="quiz-options">
                 <button class="quiz-option">Because GIS software cannot compute drainage areas</button>
                 <button class="quiz-option" data-correct="true">Because DEM errors, outlet position and channel continuity must be verified</button>
@@ -628,7 +363,7 @@
             </div>
 
             <div class="score-banner" data-score-banner hidden>
-              <span>Your score: <span data-score>0</span> / <span data-total>10</span></span>
+              <span>Your score: <span data-score>0</span> / <span data-total>6</span></span>
               <span class="score-note">The key is shown above &mdash; correct answers are highlighted in green.</span>
             </div>
           </div>
